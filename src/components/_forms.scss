@@ -1,0 +1,206 @@
+@use "../config/base" as config;
+@use "../config/forms" as config-forms;
+
+/* =========================================
+   FORMS COMPONENT
+   ========================================= */
+
+:where(input[type="text"]),
+:where(input[type="password"]),
+:where(input[type="email"]),
+:where(input[type="number"]),
+:where(input[type="search"]),
+:where(input[type="tel"]),
+:where(input[type="url"]),
+:where(input[type="date"]),
+:where(input[type="time"]),
+:where(input[type="file"]),
+:where(input[type="range"]),
+:where(input[type="color"]),
+:where(select),
+:where(textarea) {
+  display: block;
+  width: 100%;
+  padding: config.$input-padding-y config.$input-padding-x;
+  font-size: var(--text-m);
+  color: inherit;
+  background-color: var(--surface);
+  border: 1px solid config.$input-border-color;
+  border-radius: config.$input-radius;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+:where(input[type="color"]) {
+  padding: var(--space-3xs);
+  height: calc(var(--text-m) * 1.5 + var(--space-xs) * 2 + 2px);
+  cursor: pointer;
+}
+
+/* Focus States (Critical for Accessibility) */
+input:focus,
+select:focus,
+textarea:focus,
+button:focus-visible {
+  outline: 2px solid transparent;
+  border-color: config.$input-focus-border-color;
+  box-shadow: 0 0 0 3px config.$input-focus-ring-color; /* The "Ring" effect */
+}
+
+label {
+  display: block;
+  font-size: var(--text-s);
+  font-weight: config.$label-font-weight;
+  margin-bottom: config.$label-margin-bottom;
+}
+
+/* --- Select Component --- */
+.select {
+  display: block;
+  width: 100%;
+  padding: var(--space-xs) var(--space-s);
+  background-color: var(--surface);
+  color: var(--text-body);
+  font-size: var(--text-m);
+  font-weight: 500;
+  border-radius: var(--radius-m);
+  border: 1px solid var(--muted-30);
+  box-shadow: var(--shadow-xs);
+  transition: all 0.25s ease-in-out;
+  outline: 0;
+  appearance: none; // Remove default arrow if desired, or keep it. User didn't specify.
+  // Adding cursor pointer as it's interactive
+  cursor: pointer;
+
+  &:focus {
+    background-color: var(--primary-20);
+    border-color: var(--primary);
+  }
+
+  &:hover {
+    border-color: var(--primary);
+  }
+
+  &:invalid {
+    border-color: var(--error);
+    background-color: var(--error-10);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.75;
+    box-shadow: none;
+    background-color: var(--surface);
+  }
+
+  &::placeholder {
+    color: var(--muted);
+  }
+}
+
+/* --- Checkbox Component --- */
+input[type="checkbox"],
+.checkbox {
+  appearance: none;
+  display: grid;
+  place-content: center;
+  border: 2px solid var(--muted-30);
+  border-radius: var(--radius-s);
+  // Configured sizing
+  width: clamp(
+    config-forms.$checkbox-size-min,
+    1.5em,
+    config-forms.$checkbox-size-max
+  );
+  height: clamp(
+    config-forms.$checkbox-size-min,
+    1.5em,
+    config-forms.$checkbox-size-max
+  );
+  cursor: pointer;
+
+  &::before {
+    content: "";
+    width: 1em;
+    height: 1em;
+    box-shadow: inset 1em 1em var(--surface);
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+    transform: scale(0);
+    transition: transform 0.2s;
+  }
+
+  &:hover {
+    border-color: var(--primary);
+  }
+
+  &:focus {
+    outline: 3px solid var(--primary-l-3);
+    outline-offset: 2px;
+  }
+
+  &:checked {
+    background-color: var(--primary);
+    border-color: var(--primary);
+
+    &::before {
+      transform: scale(1);
+    }
+  }
+}
+
+/* --- Radio Component --- */
+input[type="radio"],
+.radio {
+  appearance: none;
+  display: grid;
+  place-content: center;
+  border: 2px solid var(--muted-30);
+  border-radius: var(--radius-full);
+  // Configured sizing
+  width: clamp(
+    config-forms.$radio-size-min,
+    1.5em,
+    config-forms.$radio-size-max
+  );
+  height: clamp(
+    config-forms.$radio-size-min,
+    1.5em,
+    config-forms.$radio-size-max
+  );
+  cursor: pointer;
+
+  &::before {
+    content: "";
+    width: 1em;
+    height: 1em;
+    border-radius: 100%;
+    transform: scale(0);
+    transition: transform 0.2s;
+    background-color: var(
+      --primary
+    ); // The dot color? Or white if background is primary?
+    // User said: background var(--primary) for ::before.
+    // But usually radio dot is solid.
+    // If checked, radio usually has a border and a dot inside.
+    // Let's follow user spec: .radio::before { background: var(--primary) }
+  }
+
+  &:hover {
+    border-color: var(--primary);
+  }
+
+  &:checked {
+    // User didn't specify :checked styles for the .radio itself (container), only :checked::before logic implicitly via transform?
+    // Wait, user said: "CSS for .radio:hover ... CSS for :checked:before class ... transform scale(1)"
+    // And for checkbox they specified :checked background.
+    // For radio, usually the dot appears.
+    // If .radio::before has background var(--primary), then the dot is primary color.
+    // The container border is dark-40.
+
+    &::before {
+      transform: scale(1);
+    }
+
+    // Common pattern: border turns primary when checked too
+    border-color: var(--primary);
+  }
+}

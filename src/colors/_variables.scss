@@ -1,0 +1,52 @@
+@use "sass:map";
+@use "sass:math";
+@use "sass:color";
+
+/* =========================================
+   MIXIN: Variable Generator
+   ========================================= */
+@mixin define-color-vars($name, $config, $mode: "light") {
+  // 1. Get the Hex Color
+  $color: map.get($config, $mode);
+
+  // 2. Base Variable
+  --#{$name}: #{$color};
+
+  // 3. Transparency Loop (Dynamic Step)
+  $step: map.get($config, "transparency-step");
+
+  @if $step > 0 {
+    // Calculate how many times step fits into 100
+    $loops: math.floor(math.div(100, $step));
+
+    @for $i from 1 through ($loops - 1) {
+      $percentage: $i * $step;
+      // Variable: --primary-10, --primary-20...
+      // Use math.div for division and ensure percentage unit
+      --#{$name}-#{$percentage}: #{color.change(
+          $color,
+          $alpha: math.div($percentage, 100)
+        )};
+    }
+  }
+
+  // 4. Tints (Mixing White)
+  $tints: map.get($config, "tint-count");
+  @if $tints > 0 {
+    @for $i from 1 through $tints {
+      // Dynamic weight calculation
+      $weight: $i * math.div(100, ($tints + 1));
+      // mix requires a percentage weight or unitless (0-1) in newer sass versions, but deprecation warning asked for %
+      --#{$name}-l-#{$i}: #{color.mix(white, $color, $weight * 1%)};
+    }
+  }
+
+  // 5. Shades (Mixing Black)
+  $shades: map.get($config, "shade-count");
+  @if $shades > 0 {
+    @for $i from 1 through $shades {
+      $weight: $i * math.div(100, ($shades + 1));
+      --#{$name}-d-#{$i}: #{color.mix(black, $color, $weight * 1%)};
+    }
+  }
+}

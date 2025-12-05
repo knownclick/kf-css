@@ -1,0 +1,31 @@
+{
+  "name": "kc-css",
+  "version": "1.0.0",
+  "description": "A modern, efficient CSS framework tailored for SvelteKit.",
+  "main": "dist/game.css",
+  "exports": {
+    ".": "./src/main.scss",
+    "./css": "./dist/game.css",
+    "./src/*": "./src/*"
+  },
+  "scripts": {
+    "build": "sass src/main.scss dist/game.css",
+    "watch": "sass --watch src/main.scss dist/game.css"
+  },
+  "keywords": [
+    "css",
+    "sass",
+    "sveltekit",
+    "framework",
+    "design-system"
+  ],
+  "author": "KC-CSS Contributors",
+  "license": "MIT",
+  "devDependencies": {
+    "sass": "^1.81.0"
+  },
+  "files": [
+    "src",
+    "dist"
+  ]
+}

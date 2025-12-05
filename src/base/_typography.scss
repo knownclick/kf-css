@@ -1,0 +1,139 @@
+@use "../config/base" as config;
+
+/* =========================================
+   3. SEMANTIC TYPOGRAPHY
+   ========================================= */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  margin-bottom: config.$heading-margin-bottom; /* Default breathing room */
+  font-weight: config.$heading-font-weight;
+  line-height: config.$heading-line-height;
+  color: config.$heading-color;
+}
+
+/* Mapping your fluid text variables to tags */
+h1 {
+  font-size: var(--text-4xl);
+  letter-spacing: -0.025em;
+}
+h2 {
+  font-size: var(--text-3xl);
+  letter-spacing: -0.025em;
+}
+h3 {
+  font-size: var(--text-2xl);
+}
+h4 {
+  font-size: var(--text-xl);
+}
+h5 {
+  font-size: var(--text-l);
+}
+h6 {
+  font-size: var(--text-m);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+p {
+  margin-bottom: config.$paragraph-margin-bottom;
+}
+
+small {
+  font-size: var(--text-s);
+}
+
+/* Links */
+a {
+  color: config.$link-color;
+  text-decoration: config.$link-decoration;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: config.$link-hover-color; /* Darken on hover */
+  text-decoration: config.$link-hover-decoration;
+}
+
+/* Lists */
+ul,
+ol {
+  margin-bottom: config.$paragraph-margin-bottom;
+  padding-inline-start: var(--space-l);
+}
+
+ul {
+  list-style-type: disc;
+}
+
+ol {
+  list-style-type: decimal;
+}
+
+li {
+  margin-bottom: var(--space-3xs);
+}
+
+/* Blockquotes */
+blockquote {
+  margin: 0 0 config.$paragraph-margin-bottom;
+  padding: config.$blockquote-padding;
+  border-inline-start: 4px solid config.$blockquote-border-color;
+  background-color: config.$blockquote-bg;
+  border-radius: 0 var(--radius-m) var(--radius-m) 0;
+  font-style: config.$blockquote-font-style;
+  color: var(--text-body);
+}
+
+blockquote footer {
+  margin-top: var(--space-s);
+  font-size: var(--text-s);
+  font-style: normal;
+  color: var(--text-body);
+  opacity: 0.8;
+  border-top: none; /* Reset default footer border if any */
+  padding-block: 0; /* Reset default footer padding */
+}
+
+blockquote footer::before {
+  content: "— ";
+}
+
+/* Code */
+code,
+kbd,
+samp {
+  font-family: config.$code-font-family;
+  font-size: 0.875em;
+  color: config.$code-color;
+  background-color: config.$code-bg;
+  padding: config.$code-padding;
+  border-radius: config.$code-radius;
+}
+
+pre {
+  display: block;
+  overflow-x: auto;
+  margin-bottom: config.$paragraph-margin-bottom;
+  padding: var(--space-m);
+  background-color: var(--surface-10);
+  border-radius: var(--radius-m);
+  border: 1px solid var(--surface-20);
+  white-space: pre-wrap;
+  font-family: config.$code-font-family;
+  font-size: var(--text-s);
+  color: config.$code-color;
+}
+
+pre code {
+  font-size: inherit;
+  color: inherit;
+  background-color: transparent;
+  padding: 0;
+  border-radius: 0;
+}

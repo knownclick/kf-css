@@ -1,0 +1,66 @@
+/* =========================================
+   BASE STYLE CONFIGURATION
+   ========================================= */
+
+// --- 1. Reset & Global ---
+$font-family-base: var(--font-sans);
+$line-height-base: var(--line-height-m, 1.5);
+$body-bg: var(--bg-body);
+$body-color: var(--text-body);
+
+// --- 2. Layout ---
+$container-padding: var(--space-m);
+$section-spacing: var(--space-xl);
+$header-padding: var(--space-m);
+$footer-padding: var(--space-l);
+$divider-color: var(--muted-20);
+$divider-spacing: var(--space-xl);
+
+// --- 3. Typography ---
+$heading-margin-bottom: var(--space-s);
+$heading-font-weight: 700;
+$heading-line-height: var(--line-height-s, 1.1);
+$heading-color: var(--text-title);
+$paragraph-margin-bottom: var(--space-m);
+$link-color: var(--primary);
+$link-hover-color: var(--primary-d-1);
+$link-decoration: none;
+$link-hover-decoration: underline;
+
+// Blockquotes
+$blockquote-border-color: var(--muted-40);
+$blockquote-bg: var(--surface-10);
+$blockquote-padding: var(--space-m);
+$blockquote-font-style: italic;
+
+// Code
+$code-bg: var(--surface-20);
+$code-color: var(--text-code);
+$code-padding: 0.2em 0.4em;
+$code-radius: var(--radius-s);
+$code-font-family: var(--font-mono);
+
+// --- 4. UI Elements ---
+// Transitions
+$duration-fast: 0.1s;
+$duration-normal: 0.2s;
+$duration-slow: 0.3s;
+
+// --- 4. UI Elements ---
+// Buttons
+$btn-padding-y: var(--space-xs);
+$btn-padding-x: var(--space-m);
+$btn-radius: var(--radius-m);
+$btn-font-weight: 600;
+$btn-transition: opacity $duration-normal, transform $duration-fast;
+$btn-active-transform: translateY(1px);
+
+// Forms
+$input-padding-y: var(--space-xs);
+$input-padding-x: var(--space-s);
+$input-border-color: var(--muted-30);
+$input-radius: var(--radius-m);
+$input-focus-ring-color: var(--primary-60);
+$input-focus-border-color: var(--primary);
+$label-margin-bottom: var(--space-3xs);
+$label-font-weight: 600;

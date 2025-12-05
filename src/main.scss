@@ -1,0 +1,181 @@
+@use "sass:map";
+
+// Config
+@use "config/colors" as config-colors;
+@use "config/typography" as config-type;
+@use "config/layout" as config-layout;
+@use "config/spacing" as config-spacing;
+@use "config/decoration" as config-decoration;
+@use "config/base" as config-base;
+
+// Modules
+@use "colors/variables" as color-vars;
+@use "colors/classes" as color-classes;
+@use "typography/variables" as type-vars;
+@use "typography/classes" as type-classes;
+@use "layout/variables" as layout-vars;
+@use "layout/classes" as layout-classes;
+@use "spacing/variables" as spacing-vars;
+@use "spacing/classes" as spacing-classes;
+@use "decoration/variables" as decoration-vars;
+@use "decoration/classes" as decoration-classes;
+
+// Base Styles (Semantic)
+@use "base/reset";
+@use "base/layout";
+@use "base/typography";
+
+// Components
+@use "components/index";
+
+/* =========================================
+   EXECUTION LOOP
+   ========================================= */
+
+// 1. Typography Variables & Layout Variables (Root)
+:root {
+  // Typography Variables
+  $type-config: (
+    "type-min-vw": config-type.$type-min-vw,
+    "type-max-vw": config-type.$type-max-vw,
+    "type-base-min": config-type.$type-base-min,
+    "type-base-max": config-type.$type-base-max,
+    "type-steps": config-type.$type-steps,
+    "type-scale-min": config-type.$type-scale-min,
+    "type-scale-max": config-type.$type-scale-max,
+  );
+  @include type-vars.generate-vars($type-config);
+
+  // Layout Variables (Breakpoints)
+  $layout-var-config: (
+    "breakpoints": config-layout.$breakpoints,
+  );
+  @include layout-vars.generate-vars($layout-var-config);
+
+  // Spacing Variables
+  $spacing-var-config: (
+    "type-min-vw": config-type.$type-min-vw,
+    "type-max-vw": config-type.$type-max-vw,
+    "space-base-min": config-spacing.$space-base-min,
+    "space-base-max": config-spacing.$space-base-max,
+    "space-steps": config-spacing.$space-steps,
+    "space-scale-min": config-spacing.$space-scale-min,
+    "space-scale-max": config-spacing.$space-scale-max,
+  );
+  @include spacing-vars.generate-vars($spacing-var-config);
+
+  // Decoration Variables (Radius, Shadows)
+  $decoration-var-config: (
+    "type-min-vw": config-type.$type-min-vw,
+    "type-max-vw": config-type.$type-max-vw,
+    "radius-base-min": config-decoration.$radius-base-min,
+    "radius-base-max": config-decoration.$radius-base-max,
+    "radius-steps": config-decoration.$radius-steps,
+    "radius-scale-min": config-decoration.$radius-scale-min,
+    "radius-scale-max": config-decoration.$radius-scale-max,
+    "shadows": config-decoration.$shadows,
+  );
+  @include decoration-vars.generate-vars($decoration-var-config);
+
+  // Code Color
+  --text-code: var(--primary-d-2);
+
+  // Shadow Base (Dynamically blended)
+  --shadow-primary: color-mix(in srgb, var(--primary), transparent 75%);
+}
+
+// 2. Set Color Scheme
+html.kc-theme-dark {
+  color-scheme: dark;
+}
+
+// 3. Generate Root Variables (Light Mode / Default)
+:root,
+:root.kc-theme-dark .theme-inverted,
+:root.kc-theme-dark .theme-always-light,
+:root.kc-theme-light .theme-inverted .theme-always-light {
+  @each $name, $props in config-colors.$theme-colors {
+    // Merge specific props with global defaults
+    $config: map.merge(config-colors.$defaults, $props);
+    @include color-vars.define-color-vars($name, $config, "light");
+  }
+}
+
+// 4. Generate Dark Mode Variables
+:root.kc-theme-dark,
+:root.kc-theme-light .theme-inverted,
+:root.kc-theme-light .theme-always-dark,
+:root.kc-theme-dark .theme-inverted .theme-always-dark {
+  @each $name, $props in config-colors.$theme-colors {
+    $config: map.merge(config-colors.$defaults, $props);
+
+    // Only generate if enable-dark-mode is true AND a dark color is provided
+    @if map.get($config, "enable-dark-mode") and map.get($config, "dark") {
+      @include color-vars.define-color-vars($name, $config, "dark");
+    }
+  }
+  --text-code: var(--primary-l-2);
+}
+
+// 5. Generate Color Classes
+@each $name, $props in config-colors.$theme-colors {
+  $config: map.merge(config-colors.$defaults, $props);
+  @include color-classes.generate-utils($name, $config);
+}
+
+// 6. Generate Typography Classes
+$type-class-config: (
+  "generate-type-classes": config-type.$generate-type-classes,
+  "type-steps": config-type.$type-steps,
+  "generate-weight-classes": config-type.$generate-weight-classes,
+  "line-heights": config-type.$line-heights,
+  "generate-tracking": config-type.$generate-tracking,
+  "letter-spacing": config-type.$letter-spacing,
+  "generate-alignment": config-type.$generate-alignment,
+  "generate-transform": config-type.$generate-transform,
+  "generate-truncate": config-type.$generate-truncate,
+);
+@include type-classes.generate-classes($type-class-config);
+
+// 7. Generate Layout Classes
+$layout-class-config: (
+  "utility-values": config-layout.$utility-values,
+  "compound-utilities": config-layout.$compound-utilities,
+  "grid-columns": config-layout.$grid-columns,
+  "grid-auto-sizes": config-layout.$grid-auto-sizes,
+  "order-count": config-layout.$order-count,
+);
+@include layout-classes.generate-classes($layout-class-config);
+
+// 8. Generate Responsive Layout Classes
+@each $name, $width in config-layout.$breakpoints {
+  @media (min-width: #{$width}) {
+    @include layout-classes.generate-classes($layout-class-config, "#{$name}-");
+  }
+}
+
+// 9. Generate Spacing Classes
+$spacing-class-config: (
+  "generate-space-utils": config-spacing.$generate-space-utils,
+  "space-steps": config-spacing.$space-steps,
+);
+@include spacing-classes.generate-classes($spacing-class-config);
+
+// 10. Generate Decoration Classes
+$decoration-class-config: (
+  "generate-radius": config-decoration.$generate-radius,
+  "radius-steps": config-decoration.$radius-steps,
+  "generate-shadows": config-decoration.$generate-shadows,
+  "shadows": config-decoration.$shadows,
+  "generate-borders": config-decoration.$generate-borders,
+  "generate-opacity": config-decoration.$generate-opacity,
+  "opacity-step": config-decoration.$opacity-step,
+  "generate-aspect": config-decoration.$generate-aspect,
+  "aspect-ratios": config-decoration.$aspect-ratios,
+  "generate-fit": config-decoration.$generate-fit,
+  "generate-blur": config-decoration.$generate-blur,
+  "blurs": config-decoration.$blurs,
+  "generate-filters": config-decoration.$generate-filters,
+  "filters": config-decoration.$filters,
+);
+@include decoration-classes.generate-classes($decoration-class-config);

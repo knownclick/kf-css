@@ -1,0 +1,12 @@
+@use "../config/base" as config;
+
+/* =========================================
+   MEDIA COMPONENT
+   ========================================= */
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}

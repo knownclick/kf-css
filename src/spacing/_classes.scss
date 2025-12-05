@@ -1,0 +1,67 @@
+@use "sass:map";
+
+/* --- Utility Classes --- */
+@mixin generate-classes($config) {
+  @if map.get($config, "generate-space-utils") {
+    @each $name, $step in map.get($config, "space-steps") {
+      // Gap
+      .gap-#{$name} {
+        gap: var(--space-#{$name});
+      }
+
+      // Padding
+      .p-#{$name} {
+        padding: var(--space-#{$name});
+      }
+      .ph-#{$name},
+      .px-#{$name} {
+        padding-inline: var(--space-#{$name});
+      }
+      .pv-#{$name},
+      .py-#{$name} {
+        padding-block: var(--space-#{$name});
+      }
+      .pt-#{$name} {
+        padding-top: var(--space-#{$name});
+      }
+      .pb-#{$name} {
+        padding-bottom: var(--space-#{$name});
+      }
+      .ps-#{$name},
+      .pl-#{$name} {
+        padding-inline-start: var(--space-#{$name});
+      }
+      .pe-#{$name},
+      .pr-#{$name} {
+        padding-inline-end: var(--space-#{$name});
+      }
+
+      // Margin
+      .m-#{$name} {
+        margin: var(--space-#{$name});
+      }
+      .mh-#{$name},
+      .mx-#{$name} {
+        margin-inline: var(--space-#{$name});
+      }
+      .mv-#{$name},
+      .my-#{$name} {
+        margin-block: var(--space-#{$name});
+      }
+      .mt-#{$name} {
+        margin-top: var(--space-#{$name});
+      }
+      .mb-#{$name} {
+        margin-bottom: var(--space-#{$name});
+      }
+      .ms-#{$name},
+      .ml-#{$name} {
+        margin-inline-start: var(--space-#{$name});
+      }
+      .me-#{$name},
+      .mr-#{$name} {
+        margin-inline-end: var(--space-#{$name});
+      }
+    }
+  }
+}

@@ -1,0 +1,63 @@
+/* Typography Configuration */
+
+/* Toggles */
+$generate-type-classes: true; // Font size utilities (.text-xl)
+$generate-weight-classes: true; // Font weight utilities (.font-700)
+$generate-tracking: true; // Letter spacing
+$generate-alignment: true; // Left, Center, Right
+$generate-transform: true; // Uppercase, Italic, Underline
+$generate-truncate: true; // Truncate, Break word
+
+/* Viewport Boundaries */
+@use "sass:map";
+@use "layout" as config-layout;
+
+/* Viewport Boundaries */
+$type-min-vw: 320px;
+$type-max-vw: map.get(config-layout.$breakpoints, "xl");
+
+/* Base Font Size (Min/Max) */
+$type-base-min: 16px;
+$type-base-max: 18px;
+
+/* Scale Ratios */
+$type-scale-min: 1.2;
+$type-scale-max: 1.333;
+
+/* The Scale Steps */
+$type-steps: (
+  "2xs": -3,
+  "xs": -2,
+  "s": -1,
+  "m": 0,
+  "l": 1,
+  "xl": 2,
+  "2xl": 3,
+  "3xl": 4,
+  "4xl": 5,
+);
+/* Line Heights */
+// "XS" = Tightest (1), "XL" = Loosest (1.6) .line-height-m
+
+$line-heights: (
+  "xs": 1,
+  // Buttons, Huge Headings
+  "s": 1.1,
+  // Large Headings
+  "m": 1.25,
+  // Subheadings
+  "l": 1.5,
+  // Body Text (Standard)
+  "xl": 1.6 // Relaxed Long-form Reading,,,,,,
+);
+
+/* Letter Spacing (Tracking) */
+// em units are relative to the current font size
+$letter-spacing: (
+  "tighter": -0.05em,
+  "tight": -0.025em,
+  "normal": 0,
+  "wide": 0.025em,
+  "wider": 0.05em,
+  "widest": 0.1em,
+);

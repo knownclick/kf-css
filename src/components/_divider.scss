@@ -1,0 +1,15 @@
+@use "../config/base" as config;
+
+/* =========================================
+   DIVIDER COMPONENT
+   ========================================= */
+
+hr,
+.divider {
+  border: none;
+  height: 1px;
+  background-color: config.$divider-color;
+  margin-block: config.$divider-spacing;
+  width: 100%;
+  display: block;
+}

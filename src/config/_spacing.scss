@@ -1,0 +1,30 @@
+/* _config.scss */
+
+/* Toggles */
+$generate-space-utils: true; // Generate .ph-m, .mv-xl, .gap-s classes
+
+/* Base Spacing Size (Min/Max) - The 'm' step */
+$space-base-min: 18px;
+$space-base-max: 28px;
+
+/* Scale Ratios */
+// Spacing scales more aggressively than text
+$space-scale-min: 1.2; // Mobile: Compact
+$space-scale-max: 1.5; // Desktop: Spacious
+
+/* The Scale Steps */
+// "m" is 0 (The Base defined above)
+// Negative = Smaller, Positive = Larger
+$space-steps: (
+  "3xs": -3,
+  "2xs": -2,
+  "xs": -1,
+  "s": -0.5,
+  "m": 0,
+  // Base
+  "l": 1,
+  "xl": 2,
+  "2xl": 3,
+  "3xl": 4,
+  "4xl": 5,
+);

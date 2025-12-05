@@ -1,0 +1,149 @@
+@use "sass:map";
+@use "sass:math";
+
+/* =========================================
+   MIXIN: Utility Generator
+   ========================================= */
+@mixin generate-utils($name, $config) {
+  $step: map.get($config, "transparency-step");
+  // Only calculate loops if step is greater than 0
+  $loops: 0;
+  @if $step > 0 {
+    $loops: math.floor(math.div(100, $step));
+  }
+
+  $tints: map.get($config, "tint-count");
+  $shades: map.get($config, "shade-count");
+
+  // 1. Text Utilities
+  @if map.get($config, "generate-text") {
+    .text-#{$name} {
+      color: var(--#{$name});
+    }
+
+    // Transparency
+    @if $step > 0 {
+      @for $i from 1 through ($loops - 1) {
+        $pct: $i * $step;
+        .text-#{$name}-#{$pct} {
+          color: var(--#{$name}-#{$pct});
+        }
+      }
+    }
+    // Tints
+    @if $tints > 0 {
+      @for $i from 1 through $tints {
+        .text-#{$name}-l-#{$i} {
+          color: var(--#{$name}-l-#{$i});
+        }
+      }
+    }
+    // Shades
+    @if $shades > 0 {
+      @for $i from 1 through $shades {
+        .text-#{$name}-d-#{$i} {
+          color: var(--#{$name}-d-#{$i});
+        }
+      }
+    }
+  }
+
+  // 2. Background Utilities
+  @if map.get($config, "generate-bg") {
+    .bg-#{$name} {
+      background-color: var(--#{$name});
+    }
+
+    // Transparency
+    @if $step > 0 {
+      @for $i from 1 through ($loops - 1) {
+        $pct: $i * $step;
+        .bg-#{$name}-#{$pct} {
+          background-color: var(--#{$name}-#{$pct});
+        }
+      }
+    }
+    // Tints
+    @if $tints > 0 {
+      @for $i from 1 through $tints {
+        .bg-#{$name}-l-#{$i} {
+          background-color: var(--#{$name}-l-#{$i});
+        }
+      }
+    }
+    // Shades
+    @if $shades > 0 {
+      @for $i from 1 through $shades {
+        .bg-#{$name}-d-#{$i} {
+          background-color: var(--#{$name}-d-#{$i});
+        }
+      }
+    }
+  }
+
+  // 3. Border Utilities
+  @if map.get($config, "generate-border") {
+    .border-#{$name} {
+      border-color: var(--#{$name});
+    }
+
+    // Transparency
+    @if $step > 0 {
+      @for $i from 1 through ($loops - 1) {
+        $pct: $i * $step;
+        .border-#{$name}-#{$pct} {
+          border-color: var(--#{$name}-#{$pct});
+        }
+      }
+    }
+    // Tints
+    @if $tints > 0 {
+      @for $i from 1 through $tints {
+        .border-#{$name}-l-#{$i} {
+          border-color: var(--#{$name}-l-#{$i});
+        }
+      }
+    }
+    // Shades
+    @if $shades > 0 {
+      @for $i from 1 through $shades {
+        .border-#{$name}-d-#{$i} {
+          border-color: var(--#{$name}-d-#{$i});
+        }
+      }
+    }
+  }
+
+  // 4. Fill Utilities (For SVGs)
+  @if map.get($config, "generate-fill") {
+    .fill-#{$name} {
+      fill: var(--#{$name});
+    }
+
+    // Transparency
+    @if $step > 0 {
+      @for $i from 1 through ($loops - 1) {
+        $pct: $i * $step;
+        .fill-#{$name}-#{$pct} {
+          fill: var(--#{$name}-#{$pct});
+        }
+      }
+    }
+    // Tints
+    @if $tints > 0 {
+      @for $i from 1 through $tints {
+        .fill-#{$name}-l-#{$i} {
+          fill: var(--#{$name}-l-#{$i});
+        }
+      }
+    }
+    // Shades
+    @if $shades > 0 {
+      @for $i from 1 through $shades {
+        .fill-#{$name}-d-#{$i} {
+          fill: var(--#{$name}-d-#{$i});
+        }
+      }
+    }
+  }
+}

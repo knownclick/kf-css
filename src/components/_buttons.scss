@@ -1,0 +1,124 @@
+@use "../config/base" as config;
+
+/* =========================================
+   BUTTON COMPONENT
+   ========================================= */
+
+:where(button),
+:where(input[type="submit"]),
+:where(input[type="reset"]),
+:where(input[type="button"]),
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3xs);
+  padding: config.$btn-padding-y config.$btn-padding-x;
+  background-color: var(--primary);
+  color: var(--surface); /* Force white text on primary */
+  font-size: var(--text-m);
+  font-weight: config.$btn-font-weight;
+  border-radius: config.$btn-radius;
+  border: 1px solid var(--primary-d-1);
+  box-shadow: var(--shadow-m);
+  transition: config.$btn-transition;
+  outline: 0;
+  cursor: pointer;
+  line-height: var(--line-height-m);
+  text-decoration: none; // For <a> tags styled as buttons
+
+  &:hover {
+    background-color: var(--primary-d-1);
+    color: var(--surface);
+    transform: translateY(-1px);
+    text-decoration: none;
+  }
+
+  &:active {
+    transform: config.$btn-active-transform;
+    box-shadow: var(--shadow-s);
+  }
+
+  &:disabled,
+  &.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+    background-color: var(--primary); // Reset to base
+    color: var(--surface);
+    pointer-events: none; // Prevent hover interactions
+  }
+}
+
+/* --- Modifiers --- */
+
+// Size Modifiers
+.btn.small {
+  font-size: var(--text-s);
+  padding: var(--space-xs) var(--space-s); // As requested, though same as base?
+}
+
+.btn.large {
+  font-size: var(--text-l);
+  padding: var(--space-s) var(--space-m);
+}
+
+// Style Modifiers
+.btn.secondary {
+  background-color: var(--muted-l-2);
+  border-color: var(--muted-l-1);
+  color: var(--text-body);
+  box-shadow: none;
+
+  &:hover {
+    background-color: var(--muted-l-1);
+    border-color: var(--muted);
+  }
+}
+
+.btn.tertiary {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--text-body);
+  box-shadow: none;
+
+  &:hover {
+    background-color: var(--surface-10);
+    color: var(--primary);
+  }
+}
+
+.btn.ghost {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--surface-90);
+  box-shadow: none;
+
+  &:hover {
+    background-color: var(--surface-10);
+  }
+}
+
+.btn.slight {
+  background-color: var(--primary-l-3);
+  border-color: transparent;
+  color: var(--primary-d-2);
+  box-shadow: none;
+
+  &:hover {
+    background-color: var(--primary-l-2);
+  }
+}
+
+.btn.no-bg {
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0; // Often implies a text-link style button
+  color: inherit;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

@@ -1,0 +1,155 @@
+/* _config.scss */
+
+/* Breakpoints (Mobile First) */
+$breakpoints: (
+  "m": 768px,
+  "l": 992px,
+  "xl": 1400px,
+);
+
+/* Container Max Widths */
+$container-max-widths: (
+  "m": 720px,
+  "l": 960px,
+  "xl": 1320px,
+);
+
+/* Grid Settings */
+$grid-columns: 8;
+$grid-auto-sizes: (5, 10, 20, 30, 40, 50, 60, 70);
+
+/* Flex Order Settings */
+$order-count: 6;
+
+/* 1. Single Property Utilities (Compact) */
+$utility-values: (
+  "display": (
+    "block": block,
+    "inline-block": inline-block,
+    "hidden": none,
+    "flex": flex,
+    "grid": grid,
+  ),
+  "position": (
+    "relative": relative,
+    "absolute": absolute,
+    "fixed": fixed,
+    "sticky": sticky,
+  ),
+  "flex-wrap": (
+    "flex-wrap": wrap,
+    "flex-nowrap": nowrap,
+  ),
+  "flex": (
+    "flex-1": 1 1 0%,
+    "flex-auto": 1 1 auto,
+    "flex-initial": 0 1 auto,
+    "flex-none": none,
+  ),
+  "flex-grow": (
+    "grow": 1,
+    "grow-0": 0,
+  ),
+  "flex-shrink": (
+    "shrink": 1,
+    "shrink-0": 0,
+  ),
+  "inset": (
+    "inset-0": 0,
+  ),
+  "top": (
+    "top-0": 0,
+  ),
+  "left": (
+    "left-0": 0,
+  ),
+  "bottom": (
+    "bottom-0": 0,
+  ),
+  "right": (
+    "right-0": 0,
+  ),
+  "width": (
+    "full-width": 100%,
+    "screen-width": 100vw,
+    "auto-width": auto,
+  ),
+  "height": (
+    "full-height": 100%,
+    "screen-height": 100vh,
+    "auto-height": auto,
+  ),
+  "justify-content": (
+    "justify-start": flex-start,
+    "justify-center": center,
+    "justify-end": flex-end,
+    "justify-between": space-between,
+  ),
+  "align-items": (
+    "items-start": flex-start,
+    "items-center": center,
+    "items-end": flex-end,
+  ),
+  "text-align": (
+    "text-center": center,
+    "text-left": left,
+    "text-right": right,
+  ),
+  "z-index": (
+    "z-0": 0,
+    "z-10": 10,
+    "z-dropdown": var(--z-dropdown),
+    "z-sticky": var(--z-sticky),
+    "z-fixed": var(--z-fixed),
+    "z-modal": var(--z-modal),
+    "z-popover": var(--z-popover),
+  ),
+  "overflow": (
+    "overflow-hidden": hidden,
+    "overflow-auto": auto,
+  ),
+  "overflow-y": (
+    "overflow-y-auto": auto,
+  ),
+  "overflow-x": (
+    "overflow-x-auto": auto,
+  ),
+  "border": (
+    "border": 1px solid var(--muted-30),
+    "border-none": none,
+  ),
+  "border-block-start": (
+    "border-top": 1px solid var(--muted-30),
+  ),
+  "border-block-end": (
+    "border-bottom": 1px solid var(--muted-30),
+  ),
+  "border-inline-start": (
+    "border-left": 1px solid var(--muted-30),
+  ),
+  "border-inline-end": (
+    "border-right": 1px solid var(--muted-30),
+  ),
+);
+
+/* 2. Compound Utilities (Legacy/Complex) */
+$compound-utilities: (
+  "flex-row": (
+    display: flex,
+    flex-direction: row,
+  ),
+  "flex-col": (
+    display: flex,
+    flex-direction: column,
+  ),
+  "row": (
+    display: grid,
+    grid-auto-flow: column,
+    justify-content: start,
+  ),
+  "col": (
+    display: grid,
+    grid-auto-flow: row,
+    align-content: start,
+  ),
+);

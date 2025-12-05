@@ -1,0 +1,146 @@
+@use "sass:map";
+@use "sass:math";
+
+/* --- Utility Classes --- */
+@mixin generate-classes($config) {
+  // 1. Border Radius
+  @if map.get($config, "generate-radius") {
+    @each $name, $step in map.get($config, "radius-steps") {
+      .radius-#{$name} {
+        border-radius: var(--radius-#{$name});
+      }
+      // Side Specific
+      .radius-t-#{$name} {
+        border-top-left-radius: var(--radius-#{$name});
+        border-top-right-radius: var(--radius-#{$name});
+      }
+      .radius-b-#{$name} {
+        border-bottom-left-radius: var(--radius-#{$name});
+        border-bottom-right-radius: var(--radius-#{$name});
+      }
+      .radius-l-#{$name} {
+        border-top-left-radius: var(--radius-#{$name});
+        border-bottom-left-radius: var(--radius-#{$name});
+      }
+      .radius-r-#{$name} {
+        border-top-right-radius: var(--radius-#{$name});
+        border-bottom-right-radius: var(--radius-#{$name});
+      }
+    }
+    .radius-full {
+      border-radius: var(--radius-full);
+    }
+  }
+
+  // 2. Box Shadows
+  @if map.get($config, "generate-shadows") {
+    @each $name, $value in map.get($config, "shadows") {
+      .shadow-#{$name} {
+        box-shadow: var(--shadow-#{$name});
+      }
+    }
+  }
+
+  // 3. Borders (Sides)
+  @if map.get($config, "generate-borders") {
+    .border {
+      border: 1px solid;
+    }
+    .border-top {
+      border-top: 1px solid;
+    }
+    .border-bottom {
+      border-bottom: 1px solid;
+    }
+    .border-left {
+      border-left: 1px solid;
+    }
+    .border-right {
+      border-right: 1px solid;
+    }
+    .border-none {
+      border: none;
+    }
+  }
+
+  // 4. Opacity
+  @if map.get($config, "generate-opacity") {
+    $step: map.get($config, "opacity-step");
+    $loops: 0;
+    @if $step > 0 {
+      $loops: math.floor(math.div(100, $step));
+    }
+
+    .opacity-0 {
+      opacity: 0;
+    }
+    .opacity-100 {
+      opacity: 1;
+    }
+
+    @if $step > 0 {
+      @for $i from 1 through ($loops - 1) {
+        $pct: $i * $step;
+        .opacity-#{$pct} {
+          opacity: math.div($pct, 100);
+        }
+      }
+      // Explicitly add common quarters if not generated
+      .opacity-25 {
+        opacity: 0.25;
+      }
+      .opacity-50 {
+        opacity: 0.5;
+      }
+      .opacity-75 {
+        opacity: 0.75;
+      }
+    }
+  }
+
+  // 5. Aspect Ratios
+  @if map.get($config, "generate-aspect") {
+    @each $name, $value in map.get($config, "aspect-ratios") {
+      .aspect-#{$name} {
+        aspect-ratio: $value;
+      }
+    }
+  }
+
+  // 6. Object Fit
+  @if map.get($config, "generate-fit") {
+    .fit-contain {
+      object-fit: contain;
+    }
+    .fit-cover {
+      object-fit: cover;
+    }
+    .fit-fill {
+      object-fit: fill;
+    }
+    .fit-none {
+      object-fit: none;
+    }
+    .fit-scale-down {
+      object-fit: scale-down;
+    }
+  }
+
+  // 7. Backdrop Blur
+  @if map.get($config, "generate-blur") {
+    @each $name, $value in map.get($config, "blurs") {
+      .bg-blur-#{$name} {
+        backdrop-filter: blur($value);
+      }
+    }
+  }
+
+  // 8. Filters
+  @if map.get($config, "generate-filters") {
+    @each $name, $value in map.get($config, "filters") {
+      .#{$name} {
+        filter: $value;
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+@use "../config/base" as config;
+
+/* =========================================
+   1. THE RESET (The Foundation)
+   ========================================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  background-repeat: no-repeat;
+}
+
+:where(:root) {
+  cursor: default;
+  line-height: config.$line-height-base;
+  overflow-wrap: break-word;
+  -webkit-tap-highlight-color: transparent;
+  /* Default font stack if you haven't defined one */
+  font-family: config.$font-family-base;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  background-color: config.$body-bg;
+  color: config.$body-color; /* Assuming you want high contrast text */
+  font-size: var(--text-body);
+  display: flex;
+  flex-direction: column;
+  // align-items: start; // Removed to prevent layout trap
+}

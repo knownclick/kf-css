@@ -1,0 +1,53 @@
+@use "sass:math";
+@use "sass:map";
+@use "functions" as f;
+
+/* --- Variable Generator Mixin --- */
+@mixin generate-vars($config) {
+  $u-vw-min: f.strip-unit(map.get($config, "type-min-vw"));
+  $u-vw-max: f.strip-unit(map.get($config, "type-max-vw"));
+  $u-base-min: f.strip-unit(map.get($config, "type-base-min"));
+  $u-base-max: f.strip-unit(map.get($config, "type-base-max"));
+
+  $steps: map.get($config, "type-steps");
+  $scale-min: map.get($config, "type-scale-min");
+  $scale-max: map.get($config, "type-scale-max");
+
+  @each $name, $step in $steps {
+    $min-size: $u-base-min * f.pow($scale-min, $step);
+    $max-size: $u-base-max * f.pow($scale-max, $step);
+
+    // Enforce max >= min to prevent negative slope
+    @if $max-size < $min-size {
+      $max-size: $min-size;
+    }
+
+    @if $max-size == $min-size {
+      --text-#{$name}: #{math.div(
+          math.div(math.round($min-size * 100), 100),
+          16
+        )}rem;
+    } @else {
+      $slope: 0;
+      @if $u-vw-max != $u-vw-min {
+        $slope: math.div($max-size - $min-size, $u-vw-max - $u-vw-min);
+      }
+      $y-intercept: $min-size - ($slope * $u-vw-min);
+
+      --text-#{$name}: clamp(
+        #{math.div(math.round(math.div($min-size, 16) * 1000), 1000)}rem,
+        #{math.div(math.round(math.div($y-intercept, 16) * 1000), 1000)}rem +
+          #{math.div(math.round($slope * 100 * 1000), 1000)}vw,
+        #{math.div(math.round(math.div($max-size, 16) * 1000), 1000)}rem
+      );
+    }
+  }
+
+  --text-body: var(--text-m);
+  --text-small: var(--text-s);
+
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier,
+    monospace;
+}

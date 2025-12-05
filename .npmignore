@@ -1,0 +1,6 @@
+test/
+examples/
+*.html
+.gitignore
+.git
+src/test
