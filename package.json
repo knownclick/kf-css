@@ -1,9 +1,12 @@
 {
   "name": "kc-css",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A modern, efficient CSS framework tailored for SvelteKit.",
   "main": "dist/kc.css",
   "style": "dist/kc.css",
+  "bin": {
+    "kc-css": "./bin/kc-cli.js"
+  },
   "exports": {
     ".": "./src/main.scss",
     "./css": "./dist/kc.css",
@@ -29,5 +32,9 @@
   "files": [
     "src",
     "dist"
-  ]
+  ],
+  "dependencies": {
+    "fs-extra": "^11.3.2",
+    "prompts": "^2.4.2"
+  }
 }

@@ -1,120 +1,70 @@
-# KC-CSS
+# kc-css
 
 A modern, efficient CSS framework tailored for SvelteKit.
 
-## Installation
+## Usage
 
-Install the package via npm: (coming soon)
+**kc-css** is designed to be fully owned by you. Instead of importing from `node_modules`, you scaffold the entire source code into your project. usage is simple:
 
-```bash
-npm install kc-css
-```
+### 1. Initialize
 
-You will also need `sass` installed in your project:
+Run the following command in your project root:
 
 ```bash
-npm install -D sass
+npx kc-css init
 ```
 
-## Using with SvelteKit
+- **SvelteKit**: Automatically detects SvelteKit and installs to `src/lib/kc-css`.
+- **Other Projects**: Installs to `./kc-css`.
 
-### 1. Global Styles
+### 2. Import
 
-To use the full framework globally, import the main SCSS file in your root layout:
+Import the main SCSS file.
 
-**`src/routes/+layout.svelte`**:
+**SvelteKit** (`src/routes/+layout.svelte`):
 
 ```svelte
 <script>
-  import 'kc-css/src/main.scss';
+  import '$lib/kc-css/main.scss';
 </script>
-
-<slot />
 ```
 
-### 2. Component Usage
+**Other Javascript/Bundlers**:
 
-If you need to access variables or mixins in a specific component:
-
-```svelte
-<style lang="scss">
-  @use "kc-css/src/config/colors";
-
-  .my-element {
-    color: colors.$primary;
-  }
-</style>
+```js
+import "./kc-css/main.scss"; // Adjust path as needed
 ```
 
-## Optimization (Safe PurgeCSS)
+## Customization
 
-For production, we recommend using `vite-plugin-purgecss` to automatically remove unused utility classes.
+You now own the code! Explore the `kc-css` folder:
 
-**Crucial**: You must **safelist** standard HTML tags to prevent base styles (typography, resets) from being purged, as they might not appear explicitly in your `.svelte` files.
+- `src/config/`: Update colors, typography, and spacing variables here.
+- `src/components/`: Add or modify component styles.
+- `src/main.scss`: Toggle modules on or off.
 
-### Recommended `vite.config.ts`
+## Post-Processing (Optimization)
 
-```javascript
+Since `kc-css` is compiled by your project's bundler (Vite), you get automatic optimizations.
+
+### Purging Unused CSS
+
+To remove unused CSS in production, we recommend `vite-plugin-purgecss`.
+
+**Install:**
+
+```bash
+npm install -D vite-plugin-purgecss
+```
+
+**Configure (`vite.config.js`):**
+
+```js
+import { purgeCss } from "vite-plugin-purgecss";
 import { sveltekit } from "@sveltejs/kit/vite";
 import { defineConfig } from "vite";
-import { purgeCss } from "vite-plugin-purgecss";
 
 export default defineConfig({
-  plugins: [
-    sveltekit(),
-    purgeCss({
-      safelist: {
-        // 1. Keep all standard HTML tags (base styles)
-        standard: [
-          "html",
-          "body",
-          /^h\d/, // h1, h2, etc.
-          /^p$/,
-          /^ul$/,
-          /^ol$/,
-          /^li$/,
-          /^table/,
-          /^tr/,
-          /^td$/,
-          /^th$/,
-          /^blockquote$/,
-          /^pre$/,
-          /^code$/,
-          /^input$/,
-          /^button$/,
-          /^form$/,
-        ],
-        // 2. Keep specific dynamic patterns if needed
-        greedy: [
-          // /red$/ // Example: keeps any class ending in "red"
-        ],
-      },
-    }),
-  ],
-});
-```
-
-### Dynamic Classes Warning
-
-PurgeCSS statically analyzes your code. It **cannot** see classes constructed at runtime:
-
-```javascript
-// ❌ WRONG: PurgeCSS won't see "width-100"
-const size = 100;
-const className = `width-${size}`;
-
-// ✅ CORRECT: Use full strings
-const className = isFull ? "width-100" : "width-50";
-```
-
-If you must use dynamic construction, you need to add a safelist pattern to your config:
-
-```javascript
-purgeCss({
-  safelist: {
-    greedy: [
-      /^width-/, // Keeps anything starting with "width-"
-    ],
-  },
+  plugins: [sveltekit(), purgeCss()],
 });
 ```
