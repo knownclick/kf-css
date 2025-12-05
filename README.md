@@ -11,7 +11,7 @@ A modern, efficient CSS framework tailored for SvelteKit.
 Run the following command in your project root:
 
 ```bash
-npx kf-css init
+npx kf-css
 ```
 
 - **SvelteKit**: Automatically detects SvelteKit and installs to `src/lib/kf-css`.
