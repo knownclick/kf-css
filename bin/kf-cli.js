@@ -7,20 +7,20 @@ const prompts = require("prompts");
 
 async function init() {
   console.log(
-    `\n  ${bold("kc-css")}  ${gray("v" + require("../package.json").version)}\n`
+    `\n  ${bold("kf-css")}  ${gray("v" + require("../package.json").version)}\n`
   );
 
   const cwd = process.cwd();
 
   // 1. Detect Project Type
   const isSvelteKit = fs.existsSync(path.join(cwd, "svelte.config.js"));
-  const defaultTarget = isSvelteKit ? "src/lib/kc-css" : "kc-css";
+  const defaultTarget = isSvelteKit ? "src/lib/kf-css" : "kf-css";
 
   // 2. Confirm Target Directory
   const response = await prompts({
     type: "text",
     name: "targetDir",
-    message: "Where would you like to install kc-css?",
+    message: "Where would you like to install kf-css?",
     initial: defaultTarget,
   });
 
@@ -54,7 +54,7 @@ async function init() {
     await fs.copy(sourceDir, targetPath);
 
     console.log(
-      `\n${green("Success!")} kc-css initialized in ${bold(targetDisplay)}.\n`
+      `\n${green("Success!")} kf-css initialized in ${bold(targetDisplay)}.\n`
     );
 
     if (isSvelteKit && targetDisplay.includes("lib")) {
@@ -62,7 +62,7 @@ async function init() {
       console.log(
         `  Import the styles in your ${bold("src/routes/+layout.svelte")}:`
       );
-      console.log(`  ${cyan("import '$lib/kc-css/main.scss';")}\n`);
+      console.log(`  ${cyan("import '$lib/kf-css/main.scss';")}\n`);
     } else {
       console.log("Next steps:");
       console.log(`  Import the styles in your main entry file:`);

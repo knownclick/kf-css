@@ -1,20 +1,20 @@
 {
-  "name": "kc-css",
-  "version": "1.0.2",
+  "name": "kf-css",
+  "version": "1.0.0",
   "description": "A modern, efficient CSS framework tailored for SvelteKit.",
-  "main": "dist/kc.css",
-  "style": "dist/kc.css",
+  "main": "dist/kf.css",
+  "style": "dist/kf.css",
   "bin": {
-    "kc-css": "./bin/kc-cli.js"
+    "kf-css": "./bin/kf-cli.js"
   },
   "exports": {
     ".": "./src/main.scss",
-    "./css": "./dist/kc.css",
-    "./min": "./dist/kc.min.css"
+    "./css": "./dist/kf.css",
+    "./min": "./dist/kf.min.css"
   },
   "scripts": {
-    "build": "sass src/main.scss dist/kc.css",
-    "build:min": "sass src/main.scss dist/kc.min.css --style compressed",
+    "build": "sass src/main.scss dist/kf.css",
+    "build:min": "sass src/main.scss dist/kf.min.css --style compressed",
     "prepublishOnly": "npm run build && npm run build:min"
   },
   "keywords": [
