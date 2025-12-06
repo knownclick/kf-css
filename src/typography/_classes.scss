@@ -1,11 +1,12 @@
 @use "sass:map";
 
 /* --- Class Generator Mixin --- */
-@mixin generate-classes($config) {
+/* --- Class Generator Mixin --- */
+@mixin generate-classes($config, $prefix: "") {
   /* Size Utilities (.text-xl) */
   @if map.get($config, "generate-type-classes") {
     @each $name, $step in map.get($config, "type-steps") {
-      .text-#{$name} {
+      .#{$prefix}text-#{$name} {
         font-size: var(--text-#{$name});
       }
     }
@@ -14,7 +15,7 @@
   /* Weight Utilities (.font-700) */
   @if map.get($config, "generate-weight-classes") {
     @for $i from 1 through 9 {
-      .font-#{$i}00 {
+      .#{$prefix}font-#{$i}00 {
         font-weight: $i * 100;
       }
     }
@@ -22,7 +23,7 @@
 
   /* Line Height Utilities (.line-height-m) */
   @each $name, $value in map.get($config, "line-heights") {
-    .line-height-#{$name} {
+    .#{$prefix}line-height-#{$name} {
       line-height: $value;
     }
   }
@@ -30,7 +31,7 @@
   /* Letter Spacing (Tracking) */
   @if map.get($config, "generate-tracking") {
     @each $name, $value in map.get($config, "letter-spacing") {
-      .tracking-#{$name} {
+      .#{$prefix}tracking-#{$name} {
         letter-spacing: $value;
       }
     }
@@ -38,16 +39,16 @@
 
   /* Text Alignment */
   @if map.get($config, "generate-alignment") {
-    .text-left {
+    .#{$prefix}text-left {
       text-align: left;
     }
-    .text-center {
+    .#{$prefix}text-center {
       text-align: center;
     }
-    .text-right {
+    .#{$prefix}text-right {
       text-align: right;
     }
-    .text-justify {
+    .#{$prefix}text-justify {
       text-align: justify;
     }
   }
@@ -55,35 +56,35 @@
   /* Text Decoration & Transform */
   @if map.get($config, "generate-transform") {
     // Transforms
-    .uppercase {
+    .#{$prefix}uppercase {
       text-transform: uppercase;
     }
-    .lowercase {
+    .#{$prefix}lowercase {
       text-transform: lowercase;
     }
-    .capitalize {
+    .#{$prefix}capitalize {
       text-transform: capitalize;
     }
-    .normal-case {
+    .#{$prefix}normal-case {
       text-transform: none;
     }
 
     // Decorations
-    .underline {
+    .#{$prefix}underline {
       text-decoration: underline;
     }
-    .line-through {
+    .#{$prefix}line-through {
       text-decoration: line-through;
     }
-    .no-underline {
+    .#{$prefix}no-underline {
       text-decoration: none;
     }
 
     // Style
-    .italic {
+    .#{$prefix}italic {
       font-style: italic;
     }
-    .not-italic {
+    .#{$prefix}not-italic {
       font-style: normal;
     }
   }
@@ -91,32 +92,32 @@
   /* Truncation & Whitespace */
   @if map.get($config, "generate-truncate") {
     // Standard one-line truncation
-    .truncate {
+    .#{$prefix}truncate {
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
     }
 
     // Whitespace control
-    .whitespace-nowrap {
+    .#{$prefix}whitespace-nowrap {
       white-space: nowrap;
     }
-    .whitespace-normal {
+    .#{$prefix}whitespace-normal {
       white-space: normal;
     }
-    .whitespace-pre {
+    .#{$prefix}whitespace-pre {
       white-space: pre;
     }
 
     // Word breaking
-    .break-normal {
+    .#{$prefix}break-normal {
       overflow-wrap: normal;
       word-break: normal;
     }
-    .break-words {
+    .#{$prefix}break-words {
       overflow-wrap: break-word;
     }
-    .break-all {
+    .#{$prefix}break-all {
       word-break: break-all;
     }
   }

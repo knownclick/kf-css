@@ -2,32 +2,32 @@
 @use "sass:math";
 
 /* --- Utility Classes --- */
-@mixin generate-classes($config) {
+@mixin generate-classes($config, $prefix: "") {
   // 1. Border Radius
   @if map.get($config, "generate-radius") {
     @each $name, $step in map.get($config, "radius-steps") {
-      .radius-#{$name} {
+      .#{$prefix}radius-#{$name} {
         border-radius: var(--radius-#{$name});
       }
       // Side Specific
-      .radius-t-#{$name} {
+      .#{$prefix}radius-t-#{$name} {
         border-top-left-radius: var(--radius-#{$name});
         border-top-right-radius: var(--radius-#{$name});
       }
-      .radius-b-#{$name} {
+      .#{$prefix}radius-b-#{$name} {
         border-bottom-left-radius: var(--radius-#{$name});
         border-bottom-right-radius: var(--radius-#{$name});
       }
-      .radius-l-#{$name} {
+      .#{$prefix}radius-l-#{$name} {
         border-top-left-radius: var(--radius-#{$name});
         border-bottom-left-radius: var(--radius-#{$name});
       }
-      .radius-r-#{$name} {
+      .#{$prefix}radius-r-#{$name} {
         border-top-right-radius: var(--radius-#{$name});
         border-bottom-right-radius: var(--radius-#{$name});
       }
     }
-    .radius-full {
+    .#{$prefix}radius-full {
       border-radius: var(--radius-full);
     }
   }
@@ -35,7 +35,7 @@
   // 2. Box Shadows
   @if map.get($config, "generate-shadows") {
     @each $name, $value in map.get($config, "shadows") {
-      .shadow-#{$name} {
+      .#{$prefix}shadow-#{$name} {
         box-shadow: var(--shadow-#{$name});
       }
     }
@@ -43,22 +43,22 @@
 
   // 3. Borders (Sides)
   @if map.get($config, "generate-borders") {
-    .border {
+    .#{$prefix}border {
       border: 1px solid;
     }
-    .border-top {
+    .#{$prefix}border-top {
       border-top: 1px solid;
     }
-    .border-bottom {
+    .#{$prefix}border-bottom {
       border-bottom: 1px solid;
     }
-    .border-left {
+    .#{$prefix}border-left {
       border-left: 1px solid;
     }
-    .border-right {
+    .#{$prefix}border-right {
       border-right: 1px solid;
     }
-    .border-none {
+    .#{$prefix}border-none {
       border: none;
     }
   }
@@ -71,28 +71,28 @@
       $loops: math.floor(math.div(100, $step));
     }
 
-    .opacity-0 {
+    .#{$prefix}opacity-0 {
       opacity: 0;
     }
-    .opacity-100 {
+    .#{$prefix}opacity-100 {
       opacity: 1;
     }
 
     @if $step > 0 {
       @for $i from 1 through ($loops - 1) {
         $pct: $i * $step;
-        .opacity-#{$pct} {
+        .#{$prefix}opacity-#{$pct} {
           opacity: math.div($pct, 100);
         }
       }
       // Explicitly add common quarters if not generated
-      .opacity-25 {
+      .#{$prefix}opacity-25 {
         opacity: 0.25;
       }
-      .opacity-50 {
+      .#{$prefix}opacity-50 {
         opacity: 0.5;
       }
-      .opacity-75 {
+      .#{$prefix}opacity-75 {
         opacity: 0.75;
       }
     }
@@ -101,7 +101,7 @@
   // 5. Aspect Ratios
   @if map.get($config, "generate-aspect") {
     @each $name, $value in map.get($config, "aspect-ratios") {
-      .aspect-#{$name} {
+      .#{$prefix}aspect-#{$name} {
         aspect-ratio: $value;
       }
     }
@@ -109,19 +109,19 @@
 
   // 6. Object Fit
   @if map.get($config, "generate-fit") {
-    .fit-contain {
+    .#{$prefix}fit-contain {
       object-fit: contain;
     }
-    .fit-cover {
+    .#{$prefix}fit-cover {
       object-fit: cover;
     }
-    .fit-fill {
+    .#{$prefix}fit-fill {
       object-fit: fill;
     }
-    .fit-none {
+    .#{$prefix}fit-none {
       object-fit: none;
     }
-    .fit-scale-down {
+    .#{$prefix}fit-scale-down {
       object-fit: scale-down;
     }
   }
@@ -129,7 +129,7 @@
   // 7. Backdrop Blur
   @if map.get($config, "generate-blur") {
     @each $name, $value in map.get($config, "blurs") {
-      .bg-blur-#{$name} {
+      .#{$prefix}bg-blur-#{$name} {
         backdrop-filter: blur($value);
       }
     }
@@ -138,7 +138,7 @@
   // 8. Filters
   @if map.get($config, "generate-filters") {
     @each $name, $value in map.get($config, "filters") {
-      .#{$name} {
+      .#{$prefix}#{$name} {
         filter: $value;
       }
     }

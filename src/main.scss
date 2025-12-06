@@ -123,7 +123,10 @@ html.kf-theme-dark {
   @include color-classes.generate-utils($name, $config);
 }
 
-// 6. Generate Typography Classes
+// 6. Generate Class Configs & Execute
+// We define configs first so they are available for the responsive loop later
+
+// --- Typography ---
 $type-class-config: (
   "generate-type-classes": config-type.$generate-type-classes,
   "type-steps": config-type.$type-steps,
@@ -137,31 +140,14 @@ $type-class-config: (
 );
 @include type-classes.generate-classes($type-class-config);
 
-// 7. Generate Layout Classes
-$layout-class-config: (
-  "utility-values": config-layout.$utility-values,
-  "compound-utilities": config-layout.$compound-utilities,
-  "grid-columns": config-layout.$grid-columns,
-  "grid-auto-sizes": config-layout.$grid-auto-sizes,
-  "order-count": config-layout.$order-count,
-);
-@include layout-classes.generate-classes($layout-class-config);
-
-// 8. Generate Responsive Layout Classes
-@each $name, $width in config-layout.$breakpoints {
-  @media (min-width: #{$width}) {
-    @include layout-classes.generate-classes($layout-class-config, "#{$name}-");
-  }
-}
-
-// 9. Generate Spacing Classes
+// --- Spacing ---
 $spacing-class-config: (
   "generate-space-utils": config-spacing.$generate-space-utils,
   "space-steps": config-spacing.$space-steps,
 );
 @include spacing-classes.generate-classes($spacing-class-config);
 
-// 10. Generate Decoration Classes
+// --- Decoration ---
 $decoration-class-config: (
   "generate-radius": config-decoration.$generate-radius,
   "radius-steps": config-decoration.$radius-steps,
@@ -179,3 +165,29 @@ $decoration-class-config: (
   "filters": config-decoration.$filters,
 );
 @include decoration-classes.generate-classes($decoration-class-config);
+
+// --- Layout ---
+$layout-class-config: (
+  "utility-values": config-layout.$utility-values,
+  "compound-utilities": config-layout.$compound-utilities,
+  "grid-columns": config-layout.$grid-columns,
+  "grid-auto-sizes": config-layout.$grid-auto-sizes,
+  "order-count": config-layout.$order-count,
+);
+@include layout-classes.generate-classes($layout-class-config);
+
+// 7. Responsive Loop
+@each $name, $width in config-layout.$breakpoints {
+  @media (min-width: #{$width}) {
+    @include layout-classes.generate-classes($layout-class-config, "#{$name}-");
+    @include type-classes.generate-classes($type-class-config, "#{$name}-");
+    @include spacing-classes.generate-classes(
+      $spacing-class-config,
+      "#{$name}-"
+    );
+    @include decoration-classes.generate-classes(
+      $decoration-class-config,
+      "#{$name}-"
+    );
+  }
+}

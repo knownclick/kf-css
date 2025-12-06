@@ -4,72 +4,72 @@
 @use "sass:list";
 
 /* --- Utility Classes --- */
-@mixin generate-classes($config) {
+@mixin generate-classes($config, $prefix: "") {
   @if map.get($config, "generate-space-utils") {
     $steps: map.keys(map.get($config, "space-steps"));
     $all-steps: list.join("0", $steps);
 
     @each $name in $all-steps {
       // Gap
-      .gap-#{$name} {
+      .#{$prefix}gap-#{$name} {
         gap: var(--space-#{$name});
       }
 
       // Padding
-      .p-#{$name} {
+      .#{$prefix}p-#{$name} {
         padding: var(--space-#{$name});
       }
-      .ph-#{$name} {
+      .#{$prefix}ph-#{$name} {
         padding-inline: var(--space-#{$name});
       }
-      .pv-#{$name} {
+      .#{$prefix}pv-#{$name} {
         padding-block: var(--space-#{$name});
       }
-      .pt-#{$name} {
+      .#{$prefix}pt-#{$name} {
         padding-top: var(--space-#{$name});
       }
-      .pb-#{$name} {
+      .#{$prefix}pb-#{$name} {
         padding-bottom: var(--space-#{$name});
       }
-      .ps-#{$name} {
+      .#{$prefix}ps-#{$name} {
         padding-inline-start: var(--space-#{$name});
       }
-      .pe-#{$name} {
+      .#{$prefix}pe-#{$name} {
         padding-inline-end: var(--space-#{$name});
       }
-      .pl-#{$name} {
+      .#{$prefix}pl-#{$name} {
         padding-left: var(--space-#{$name});
       }
-      .pr-#{$name} {
+      .#{$prefix}pr-#{$name} {
         padding-right: var(--space-#{$name});
       }
 
       // Margin
-      .m-#{$name} {
+      .#{$prefix}m-#{$name} {
         margin: var(--space-#{$name});
       }
-      .mh-#{$name} {
+      .#{$prefix}mh-#{$name} {
         margin-inline: var(--space-#{$name});
       }
-      .mv-#{$name} {
+      .#{$prefix}mv-#{$name} {
         margin-block: var(--space-#{$name});
       }
-      .mt-#{$name} {
+      .#{$prefix}mt-#{$name} {
         margin-top: var(--space-#{$name});
       }
-      .mb-#{$name} {
+      .#{$prefix}mb-#{$name} {
         margin-bottom: var(--space-#{$name});
       }
-      .ms-#{$name} {
+      .#{$prefix}ms-#{$name} {
         margin-inline-start: var(--space-#{$name});
       }
-      .me-#{$name} {
+      .#{$prefix}me-#{$name} {
         margin-inline-end: var(--space-#{$name});
       }
-      .ml-#{$name} {
+      .#{$prefix}ml-#{$name} {
         margin-left: var(--space-#{$name});
       }
-      .mr-#{$name} {
+      .#{$prefix}mr-#{$name} {
         margin-right: var(--space-#{$name});
       }
     }
