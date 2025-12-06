@@ -132,6 +132,14 @@ $utility-values: (
   ),
 );
 
+/* --- Base Layout Settings (Moved from _base.scss) --- */
+$container-padding: var(--space-m);
+$section-spacing: var(--space-xl);
+$header-padding: var(--space-m);
+$footer-padding: var(--space-l);
+$divider-color: var(--muted-20);
+$divider-spacing: var(--space-xl);
+
 /* 2. Compound Utilities (Legacy/Complex) */
 $compound-utilities: (
   "flex-row": (

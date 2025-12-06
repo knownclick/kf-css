@@ -1,4 +1,4 @@
-@use "../config/base" as config;
+@use "../config/typography" as config-type;
 
 /* =========================================
    3. SEMANTIC TYPOGRAPHY
@@ -10,10 +10,11 @@ h4,
 h5,
 h6 {
   margin-top: 0;
-  margin-bottom: config.$heading-margin-bottom; /* Default breathing room */
-  font-weight: config.$heading-font-weight;
-  line-height: config.$heading-line-height;
-  color: config.$heading-color;
+  /* Mappings */
+  margin-bottom: config-type.$heading-margin-bottom; /* Default breathing room */
+  font-weight: config-type.$heading-font-weight;
+  line-height: config-type.$heading-line-height;
+  color: config-type.$heading-color;
 }
 
 /* Mapping your fluid text variables to tags */
@@ -41,7 +42,7 @@ h6 {
 }
 
 p {
-  margin-bottom: config.$paragraph-margin-bottom;
+  margin-bottom: config-type.$paragraph-margin-bottom;
 }
 
 small {
@@ -50,20 +51,20 @@ small {
 
 /* Links */
 a {
-  color: config.$link-color;
-  text-decoration: config.$link-decoration;
+  color: config-type.$link-color;
+  text-decoration: config-type.$link-decoration;
   transition: color 0.2s ease;
 }
 
 a:hover {
-  color: config.$link-hover-color; /* Darken on hover */
-  text-decoration: config.$link-hover-decoration;
+  color: config-type.$link-hover-color; /* Darken on hover */
+  text-decoration: config-type.$link-hover-decoration;
 }
 
 /* Lists */
 ul,
 ol {
-  margin-bottom: config.$paragraph-margin-bottom;
+  margin-bottom: config-type.$paragraph-margin-bottom;
   padding-inline-start: var(--space-l);
 }
 
@@ -81,12 +82,12 @@ li {
 
 /* Blockquotes */
 blockquote {
-  margin: 0 0 config.$paragraph-margin-bottom;
-  padding: config.$blockquote-padding;
-  border-inline-start: 4px solid config.$blockquote-border-color;
-  background-color: config.$blockquote-bg;
+  margin: 0 0 config-type.$paragraph-margin-bottom;
+  padding: config-type.$blockquote-padding;
+  border-inline-start: 4px solid config-type.$blockquote-border-color;
+  background-color: config-type.$blockquote-bg;
   border-radius: 0 var(--radius-m) var(--radius-m) 0;
-  font-style: config.$blockquote-font-style;
+  font-style: config-type.$blockquote-font-style;
   color: var(--text-body);
 }
 
@@ -108,26 +109,26 @@ blockquote footer::before {
 code,
 kbd,
 samp {
-  font-family: config.$code-font-family;
+  font-family: config-type.$code-font-family;
   font-size: 0.875em;
-  color: config.$code-color;
-  background-color: config.$code-bg;
-  padding: config.$code-padding;
-  border-radius: config.$code-radius;
+  color: config-type.$code-color;
+  background-color: config-type.$code-bg;
+  padding: config-type.$code-padding;
+  border-radius: config-type.$code-radius;
 }
 
 pre {
   display: block;
   overflow-x: auto;
-  margin-bottom: config.$paragraph-margin-bottom;
+  margin-bottom: config-type.$paragraph-margin-bottom;
   padding: var(--space-m);
   background-color: var(--surface-10);
   border-radius: var(--radius-m);
   border: 1px solid var(--surface-20);
   white-space: pre-wrap;
-  font-family: config.$code-font-family;
+  font-family: config-type.$code-font-family;
   font-size: var(--text-s);
-  color: config.$code-color;
+  color: config-type.$code-color;
 }
 
 pre code {

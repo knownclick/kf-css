@@ -48,7 +48,7 @@ $line-heights: (
   // Subheadings
   "l": 1.5,
   // Body Text (Standard)
-  "xl": 1.6 // Relaxed Long-form Reading,,,,,,
+  "xl": 1.6 // Relaxed Long-form Reading,,,,,,,,
 );
 
 /* Letter Spacing (Tracking) */
@@ -61,3 +61,56 @@ $letter-spacing: (
   "wider": 0.05em,
   "widest": 0.1em,
 );
+
+/* Font Families */
+$font-sans: (
+  system-ui,
+  -apple-system,
+  "Segoe UI",
+  Roboto,
+  "Helvetica Neue",
+  Arial,
+  sans-serif
+);
+$font-mono: (
+  "SFMono-Regular",
+  Consolas,
+  "Liberation Mono",
+  Menlo,
+  Courier,
+  monospace
+);
+
+/* --- Base Typography Settings (Moved from _base.scss) --- */
+// Global
+$font-family-base: var(--font-sans);
+$line-height-base: var(--line-height-m, 1.5);
+$body-color: var(--text-body);
+
+// Headings
+$heading-margin-bottom: var(--space-s);
+$heading-font-weight: 700;
+$heading-line-height: var(--line-height-s, 1.1);
+$heading-color: var(--text-title);
+
+// Paragraphs
+$paragraph-margin-bottom: var(--space-m);
+
+// Links
+$link-color: var(--primary);
+$link-hover-color: var(--primary-d-1);
+$link-decoration: none;
+$link-hover-decoration: underline;
+
+// Blockquotes
+$blockquote-border-color: var(--muted-40);
+$blockquote-bg: var(--surface-10);
+$blockquote-padding: var(--space-m);
+$blockquote-font-style: italic;
+
+// Code
+$code-bg: var(--surface-20);
+$code-color: var(--text-code);
+$code-padding: 0.2em 0.4em;
+$code-radius: var(--radius-s);
+$code-font-family: var(--font-mono);

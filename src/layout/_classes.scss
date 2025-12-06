@@ -7,7 +7,7 @@
   $grid-auto-sizes: map.get($config, "grid-auto-sizes");
   $order-count: map.get($config, "order-count");
 
-  // 1. Single Property Utilities
+  // Generates: .block, .flex, .text-center, .z-10, .overflow-hidden...
   @if $utility-values {
     @each $property, $values in $utility-values {
       @each $class, $value in $values {
@@ -18,7 +18,7 @@
     }
   }
 
-  // 2. Compound Utilities
+  // Generates: .flex-row, .flex-col, .row, .col
   @if $compound-utilities {
     @each $class, $props in $compound-utilities {
       .#{$prefix}#{$class} {
@@ -29,8 +29,7 @@
     }
   }
 
-  // 2. Grid Columns (Fixed)
-  // 2. Grid Columns (Fixed)
+  // Generates: .columns-1 to .columns-8
   @for $i from 1 through $grid-columns {
     .#{$prefix}columns-#{$i} {
       display: grid;
@@ -39,7 +38,7 @@
     }
   }
 
-  // 3. Grid Columns (Auto-Fit)
+  // Generates: .columns-min-* (e.g., .columns-min-20)
   @each $size in $grid-auto-sizes {
     .#{$prefix}columns-min-#{$size} {
       display: grid;
@@ -47,7 +46,7 @@
     }
   }
 
-  // 4. Grid Spans & Starts
+  // Generates: .col-span-*, .col-start-*, .row-span-*, .row-start-*
   @for $i from 1 through $grid-columns {
     .#{$prefix}col-span-#{$i} {
       grid-column: auto / span $i;
@@ -67,7 +66,7 @@
     grid-column: 1 / -1;
   }
 
-  // 5. Width Percentages
+  // Generates: .width-10 to .width-100
   @for $i from 1 through 9 {
     .#{$prefix}width-#{$i}0 {
       width: $i * 10%;
@@ -86,7 +85,7 @@
     height: 100%;
   }
 
-  // 6. Flex Order
+  // Generates: .order-* (.order-1, .order-first, .order-last)
   @if $order-count > 0 {
     @for $i from 1 through $order-count {
       .#{$prefix}order-#{$i} {
@@ -104,7 +103,7 @@
     order: 0;
   }
 
-  // 7. Alignment Engines
+  // Generates: .items-*, .content-*, .self-* (Flex/Grid Alignment)
   // Items (Parent)
   .#{$prefix}items-start {
     align-items: start;

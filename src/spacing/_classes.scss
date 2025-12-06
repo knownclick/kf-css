@@ -10,12 +10,12 @@
     $all-steps: list.join("0", $steps);
 
     @each $name in $all-steps {
-      // Gap
+      // Generates: .gap-* (e.g., .gap-m)
       .#{$prefix}gap-#{$name} {
         gap: var(--space-#{$name});
       }
 
-      // Padding
+      // Generates: .p-*, .ph-*, .pv-*, .pt-*, .pb-*, .pl-*, .pr-*
       .#{$prefix}p-#{$name} {
         padding: var(--space-#{$name});
       }
@@ -38,7 +38,7 @@
         padding-right: var(--space-#{$name});
       }
 
-      // Margin
+      // Generates: .m-*, .mh-*, .mv-*, .mt-*, .mb-*, .ml-*, .mr-*
       .#{$prefix}m-#{$name} {
         margin: var(--space-#{$name});
       }

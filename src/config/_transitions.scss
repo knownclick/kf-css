@@ -53,3 +53,8 @@ $easings: (
   "out": cubic-bezier(0, 0, 0.2, 1),
   "in-out": cubic-bezier(0.4, 0, 0.2, 1),
 );
+
+/* --- Base Transition Settings (Moved from _base.scss) --- */
+$duration-fast: 0.1s;
+$duration-normal: 0.2s;
+$duration-slow: 0.3s;

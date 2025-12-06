@@ -3,7 +3,7 @@
 /* --- Class Generator Mixin --- */
 /* --- Class Generator Mixin --- */
 @mixin generate-classes($config, $prefix: "") {
-  /* Size Utilities (.text-xl) */
+  // Generates: .text-2xs to .text-4xl
   @if map.get($config, "generate-type-classes") {
     @each $name, $step in map.get($config, "type-steps") {
       .#{$prefix}text-#{$name} {
@@ -12,7 +12,7 @@
     }
   }
 
-  /* Weight Utilities (.font-700) */
+  // Generates: .font-100 to .font-900
   @if map.get($config, "generate-weight-classes") {
     @for $i from 1 through 9 {
       .#{$prefix}font-#{$i}00 {
@@ -21,14 +21,14 @@
     }
   }
 
-  /* Line Height Utilities (.line-height-m) */
+  // Generates: .line-height-xs, .line-height-s, .line-height-m...
   @each $name, $value in map.get($config, "line-heights") {
     .#{$prefix}line-height-#{$name} {
       line-height: $value;
     }
   }
 
-  /* Letter Spacing (Tracking) */
+  // Generates: .tracking-tight, .tracking-wide...
   @if map.get($config, "generate-tracking") {
     @each $name, $value in map.get($config, "letter-spacing") {
       .#{$prefix}tracking-#{$name} {
@@ -37,7 +37,7 @@
     }
   }
 
-  /* Text Alignment */
+  // Generates: .text-left, .text-center, .text-right, .text-justify
   @if map.get($config, "generate-alignment") {
     .#{$prefix}text-left {
       text-align: left;
@@ -53,7 +53,7 @@
     }
   }
 
-  /* Text Decoration & Transform */
+  // Generates: .uppercase, .lowercase, .underline, .italic...
   @if map.get($config, "generate-transform") {
     // Transforms
     .#{$prefix}uppercase {
@@ -89,7 +89,7 @@
     }
   }
 
-  /* Truncation & Whitespace */
+  // Generates: .truncate, .whitespace-*, .break-*
   @if map.get($config, "generate-truncate") {
     // Standard one-line truncation
     .#{$prefix}truncate {

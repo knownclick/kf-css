@@ -1,4 +1,5 @@
-@use "../config/base" as config;
+@use "../config/typography" as config-type;
+@use "../config/colors" as config-colors;
 
 /* =========================================
    1. THE RESET (The Foundation)
@@ -12,11 +13,11 @@
 
 :where(:root) {
   cursor: default;
-  line-height: config.$line-height-base;
+  line-height: config-type.$line-height-base;
   overflow-wrap: break-word;
   -webkit-tap-highlight-color: transparent;
   /* Default font stack if you haven't defined one */
-  font-family: config.$font-family-base;
+  font-family: config-type.$font-family-base;
 }
 
 body {
@@ -24,8 +25,8 @@ body {
   padding: 0;
   width: 100%;
   min-height: 100vh;
-  background-color: config.$body-bg;
-  color: config.$body-color; /* Assuming you want high contrast text */
+  background-color: config-colors.$body-bg;
+  color: config-type.$body-color; /* Assuming you want high contrast text */
   font-size: var(--text-body);
   display: flex;
   flex-direction: column;

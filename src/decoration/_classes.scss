@@ -3,7 +3,7 @@
 
 /* --- Utility Classes --- */
 @mixin generate-classes($config, $prefix: "") {
-  // 1. Border Radius
+  // Generates: .radius-*, .radius-t-*, .radius-full...
   @if map.get($config, "generate-radius") {
     @each $name, $step in map.get($config, "radius-steps") {
       .#{$prefix}radius-#{$name} {
@@ -32,7 +32,7 @@
     }
   }
 
-  // 2. Box Shadows
+  // Generates: .shadow-s, .shadow-m, .shadow-l...
   @if map.get($config, "generate-shadows") {
     @each $name, $value in map.get($config, "shadows") {
       .#{$prefix}shadow-#{$name} {
@@ -41,7 +41,7 @@
     }
   }
 
-  // 3. Borders (Sides)
+  // Generates: .border, .border-top, .border-none...
   @if map.get($config, "generate-borders") {
     .#{$prefix}border {
       border: 1px solid;
@@ -63,7 +63,7 @@
     }
   }
 
-  // 4. Opacity
+  // Generates: .opacity-0 to .opacity-100
   @if map.get($config, "generate-opacity") {
     $step: map.get($config, "opacity-step");
     $loops: 0;
@@ -98,7 +98,7 @@
     }
   }
 
-  // 5. Aspect Ratios
+  // Generates: .aspect-square, .aspect-video...
   @if map.get($config, "generate-aspect") {
     @each $name, $value in map.get($config, "aspect-ratios") {
       .#{$prefix}aspect-#{$name} {
@@ -107,7 +107,7 @@
     }
   }
 
-  // 6. Object Fit
+  // Generates: .fit-contain, .fit-cover, .fit-fill...
   @if map.get($config, "generate-fit") {
     .#{$prefix}fit-contain {
       object-fit: contain;
@@ -126,7 +126,7 @@
     }
   }
 
-  // 7. Backdrop Blur
+  // Generates: .bg-blur-s, .bg-blur-m...
   @if map.get($config, "generate-blur") {
     @each $name, $value in map.get($config, "blurs") {
       .#{$prefix}bg-blur-#{$name} {
@@ -135,7 +135,7 @@
     }
   }
 
-  // 8. Filters
+  // Generates: .blur-*, .grayscale-* (from filters map)
   @if map.get($config, "generate-filters") {
     @each $name, $value in map.get($config, "filters") {
       .#{$prefix}#{$name} {

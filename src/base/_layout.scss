@@ -1,6 +1,5 @@
 @use "sass:map";
 @use "../config/layout" as config-layout;
-@use "../config/base" as config-base;
 
 /* =========================================
    2. THE CONTAINER
@@ -11,7 +10,7 @@
   flex-direction: column; /* Default to column for safety, user can override */
   width: 100%;
   margin-inline: auto;
-  padding-inline: config-base.$container-padding; /* Fluid padding */
+  padding-inline: config-layout.$container-padding; /* Fluid padding */
 }
 
 /* Steps up at your defined breakpoints */
@@ -49,13 +48,13 @@ main {
 section {
   display: flex;
   flex-direction: column; /* Default vertical stacking */
-  padding-block: config-base.$section-spacing; /* Generous vertical spacing by default */
+  padding-block: config-layout.$section-spacing; /* Generous vertical spacing by default */
   width: 100%;
 }
 
 /* Header: Usually top nav */
 header {
-  padding-block: config-base.$header-padding;
+  padding-block: config-layout.$header-padding;
   border-bottom: 1px solid var(--muted-20);
   width: 100%;
 }
@@ -63,7 +62,7 @@ header {
 /* Footer: Bottom area */
 footer {
   margin-top: auto;
-  padding-block: config-base.$footer-padding;
+  padding-block: config-layout.$footer-padding;
   background-color: var(--surface);
   border-top: 1px solid var(--muted-20);
   width: 100%;

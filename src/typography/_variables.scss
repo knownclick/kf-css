@@ -4,6 +4,7 @@
 
 /* --- Variable Generator Mixin --- */
 @mixin generate-vars($config) {
+  $line-heights: map.get($config, "line-heights");
   $u-vw-min: f.strip-unit(map.get($config, "type-min-vw"));
   $u-vw-max: f.strip-unit(map.get($config, "type-max-vw"));
   $u-base-min: f.strip-unit(map.get($config, "type-base-min"));
@@ -46,8 +47,12 @@
   --text-body: var(--text-m);
   --text-small: var(--text-s);
 
-  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
-    Arial, sans-serif;
-  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier,
-    monospace;
+  @if $line-heights {
+    @each $name, $value in $line-heights {
+      --line-height-#{$name}: #{$value};
+    }
+  }
+
+  --font-sans: #{map.get($config, "font-sans")};
+  --font-mono: #{map.get($config, "font-mono")};
 }

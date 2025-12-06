@@ -40,9 +40,9 @@ input:focus,
 select:focus,
 textarea:focus,
 button:focus-visible {
-  outline: 2px solid transparent;
+  outline: config.$input-focus-outline-width solid transparent;
   border-color: config.$input-focus-border-color;
-  box-shadow: 0 0 0 3px config.$input-focus-ring-color; /* The "Ring" effect */
+  box-shadow: 0 0 0 config.$input-focus-width config.$input-focus-ring-color; /* The "Ring" effect */
 }
 
 label {
@@ -102,7 +102,7 @@ input[type="checkbox"],
   appearance: none;
   display: grid;
   place-content: center;
-  border: 2px solid var(--muted-30);
+  border: config.$checkbox-border-width solid var(--muted-30);
   border-radius: var(--radius-s);
   // Configured sizing
   width: clamp(config.$checkbox-size-min, 1.5em, config.$checkbox-size-max);
@@ -124,8 +124,8 @@ input[type="checkbox"],
   }
 
   &:focus {
-    outline: 3px solid var(--primary-l-3);
-    outline-offset: 2px;
+    outline: config.$input-focus-width solid var(--primary-l-3);
+    outline-offset: config.$input-focus-offset;
   }
 
   &:checked {
@@ -144,7 +144,7 @@ input[type="radio"],
   appearance: none;
   display: grid;
   place-content: center;
-  border: 2px solid var(--muted-30);
+  border: config.$checkbox-border-width solid var(--muted-30);
   border-radius: var(--radius-full);
   // Configured sizing
   width: clamp(config.$radio-size-min, 1.5em, config.$radio-size-max);

@@ -5,7 +5,7 @@
   $easings: map.get($config, "easings");
   $properties: map.get($config, "properties");
 
-  // Transition Properties
+  // Generates: .transition-all, .transition-colors...
   @each $name, $value in $properties {
     .#{$prefix}transition-#{$name} {
       transition-property: #{$value};
@@ -17,21 +17,21 @@
     }
   }
 
-  // Durations
+  // Generates: .duration-75, .duration-100...
   @each $name, $value in $durations {
     .#{$prefix}duration-#{$name} {
       transition-duration: var(--duration-#{$name});
     }
   }
 
-  // Easings
+  // Generates: .ease-linear, .ease-in...
   @each $name, $value in $easings {
     .#{$prefix}ease-#{$name} {
       transition-timing-function: var(--ease-#{$name});
     }
   }
 
-  // Delay (Optional - reusing duration map for delays usually works well or we can add specific delay map)
+  // Generates: .delay-75, .delay-100...
   @each $name, $value in $durations {
     .#{$prefix}delay-#{$name} {
       transition-delay: var(--duration-#{$name});

@@ -2,13 +2,25 @@
    COMPONENTS CONFIGURATION
    ========================================= */
 
-@use "base" as config-base;
+@use "transitions" as config-transitions;
 
 // Buttons
 $btn-padding-y: var(--space-xs);
 $btn-padding-x: var(--space-m);
 $btn-radius: var(--radius-m);
 $btn-font-weight: 600;
-$btn-transition: opacity config-base.$duration-normal,
-  transform config-base.$duration-fast;
+$btn-transition: opacity config-transitions.$duration-normal,
+  transform config-transitions.$duration-fast;
 $btn-active-transform: translateY(1px);
+
+// Inputs
+$input-padding-y: var(--space-s);
+$input-padding-x: var(--space-m);
+$input-radius: var(--radius-m);
+$input-border-width: 1px;
+$input-font-size: var(--text-s);
+
+// Labels
+$label-margin-bottom: var(--space-2xs);
+$label-font-weight: 500;
+$label-font-size: var(--text-s);

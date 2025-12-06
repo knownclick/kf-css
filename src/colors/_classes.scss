@@ -15,7 +15,7 @@
   $tints: map.get($config, "tint-count");
   $shades: map.get($config, "shade-count");
 
-  // 1. Text Utilities
+  // Generates: .text-primary, .text-primary-50, .text-primary-l-1...
   @if map.get($config, "generate-text") {
     .text-#{$name} {
       color: var(--#{$name});
@@ -48,7 +48,7 @@
     }
   }
 
-  // 2. Background Utilities
+  // Generates: .bg-primary, .bg-primary-50...
   @if map.get($config, "generate-bg") {
     .bg-#{$name} {
       background-color: var(--#{$name});
@@ -81,7 +81,7 @@
     }
   }
 
-  // 3. Border Utilities
+  // Generates: .border-primary, .border-primary-50...
   @if map.get($config, "generate-border") {
     .border-#{$name} {
       border-color: var(--#{$name});
@@ -114,7 +114,7 @@
     }
   }
 
-  // 4. Fill Utilities (For SVGs)
+  // Generates: .fill-primary, .fill-primary-50... (For SVGs)
   @if map.get($config, "generate-fill") {
     .fill-#{$name} {
       fill: var(--#{$name});

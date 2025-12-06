@@ -5,6 +5,7 @@
 /* =========================================
    BOILERPLATE THEME COLORS (Indigo & Slate)
    ========================================= */
+/* --- Base Color Settings (Moved from _base.scss) --- */
 /* Typography Configuration */
 /* Toggles */
 /* Viewport Boundaries */
@@ -14,6 +15,7 @@
 /* Grid Settings */
 /* Flex Order Settings */
 /* 1. Single Property Utilities (Compact) */
+/* --- Base Layout Settings (Moved from _base.scss) --- */
 /* 2. Compound Utilities (Legacy/Complex) */
 /* Viewport Boundaries */
 /* Base Font Size (Min/Max) */
@@ -21,6 +23,8 @@
 /* The Scale Steps */
 /* Line Heights */
 /* Letter Spacing (Tracking) */
+/* Font Families */
+/* --- Base Typography Settings (Moved from _base.scss) --- */
 /* _config.scss */
 /* Toggles */
 /* Base Spacing Size (Min/Max) - The 'm' step */
@@ -35,13 +39,14 @@
 /* 5. Backdrop Blur */
 /* 6. Filters */
 /* =========================================
-   BASE STYLE CONFIGURATION
-   ========================================= */
-/* =========================================
    COMPONENTS CONFIGURATION
    ========================================= */
 /* =========================================
    TRANSITIONS CONFIGURATION
+   ========================================= */
+/* --- Base Transition Settings (Moved from _base.scss) --- */
+/* =========================================
+   CUSTOM COMPONENT CONFIGURATION
    ========================================= */
 /* =========================================
    MIXIN: Variable Generator
@@ -175,6 +180,7 @@ h4,
 h5,
 h6 {
   margin-top: 0;
+  /* Mappings */
   margin-bottom: var(--space-s); /* Default breathing room */
   font-weight: 700;
   line-height: var(--line-height-s, 1.1);
@@ -629,6 +635,20 @@ hr,
 }
 
 /* =========================================
+   CUSTOM COMPONENTS
+   ========================================= */
+.card {
+  background-color: var(--surface);
+  border: 1px solid var(--muted-20);
+  border-radius: var(--radius-l);
+  box-shadow: var(--shadow-m);
+  padding: var(--space-l);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-m);
+}
+
+/* =========================================
    EXECUTION LOOP
    ========================================= */
 :root {
@@ -678,10 +698,13 @@ hr,
   );
   --text-body: var(--text-m);
   --text-small: var(--text-s);
-  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
-    Arial, sans-serif;
-  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier,
-    monospace;
+  --line-height-xs: 1;
+  --line-height-s: 1.1;
+  --line-height-m: 1.25;
+  --line-height-l: 1.5;
+  --line-height-xl: 1.6;
+  --font-sans: system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;
+  --font-mono: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
   --breakpoint-m: 768px;
   --breakpoint-l: 992px;
   --breakpoint-xl: 1400px;
@@ -1820,7 +1843,6 @@ html.kf-theme-dark {
   background-color: var(--error-d-4);
 }
 
-/* Size Utilities (.text-xl) */
 .text-2xs {
   font-size: var(--text-2xs);
 }
@@ -1857,7 +1879,6 @@ html.kf-theme-dark {
   font-size: var(--text-4xl);
 }
 
-/* Weight Utilities (.font-700) */
 .font-100 {
   font-weight: 100;
 }
@@ -1894,7 +1915,6 @@ html.kf-theme-dark {
   font-weight: 900;
 }
 
-/* Line Height Utilities (.line-height-m) */
 .line-height-xs {
   line-height: 1;
 }
@@ -1915,7 +1935,6 @@ html.kf-theme-dark {
   line-height: 1.6;
 }
 
-/* Letter Spacing (Tracking) */
 .tracking-tighter {
   letter-spacing: -0.05em;
 }
@@ -1940,7 +1959,6 @@ html.kf-theme-dark {
   letter-spacing: 0.1em;
 }
 
-/* Text Alignment */
 .text-left {
   text-align: left;
 }
@@ -1957,7 +1975,6 @@ html.kf-theme-dark {
   text-align: justify;
 }
 
-/* Text Decoration & Transform */
 .uppercase {
   text-transform: uppercase;
 }
@@ -1994,7 +2011,6 @@ html.kf-theme-dark {
   font-style: normal;
 }
 
-/* Truncation & Whitespace */
 .truncate {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -4227,7 +4243,6 @@ html.kf-theme-dark {
     align-self: stretch;
     place-self: stretch;
   }
-  /* Size Utilities (.text-xl) */
   .m\:text-2xs {
     font-size: var(--text-2xs);
   }
@@ -4255,7 +4270,6 @@ html.kf-theme-dark {
   .m\:text-4xl {
     font-size: var(--text-4xl);
   }
-  /* Weight Utilities (.font-700) */
   .m\:font-100 {
     font-weight: 100;
   }
@@ -4283,7 +4297,6 @@ html.kf-theme-dark {
   .m\:font-900 {
     font-weight: 900;
   }
-  /* Line Height Utilities (.line-height-m) */
   .m\:line-height-xs {
     line-height: 1;
   }
@@ -4299,7 +4312,6 @@ html.kf-theme-dark {
   .m\:line-height-xl {
     line-height: 1.6;
   }
-  /* Letter Spacing (Tracking) */
   .m\:tracking-tighter {
     letter-spacing: -0.05em;
   }
@@ -4318,7 +4330,6 @@ html.kf-theme-dark {
   .m\:tracking-widest {
     letter-spacing: 0.1em;
   }
-  /* Text Alignment */
   .m\:text-left {
     text-align: left;
   }
@@ -4331,7 +4342,6 @@ html.kf-theme-dark {
   .m\:text-justify {
     text-align: justify;
   }
-  /* Text Decoration & Transform */
   .m\:uppercase {
     text-transform: uppercase;
   }
@@ -4359,7 +4369,6 @@ html.kf-theme-dark {
   .m\:not-italic {
     font-style: normal;
   }
-  /* Truncation & Whitespace */
   .m\:truncate {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -5685,7 +5694,6 @@ html.kf-theme-dark {
     align-self: stretch;
     place-self: stretch;
   }
-  /* Size Utilities (.text-xl) */
   .l\:text-2xs {
     font-size: var(--text-2xs);
   }
@@ -5713,7 +5721,6 @@ html.kf-theme-dark {
   .l\:text-4xl {
     font-size: var(--text-4xl);
   }
-  /* Weight Utilities (.font-700) */
   .l\:font-100 {
     font-weight: 100;
   }
@@ -5741,7 +5748,6 @@ html.kf-theme-dark {
   .l\:font-900 {
     font-weight: 900;
   }
-  /* Line Height Utilities (.line-height-m) */
   .l\:line-height-xs {
     line-height: 1;
   }
@@ -5757,7 +5763,6 @@ html.kf-theme-dark {
   .l\:line-height-xl {
     line-height: 1.6;
   }
-  /* Letter Spacing (Tracking) */
   .l\:tracking-tighter {
     letter-spacing: -0.05em;
   }
@@ -5776,7 +5781,6 @@ html.kf-theme-dark {
   .l\:tracking-widest {
     letter-spacing: 0.1em;
   }
-  /* Text Alignment */
   .l\:text-left {
     text-align: left;
   }
@@ -5789,7 +5793,6 @@ html.kf-theme-dark {
   .l\:text-justify {
     text-align: justify;
   }
-  /* Text Decoration & Transform */
   .l\:uppercase {
     text-transform: uppercase;
   }
@@ -5817,7 +5820,6 @@ html.kf-theme-dark {
   .l\:not-italic {
     font-style: normal;
   }
-  /* Truncation & Whitespace */
   .l\:truncate {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -7143,7 +7145,6 @@ html.kf-theme-dark {
     align-self: stretch;
     place-self: stretch;
   }
-  /* Size Utilities (.text-xl) */
   .xl\:text-2xs {
     font-size: var(--text-2xs);
   }
@@ -7171,7 +7172,6 @@ html.kf-theme-dark {
   .xl\:text-4xl {
     font-size: var(--text-4xl);
   }
-  /* Weight Utilities (.font-700) */
   .xl\:font-100 {
     font-weight: 100;
   }
@@ -7199,7 +7199,6 @@ html.kf-theme-dark {
   .xl\:font-900 {
     font-weight: 900;
   }
-  /* Line Height Utilities (.line-height-m) */
   .xl\:line-height-xs {
     line-height: 1;
   }
@@ -7215,7 +7214,6 @@ html.kf-theme-dark {
   .xl\:line-height-xl {
     line-height: 1.6;
   }
-  /* Letter Spacing (Tracking) */
   .xl\:tracking-tighter {
     letter-spacing: -0.05em;
   }
@@ -7234,7 +7232,6 @@ html.kf-theme-dark {
   .xl\:tracking-widest {
     letter-spacing: 0.1em;
   }
-  /* Text Alignment */
   .xl\:text-left {
     text-align: left;
   }
@@ -7247,7 +7244,6 @@ html.kf-theme-dark {
   .xl\:text-justify {
     text-align: justify;
   }
-  /* Text Decoration & Transform */
   .xl\:uppercase {
     text-transform: uppercase;
   }
@@ -7275,7 +7271,6 @@ html.kf-theme-dark {
   .xl\:not-italic {
     font-style: normal;
   }
-  /* Truncation & Whitespace */
   .xl\:truncate {
     overflow: hidden;
     text-overflow: ellipsis;
