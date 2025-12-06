@@ -60,11 +60,11 @@ npm install -D vite-plugin-purgecss
 **Configure (`vite.config.js`):**
 
 ```js
-import { purgeCss } from "vite-plugin-purgecss";
+import purgeCss from "vite-plugin-purgecss";
 import { sveltekit } from "@sveltejs/kit/vite";
 import { defineConfig } from "vite";
 
 export default defineConfig({
-  plugins: [sveltekit(), purgeCss()],
+  plugins: [sveltekit(), purgeCss({})],
 });
 ```
