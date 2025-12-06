@@ -1,9 +1,15 @@
 @use "sass:map";
 
 /* --- Utility Classes --- */
+@use "sass:list";
+
+/* --- Utility Classes --- */
 @mixin generate-classes($config) {
   @if map.get($config, "generate-space-utils") {
-    @each $name, $step in map.get($config, "space-steps") {
+    $steps: map.keys(map.get($config, "space-steps"));
+    $all-steps: list.join("0", $steps);
+
+    @each $name in $all-steps {
       // Gap
       .gap-#{$name} {
         gap: var(--space-#{$name});
@@ -13,12 +19,10 @@
       .p-#{$name} {
         padding: var(--space-#{$name});
       }
-      .ph-#{$name},
-      .px-#{$name} {
+      .ph-#{$name} {
         padding-inline: var(--space-#{$name});
       }
-      .pv-#{$name},
-      .py-#{$name} {
+      .pv-#{$name} {
         padding-block: var(--space-#{$name});
       }
       .pt-#{$name} {
@@ -27,25 +31,27 @@
       .pb-#{$name} {
         padding-bottom: var(--space-#{$name});
       }
-      .ps-#{$name},
-      .pl-#{$name} {
+      .ps-#{$name} {
         padding-inline-start: var(--space-#{$name});
       }
-      .pe-#{$name},
-      .pr-#{$name} {
+      .pe-#{$name} {
         padding-inline-end: var(--space-#{$name});
+      }
+      .pl-#{$name} {
+        padding-left: var(--space-#{$name});
+      }
+      .pr-#{$name} {
+        padding-right: var(--space-#{$name});
       }
 
       // Margin
       .m-#{$name} {
         margin: var(--space-#{$name});
       }
-      .mh-#{$name},
-      .mx-#{$name} {
+      .mh-#{$name} {
         margin-inline: var(--space-#{$name});
       }
-      .mv-#{$name},
-      .my-#{$name} {
+      .mv-#{$name} {
         margin-block: var(--space-#{$name});
       }
       .mt-#{$name} {
@@ -54,13 +60,17 @@
       .mb-#{$name} {
         margin-bottom: var(--space-#{$name});
       }
-      .ms-#{$name},
-      .ml-#{$name} {
+      .ms-#{$name} {
         margin-inline-start: var(--space-#{$name});
       }
-      .me-#{$name},
-      .mr-#{$name} {
+      .me-#{$name} {
         margin-inline-end: var(--space-#{$name});
+      }
+      .ml-#{$name} {
+        margin-left: var(--space-#{$name});
+      }
+      .mr-#{$name} {
+        margin-right: var(--space-#{$name});
       }
     }
   }
