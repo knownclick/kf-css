@@ -8,3 +8,13 @@ $checkbox-size-max: 22px;
 
 $radio-size-min: 18px;
 $radio-size-max: 22px;
+
+// Inputs
+$input-padding-y: var(--space-xs);
+$input-padding-x: var(--space-s);
+$input-border-color: var(--muted-30);
+$input-radius: var(--radius-m);
+$input-focus-ring-color: var(--primary-60);
+$input-focus-border-color: var(--primary);
+$label-margin-bottom: var(--space-3xs);
+$label-font-weight: 600;

@@ -90,11 +90,6 @@ $utility-values: (
     "items-center": center,
     "items-end": flex-end,
   ),
-  "text-align": (
-    "text-center": center,
-    "text-left": left,
-    "text-right": right,
-  ),
   "z-index": (
     "z-0": 0,
     "z-10": 10,
@@ -129,6 +124,11 @@ $utility-values: (
   ),
   "border-inline-end": (
     "border-right": 1px solid var(--muted-30),
+  ),
+  "list-style": (
+    "list-none": none,
+    "list-disc": disc,
+    "list-decimal": decimal,
   ),
 );
 

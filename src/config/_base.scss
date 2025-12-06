@@ -45,22 +45,3 @@ $code-font-family: var(--font-mono);
 $duration-fast: 0.1s;
 $duration-normal: 0.2s;
 $duration-slow: 0.3s;
-
-// --- 4. UI Elements ---
-// Buttons
-$btn-padding-y: var(--space-xs);
-$btn-padding-x: var(--space-m);
-$btn-radius: var(--radius-m);
-$btn-font-weight: 600;
-$btn-transition: opacity $duration-normal, transform $duration-fast;
-$btn-active-transform: translateY(1px);
-
-// Forms
-$input-padding-y: var(--space-xs);
-$input-padding-x: var(--space-s);
-$input-border-color: var(--muted-30);
-$input-radius: var(--radius-m);
-$input-focus-ring-color: var(--primary-60);
-$input-focus-border-color: var(--primary);
-$label-margin-bottom: var(--space-3xs);
-$label-font-weight: 600;

@@ -1,0 +1,17 @@
+@use "sass:map";
+@use "sass:list";
+
+@mixin generate-vars($config) {
+  $durations: map.get($config, "durations");
+  $easings: map.get($config, "easings");
+
+  // Generate Duration Variables
+  @each $name, $value in $durations {
+    --duration-#{$name}: #{$value};
+  }
+
+  // Generate Easing Variables
+  @each $name, $value in $easings {
+    --ease-#{$name}: #{$value};
+  }
+}

@@ -31,12 +31,6 @@
       .#{$prefix}pb-#{$name} {
         padding-bottom: var(--space-#{$name});
       }
-      .#{$prefix}ps-#{$name} {
-        padding-inline-start: var(--space-#{$name});
-      }
-      .#{$prefix}pe-#{$name} {
-        padding-inline-end: var(--space-#{$name});
-      }
       .#{$prefix}pl-#{$name} {
         padding-left: var(--space-#{$name});
       }
@@ -59,12 +53,6 @@
       }
       .#{$prefix}mb-#{$name} {
         margin-bottom: var(--space-#{$name});
-      }
-      .#{$prefix}ms-#{$name} {
-        margin-inline-start: var(--space-#{$name});
-      }
-      .#{$prefix}me-#{$name} {
-        margin-inline-end: var(--space-#{$name});
       }
       .#{$prefix}ml-#{$name} {
         margin-left: var(--space-#{$name});

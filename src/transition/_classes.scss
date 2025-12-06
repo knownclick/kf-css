@@ -1,0 +1,40 @@
+@use "sass:map";
+
+@mixin generate-classes($config, $prefix: "") {
+  $durations: map.get($config, "durations");
+  $easings: map.get($config, "easings");
+  $properties: map.get($config, "properties");
+
+  // Transition Properties
+  @each $name, $value in $properties {
+    .#{$prefix}transition-#{$name} {
+      transition-property: #{$value};
+      // Set defaults upon activation if not redundant
+      @if $name != "none" {
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 150ms;
+      }
+    }
+  }
+
+  // Durations
+  @each $name, $value in $durations {
+    .#{$prefix}duration-#{$name} {
+      transition-duration: var(--duration-#{$name});
+    }
+  }
+
+  // Easings
+  @each $name, $value in $easings {
+    .#{$prefix}ease-#{$name} {
+      transition-timing-function: var(--ease-#{$name});
+    }
+  }
+
+  // Delay (Optional - reusing duration map for delays usually works well or we can add specific delay map)
+  @each $name, $value in $durations {
+    .#{$prefix}delay-#{$name} {
+      transition-delay: var(--duration-#{$name});
+    }
+  }
+}

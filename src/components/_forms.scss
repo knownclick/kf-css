@@ -1,5 +1,4 @@
-@use "../config/base" as config;
-@use "../config/forms" as config-forms;
+@use "../config/forms" as config;
 
 /* =========================================
    FORMS COMPONENT
@@ -106,16 +105,8 @@ input[type="checkbox"],
   border: 2px solid var(--muted-30);
   border-radius: var(--radius-s);
   // Configured sizing
-  width: clamp(
-    config-forms.$checkbox-size-min,
-    1.5em,
-    config-forms.$checkbox-size-max
-  );
-  height: clamp(
-    config-forms.$checkbox-size-min,
-    1.5em,
-    config-forms.$checkbox-size-max
-  );
+  width: clamp(config.$checkbox-size-min, 1.5em, config.$checkbox-size-max);
+  height: clamp(config.$checkbox-size-min, 1.5em, config.$checkbox-size-max);
   cursor: pointer;
 
   &::before {
@@ -156,16 +147,8 @@ input[type="radio"],
   border: 2px solid var(--muted-30);
   border-radius: var(--radius-full);
   // Configured sizing
-  width: clamp(
-    config-forms.$radio-size-min,
-    1.5em,
-    config-forms.$radio-size-max
-  );
-  height: clamp(
-    config-forms.$radio-size-min,
-    1.5em,
-    config-forms.$radio-size-max
-  );
+  width: clamp(config.$radio-size-min, 1.5em, config.$radio-size-max);
+  height: clamp(config.$radio-size-min, 1.5em, config.$radio-size-max);
   cursor: pointer;
 
   &::before {

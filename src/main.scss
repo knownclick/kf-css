@@ -7,6 +7,8 @@
 @use "config/spacing" as config-spacing;
 @use "config/decoration" as config-decoration;
 @use "config/base" as config-base;
+@use "config/components" as config-components;
+@use "config/transitions" as config-transitions;
 
 // Modules
 @use "colors/variables" as color-vars;
@@ -19,6 +21,8 @@
 @use "spacing/classes" as spacing-classes;
 @use "decoration/variables" as decoration-vars;
 @use "decoration/classes" as decoration-classes;
+@use "transition/variables" as transition-vars;
+@use "transition/classes" as transition-classes;
 
 // Base Styles (Semantic)
 @use "base/reset";
@@ -76,6 +80,13 @@
     "shadows": config-decoration.$shadows,
   );
   @include decoration-vars.generate-vars($decoration-var-config);
+
+  // Transition Variables
+  $transition-var-config: (
+    "durations": config-transitions.$durations,
+    "easings": config-transitions.$easings,
+  );
+  @include transition-vars.generate-vars($transition-var-config);
 
   // Code Color
   --text-code: var(--primary-d-2);
@@ -166,6 +177,14 @@ $decoration-class-config: (
 );
 @include decoration-classes.generate-classes($decoration-class-config);
 
+// --- Transitions ---
+$transition-class-config: (
+  "durations": config-transitions.$durations,
+  "easings": config-transitions.$easings,
+  "properties": config-transitions.$properties,
+);
+@include transition-classes.generate-classes($transition-class-config);
+
 // --- Layout ---
 $layout-class-config: (
   "utility-values": config-layout.$utility-values,
@@ -179,15 +198,22 @@ $layout-class-config: (
 // 7. Responsive Loop
 @each $name, $width in config-layout.$breakpoints {
   @media (min-width: #{$width}) {
-    @include layout-classes.generate-classes($layout-class-config, "#{$name}-");
-    @include type-classes.generate-classes($type-class-config, "#{$name}-");
+    @include layout-classes.generate-classes(
+      $layout-class-config,
+      "#{$name}\\:"
+    );
+    @include type-classes.generate-classes($type-class-config, "#{$name}\\:");
     @include spacing-classes.generate-classes(
       $spacing-class-config,
-      "#{$name}-"
+      "#{$name}\\:"
     );
     @include decoration-classes.generate-classes(
       $decoration-class-config,
-      "#{$name}-"
+      "#{$name}\\:"
+    );
+    @include transition-classes.generate-classes(
+      $transition-class-config,
+      "#{$name}\\:"
     );
   }
 }
