@@ -39,9 +39,29 @@ import "./kf-css/main.scss"; // Adjust path as needed
 
 You now own the code! Explore the `kf-css` folder:
 
-- `config/`: Update colors, typography, and spacing variables here.
-- `components/`: Add or modify component styles.
-- `main.scss`: Toggle modules on or off.
+### 1. Configuration (`src/config/`)
+
+Ideally, you only need to touch files in this folder to theme your site.
+
+- **`_colors.scss`**: Define your color palette and theme generation settings.
+- **`_typography.scss`**: Font families, sizes, and scale settings.
+- **`_layout.scss`**: Breakpoints, container widths, and generic layout settings.
+- **`_forms.scss`**: Input sizing, border widths, and focus ring settings.
+- **`_custom.scss`**: **<-- Start here!** Define variables for your own custom components effectively extending the system.
+
+### 2. Components (`src/components/`)
+
+- **`_custom.scss`**: Write your own component styles here using variables from `config/_custom.scss`.
+- `_buttons.scss`, `_forms.scss`: Core framework components (feel free to modify, but standard practice is to leave them be).
+
+### 3. Main Entry
+
+- **`main.scss`**: implementation loop. Toggle specific modules on/off if you don't need them.
+
+## Handling Collisions (Known Issues)
+
+- **`.block` Class**: The framework defines a semantic layout component `.block` (display: flex) AND a utility class `.block` (display: block).
+  - **Advice**: If you use `<div class="block">`, the utility usually wins. If you need the semantic flex behavior, ensure the utility isn't overriding it, or use valid utility alternatives like `.flex` or specific `d-flex` classes if you add them.
 
 ## Post-Processing (Optimization)
 
