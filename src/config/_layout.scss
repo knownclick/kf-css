@@ -2,17 +2,14 @@
 
 /* Breakpoints (Mobile First) */
 $breakpoints: (
+  "s": 480px,
   "m": 768px,
-  "l": 992px,
-  "xl": 1400px,
+  "l": 1024px,
+  "xl": 1280px,
 );
 
-/* Container Max Widths */
-$container-max-widths: (
-  "m": 720px,
-  "l": 960px,
-  "xl": 1320px,
-);
+/* Container Max Width (Fluid Cap) */
+$container-max-width: 1400px;
 
 /* Grid Settings */
 $grid-columns: 8;
@@ -134,9 +131,9 @@ $utility-values: (
 
 /* --- Base Layout Settings (Moved from _base.scss) --- */
 $container-padding: var(--space-m);
-$section-spacing: var(--space-xl);
+$section-spacing: var(--space-m);
 $header-padding: var(--space-m);
-$footer-padding: var(--space-l);
+$footer-padding: var(--space-m);
 $divider-color: var(--muted-20);
 $divider-spacing: var(--space-xl);
 

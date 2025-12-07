@@ -6,32 +6,8 @@
    ========================================= */
 /* A responsive container that locks at your breakpoints */
 .container {
-  display: flex;
-  flex-direction: column; /* Default to column for safety, user can override */
   width: 100%;
-  margin-inline: auto;
-  padding-inline: config-layout.$container-padding; /* Fluid padding */
-}
-
-/* Steps up at your defined breakpoints */
-@each $name, $width in config-layout.$breakpoints {
-  @media (min-width: #{$width}) {
-    $container-width: map.get(config-layout.$container-max-widths, $name);
-
-    @if $container-width {
-      .container {
-        max-width: $container-width;
-      }
-    }
-  }
-}
-
-/* =========================================
-   3. GENERIC BLOCKS
-   ========================================= */
-.block {
-  display: flex;
-  width: 100%;
+  max-width: config-layout.$container-max-width; /* Fluid Cap */
 }
 
 /* =========================================
@@ -46,25 +22,22 @@ main {
 
 /* Section: The primary vertical divider */
 section {
-  display: flex;
-  flex-direction: column; /* Default vertical stacking */
+  display: block;
   padding-block: config-layout.$section-spacing; /* Generous vertical spacing by default */
   width: 100%;
 }
 
 /* Header: Usually top nav */
 header {
+  display: block;
   padding-block: config-layout.$header-padding;
-  border-bottom: 1px solid var(--muted-20);
   width: 100%;
 }
 
 /* Footer: Bottom area */
 footer {
-  margin-top: auto;
+  display: block;
   padding-block: config-layout.$footer-padding;
-  background-color: var(--surface);
-  border-top: 1px solid var(--muted-20);
   width: 100%;
 }
 

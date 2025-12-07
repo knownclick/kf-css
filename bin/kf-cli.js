@@ -48,25 +48,34 @@ async function init() {
   }
 
   // 4. Copy Files
-  const sourceDir = path.resolve(__dirname, "../src");
+  const srcDir = path.resolve(__dirname, "../src");
+  const binDir = path.resolve(__dirname, "../bin");
 
   try {
-    await fs.copy(sourceDir, targetPath);
+    // Copy src/
+    await fs.copy(srcDir, path.join(targetPath, "src"));
+    // Copy bin/ (mirror.js, vite-plugin.js)
+    await fs.copy(binDir, path.join(targetPath, "bin"));
 
     console.log(
       `\n${green("Success!")} kf-css initialized in ${bold(targetDisplay)}.\n`
     );
 
-    if (isSvelteKit && targetDisplay.includes("lib")) {
+    if (isSvelteKit) {
       console.log("Next steps:");
+      console.log(`1. Install Sass: ${cyan("npm i -D sass")}`);
+      console.log(`2. Update ${bold("vite.config.js")}:`);
       console.log(
-        `  Import the styles in your ${bold("src/routes/+layout.svelte")}:`
+        `     ${cyan(
+          `import { kfCss } from './${targetDisplay}/bin/vite-plugin.js';`
+        )}`
       );
-      console.log(`  ${cyan("import '$lib/kf-css/main.scss';")}\n`);
+      console.log(`     plugins: [..., kfCss()]`);
+      console.log(`3. Import CSS in ${bold("+layout.svelte")}:`);
+      console.log(`     ${cyan(`import '$lib/kf-css/kf-responsive.css';`)}\n`);
     } else {
       console.log("Next steps:");
-      console.log(`  Import the styles in your main entry file:`);
-      console.log(`  ${cyan(`@use "./${targetDisplay}/main";`)}\n`);
+      console.log(`  See README for setup instructions.\n`);
     }
   } catch (err) {
     console.error(red("Error copying files:"), err);

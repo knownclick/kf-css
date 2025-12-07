@@ -1,4 +1,13 @@
 @charset "UTF-8";
+/* ==========================================================================
+   🚨 DO NOT IMPORT THIS FILE DIRECTLY! 🚨
+
+   This file is the "Engine" that generates the CSS.
+   It does NOT include the responsive variants (mobile/laptop/desktop classes).
+
+   Please import the PRE-BUILT file instead:
+   import '$lib/kf-css/kf-responsive.css';
+   ========================================================================== */
 /* =========================================
    COLOR DEFAULTS
    ========================================= */
@@ -11,7 +20,7 @@
 /* Viewport Boundaries */
 /* _config.scss */
 /* Breakpoints (Mobile First) */
-/* Container Max Widths */
+/* Container Max Width (Fluid Cap) */
 /* Grid Settings */
 /* Flex Order Settings */
 /* 1. Single Property Utilities (Compact) */
@@ -25,6 +34,9 @@
 /* Letter Spacing (Tracking) */
 /* Font Families */
 /* --- Base Typography Settings (Moved from _base.scss) --- */
+/* Typography Configuration */
+/* Toggles */
+/* Viewport Boundaries */
 /* _config.scss */
 /* Toggles */
 /* Base Spacing Size (Min/Max) - The 'm' step */
@@ -46,9 +58,11 @@
    ========================================= */
 /* --- Base Transition Settings (Moved from _base.scss) --- */
 /* =========================================
+   COMPONENTS CONFIGURATION
+   ========================================= */
+/* =========================================
    CUSTOM COMPONENT CONFIGURATION
    ========================================= */
-/* --- Variable Generator Mixin --- */
 /* =========================================
    MIXIN: Variable Generator
    ========================================= */
@@ -56,6 +70,16 @@
 /* --- Variable Generator Mixin --- */
 /* --- Variable Generator Mixin --- */
 /* --- Variable Generator Mixin --- */
+/* --- Variable Generator Mixin --- */
+/* ==========================================================================
+   🚨 DO NOT IMPORT THIS FILE DIRECTLY! 🚨
+
+   This file is the "Engine" that generates the CSS.
+   It does NOT include the responsive variants (mobile/laptop/desktop classes).
+
+   Please import the PRE-BUILT file instead:
+   import '$lib/kf-css/kf-responsive.css';
+   ========================================================================== */
 /* =========================================
    1. THE RESET (The Foundation)
    ========================================= */
@@ -87,40 +111,16 @@ body {
   flex-direction: column;
 }
 
+/* Typography Configuration */
+/* Toggles */
+/* Viewport Boundaries */
 /* =========================================
    2. THE CONTAINER
    ========================================= */
 /* A responsive container that locks at your breakpoints */
 .container {
-  display: flex;
-  flex-direction: column; /* Default to column for safety, user can override */
   width: 100%;
-  margin-inline: auto;
-  padding-inline: var(--space-m); /* Fluid padding */
-}
-
-/* Steps up at your defined breakpoints */
-@media (min-width: 768px) {
-  .container {
-    max-width: 720px;
-  }
-}
-@media (min-width: 992px) {
-  .container {
-    max-width: 960px;
-  }
-}
-@media (min-width: 1400px) {
-  .container {
-    max-width: 1320px;
-  }
-}
-/* =========================================
-   3. GENERIC BLOCKS
-   ========================================= */
-.block {
-  display: flex;
-  width: 100%;
+  max-width: 1400px; /* Fluid Cap */
 }
 
 /* =========================================
@@ -135,25 +135,22 @@ main {
 
 /* Section: The primary vertical divider */
 section {
-  display: flex;
-  flex-direction: column; /* Default vertical stacking */
-  padding-block: var(--space-xl); /* Generous vertical spacing by default */
+  display: block;
+  padding-block: var(--space-m); /* Generous vertical spacing by default */
   width: 100%;
 }
 
 /* Header: Usually top nav */
 header {
+  display: block;
   padding-block: var(--space-m);
-  border-bottom: 1px solid var(--muted-20);
   width: 100%;
 }
 
 /* Footer: Bottom area */
 footer {
-  margin-top: auto;
-  padding-block: var(--space-l);
-  background-color: var(--surface);
-  border-top: 1px solid var(--muted-20);
+  display: block;
+  padding-block: var(--space-m);
   width: 100%;
 }
 
@@ -613,6 +610,9 @@ video {
   display: block;
 }
 
+/* Typography Configuration */
+/* Toggles */
+/* Viewport Boundaries */
 /* =========================================
    DIVIDER COMPONENT
    ========================================= */
@@ -640,17 +640,6 @@ hr,
   gap: var(--space-m);
 }
 
-.sexycard {
-  background-color: var(--surface);
-  border: 1px solid var(--muted-20);
-  border-radius: var(--radius-l);
-  box-shadow: var(--shadow-m);
-  padding: var(--space-l);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-m);
-}
-
 /* =========================================
    EXECUTION LOOP
    ========================================= */
@@ -660,43 +649,43 @@ hr,
   --text-s: clamp(
     0.833rem,
     0.83rem +
-      0.016vw,
+      0.018vw,
     0.844rem
   );
   --text-m: clamp(
     1rem,
-    0.963rem +
-      0.185vw,
+    0.958rem +
+      0.208vw,
     1.125rem
   );
   --text-l: clamp(
     1.2rem,
-    1.111rem +
-      0.444vw,
+    1.1rem +
+      0.499vw,
     1.5rem
   );
   --text-xl: clamp(
     1.44rem,
-    1.274rem +
-      0.828vw,
+    1.254rem +
+      0.932vw,
     1.999rem
   );
   --text-2xl: clamp(
     1.728rem,
-    1.45rem +
-      1.388vw,
+    1.416rem +
+      1.561vw,
     2.665rem
   );
   --text-3xl: clamp(
     2.074rem,
-    1.636rem +
-      2.19vw,
+    1.581rem +
+      2.464vw,
     3.552rem
   );
   --text-4xl: clamp(
     2.488rem,
-    1.823rem +
-      3.328vw,
+    1.739rem +
+      3.744vw,
     4.735rem
   );
   --text-body: var(--text-m);
@@ -708,9 +697,10 @@ hr,
   --line-height-xl: 1.6;
   --font-sans: system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;
   --font-mono: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
+  --breakpoint-s: 480px;
   --breakpoint-m: 768px;
-  --breakpoint-l: 992px;
-  --breakpoint-xl: 1400px;
+  --breakpoint-l: 1024px;
+  --breakpoint-xl: 1280px;
   --z-dropdown: 1000;
   --z-sticky: 1020;
   --z-fixed: 1030;
@@ -720,82 +710,82 @@ hr,
   --space-2xs: 0.78125rem;
   --space-xs: clamp(
     0.938rem,
-    0.87rem +
-      0.34vw,
+    0.861rem +
+      0.382vw,
     1.167rem
   );
   --space-s: clamp(
     1.027rem,
-    0.908rem +
-      0.595vw,
+    0.893rem +
+      0.67vw,
     1.429rem
   );
   --space-m: clamp(
     1.125rem,
-    0.94rem +
-      0.926vw,
+    0.917rem +
+      1.042vw,
     1.75rem
   );
   --space-l: clamp(
     1.35rem,
-    0.972rem +
-      1.889vw,
+    0.925rem +
+      2.125vw,
     2.625rem
   );
   --space-xl: clamp(
     1.62rem,
-    0.933rem +
-      3.433vw,
+    0.847rem +
+      3.863vw,
     3.938rem
   );
   --space-2xl: clamp(
     1.944rem,
-    0.77rem +
-      5.87vw,
+    0.623rem +
+      6.604vw,
     5.906rem
   );
   --space-3xl: clamp(
     2.333rem,
-    0.399rem +
-      9.669vw,
+    0.157rem +
+      10.878vw,
     8.859rem
   );
   --space-4xl: clamp(
     2.799rem,
-    -0.309rem +
-      15.54vw,
+    -0.697rem +
+      17.483vw,
     13.289rem
   );
   --space-px: 1px;
   --space-0: 0px;
   --radius-xs: clamp(
     0.208rem,
-    0.171rem +
-      0.185vw,
+    0.167rem +
+      0.208vw,
     0.333rem
   );
   --radius-s: clamp(
     0.25rem,
-    0.176rem +
-      0.37vw,
+    0.167rem +
+      0.417vw,
     0.5rem
   );
   --radius-m: clamp(
     0.3rem,
-    0.167rem +
-      0.667vw,
+    0.15rem +
+      0.75vw,
     0.75rem
   );
   --radius-l: clamp(
     0.36rem,
-    0.133rem +
-      1.133vw,
+    0.105rem +
+      1.275vw,
     1.125rem
   );
   --radius-xl: clamp(
     0.432rem,
-    0.06rem +
-      1.86vw,
+    0.013rem +
+      2.093vw,
     1.688rem
   );
   --radius-full: 9999px;

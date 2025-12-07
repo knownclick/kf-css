@@ -1,133 +1,129 @@
+<div align="center">
+
 # kf-css
 
-**Strictly designed for Svelte & SvelteKit.**
+**A modern, efficient CSS framework tailored for SvelteKit.**  
+_Lightweight. Semantic. Customizable._
 
-A modern, efficient, and **Just-In-Time (JIT)** CSS framework tailored for SvelteKit.
+</div>
 
-## The "Mirror" Responsive System
+---
 
-kf-css uses a unique "Mirror" system to handle responsiveness without bloating your Sass compilation time.
+## 🚀 Features
 
-### How it works
+- **SvelteKit First**: Designed with SvelteKit's architecture in mind.
+- **Automated**: Custom Vite plugin updates styles instantly as you edit.
+- **Responsive**: Mirror utility that automatically generates responsive variants (e.g. `.m:p-4`).
+- **Semantic**: Built on a solid design system of colors, typography, and spacing.
+- **Customizable**: Built with Sass, easily configured via variables.
 
-1.  **Sass Compilation**: core Sass files generate the base CSS (mobile-first utilities and components).
-2.  **The Mirror**: A post-processing script (`bin/mirror.js`) automatically generates responsive variants for **every single class** in your CSS.
-    - Input: `.p-4`
-    - Output: `.m:p-4`, `.l:p-4`, `.xl:p-4` (wrapped in appropriate media queries).
-3.  **Zero Config**: Any custom class you add (e.g. `.sexycard`) gets responsive variants for free (`.m:sexycard`).
+---
 
-### Supported Breakpoints
+## 📦 Installation
 
-- **`m:`** (768px)
-- **`l:`** (992px)
-- **`xl:`** (1400px)
+**Using the CLI (Recommended)**
 
-## Usage
-
-**kf-css** is designed to be fully owned by you. Instead of importing from `node_modules`, you scaffold the entire source code into your project.
-
-### 1. Initialize
-
-Run the following command in your project root:
+Run the setup wizard to scaffold `kf-css` into your project:
 
 ```bash
 npx kf-css
 ```
 
-- **SvelteKit**: Automatically detects SvelteKit and installs to `src/lib/kf-css`.
-- **Other Projects**: Installs to `./kf-css`.
+This will:
 
-### 2. Import
-
-### SvelteKit Setup (Recommended)
-
-Since `kf-css` is scaffolded into your project, you must set up the build pipeline to generate the CSS.
-
-**1. Install Dependencies**
-You need `sass` to compile the core files.
-
-```bash
-npm install -D sass
-```
-
-**2. Add Build Scripts**
-In your project's `package.json`, add scripts to compile the styles and run the mirror.
-
-```json
-"scripts": {
-  "kf:build": "sass src/lib/kf-css/src/main.scss src/lib/kf-css/dist/kf.css && node src/lib/kf-css/bin/mirror.js src/lib/kf-css/dist/kf.css src/lib/kf-css/dist/kf-responsive.css",
-  "kf:watch": "onchange 'src/lib/kf-css/src/**/*.scss' -- npm run kf:build"
-}
-```
-
-_(Optional: Install `onchange` via `npm i -D onchange` for the watch script)_
-
-**3. Import CSS**
-In `src/routes/+layout.svelte` (or your root layout):
-
-```svelte
-<script>
-  import '$lib/kf-css/dist/kf-responsive.css';
-</script>
-```
-
-**4. Development Workflow**
-When you edit files in `src/lib/kf-css/config`, run `npm run kf:build` (or start the watcher) to regenerate your styles.
+1. Copy the `src` and `bin` files to your project (default: `src/lib/kf-css`).
+2. Guide you through the necessary integration steps.
 
 ---
 
-### Other Frameworks
+## 🛠️ Integration
 
-## Customization
+### SvelteKit Setup
 
-You now own the code! Explore the `kf-css` folder:
+After running `npx kf-css`, you need to hook it up:
 
-### 1. Configuration (`src/config/`)
+1.  **Install Sass**:
 
-Ideally, you only need to touch files in this folder to theme your site.
+    ```bash
+    npm install -D sass
+    ```
 
-- **`_colors.scss`**: Define your color palette and theme generation settings.
-- **`_typography.scss`**: Font families, sizes, and scale settings.
-- **`_layout.scss`**: Breakpoints, container widths, and generic layout settings.
-- **`_forms.scss`**: Input sizing, border widths, and focus ring settings.
-- **`_custom.scss`**: **<-- Start here!** Define variables for your own custom components effectively extending the system.
+2.  **Configure Vite**:
+    Import the `kfCss` plugin in your `vite.config.js` to enable auto-rebuilding.
 
-### 2. Components (`src/components/`)
+    ```javascript
+    // vite.config.js
+    import { sveltekit } from "@sveltejs/kit/vite";
+    import { defineConfig } from "vite";
+    import { kfCss } from "./src/lib/kf-css/bin/vite-plugin.js"; // Adjust path if needed
 
-- **`_custom.scss`**: Write your own component styles here using variables from `config/_custom.scss`.
-- `_buttons.scss`, `_forms.scss`: Core framework components (feel free to modify, but standard practice is to leave them be).
+    export default defineConfig({
+      plugins: [sveltekit(), kfCss()],
+    });
+    ```
 
-### 3. Main Entry
+3.  **Import Styles**:
+    In your root layout (e.g. `src/routes/+layout.svelte`), import the **generated** responsive CSS.
 
-- **`main.scss`**: implementation loop. Toggle specific modules on/off if you don't need them.
+    ```svelte
+    <script>
+      import '$lib/kf-css/kf-responsive.css';
+    </script>
 
-## Handling Collisions (Known Issues)
+    <slot />
+    ```
 
-- **`.block` Class**: The framework defines a semantic layout component `.block` (display: flex) AND a utility class `.block` (display: block).
-  - **Advice**: If you use `<div class="block">`, the utility usually wins. If you need the semantic flex behavior, ensure the utility isn't overriding it, or use valid utility alternatives like `.flex` or specific `d-flex` classes if you add them.
+### Manual Usage (Non-SvelteKit)
 
-## Post-Processing (Optimization)
-
-Since `kf-css` is compiled by your project's bundler (Vite), you get automatic optimizations.
-
-### Purging Unused CSS
-
-To remove unused CSS in production, we recommend `vite-plugin-purgecss`.
-
-**Install:**
+If you aren't using SvelteKit or the CLI, you can install the package directly:
 
 ```bash
-npm install -D vite-plugin-purgecss
+npm install kf-css
 ```
 
-**Configure (`vite.config.js`):**
+Then import the pre-built CSS file:
 
-```js
-import purgeCss from "vite-plugin-purgecss";
-import { sveltekit } from "@sveltejs/kit/vite";
-import { defineConfig } from "vite";
-
-export default defineConfig({
-  plugins: [sveltekit(), purgeCss({})],
-});
+```javascript
+import "kf-css/dist/kf.css";
+// Or for responsive variants (if generated manually):
+import "kf-css/responsive";
 ```
+
+**Sass Usage**:
+
+```scss
+@use "kf-css/sass" as kf;
+```
+
+---
+
+## 🎨 Customization
+
+The framework is configured via Sass variables in `src/config/`.
+
+1.  **Colors**: Edit `config/colors.scss` to define your palette.
+2.  **Typography**: Adjust `config/typography.scss` for font stacks and scales.
+3.  **Breakpoints**: Modify `config/layout.scss`.
+
+The `bin/mirror.js` script reads your CSS variables (specifically `--breakpoint-*`) to generate responsive classes.
+
+---
+
+## 🖥️ Development Scripts
+
+If you have the source locally:
+
+- **Build**: Compiles Sass and generates responsive utilities.
+  ```bash
+  npm run build
+  ```
+- **Minify**: Creates a compressed version.
+  ```bash
+  npm run build:min
+  ```
+
+---
+
+## 📄 License
+
+MIT
