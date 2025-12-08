@@ -1,21 +1,22 @@
 {
   "name": "kf-css",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "A modern, efficient CSS framework tailored for SvelteKit.",
-  "main": "dist/kf.css",
+  "main": "plugin/index.js",
   "style": "dist/kf.css",
   "bin": {
     "kf-css": "./bin/kf-cli.js"
   },
   "exports": {
-    ".": "./dist/kf.css",
+    ".": "./plugin/index.js",
+    "./vite": "./plugin/index.js",
     "./sass": "./src/main.scss",
     "./css": "./dist/kf.css",
     "./min": "./dist/kf.min.css",
     "./responsive": "./dist/kf-responsive.css"
   },
   "scripts": {
-    "build": "sass src/main.scss dist/kf.css && node bin/mirror.js dist/kf.css dist/kf-responsive.css",
+    "build": "node bin/kf-cli.js build src/main.scss dist",
     "build:min": "sass src/main.scss dist/kf.min.css --style compressed",
     "prepublishOnly": "npm run build && npm run build:min"
   },
@@ -28,16 +29,16 @@
   ],
   "author": "KF-CSS Contributors",
   "license": "MIT",
-  "devDependencies": {
-    "sass": "^1.81.0"
-  },
+  "devDependencies": {},
   "files": [
     "src",
     "dist",
-    "bin"
+    "bin",
+    "plugin"
   ],
   "dependencies": {
     "fs-extra": "^11.3.2",
-    "prompts": "^2.4.2"
+    "prompts": "^2.4.2",
+    "sass": "^1.81.0"
   }
 }

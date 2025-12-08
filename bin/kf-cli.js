@@ -3,13 +3,43 @@
 const fs = require("fs-extra");
 const path = require("path");
 const prompts = require("prompts");
-// Parsing arguments or other setup could go here.
+const { build } = require("../plugin/builder");
+const { injectViteConfig } = require("./injector");
+
+// Parsing arguments
+const args = process.argv.slice(2);
+const command = args[0];
 
 async function init() {
   console.log(
     `\n  ${bold("kf-css")}  ${gray("v" + require("../package.json").version)}\n`
   );
 
+  if (command === "build") {
+    // MANUAL BUILD COMMAND
+    // npx kf-css build [entry] [outDir]
+    const cwd = process.cwd();
+    // Default paths based on standard scaffold
+    const entry = args[1] || "src/lib/kf-css/src/main.scss";
+    const outDir = args[2] || "src/lib/kf-css/dist";
+
+    const entryPath = path.resolve(cwd, entry);
+    const outPath = path.resolve(cwd, outDir);
+
+    try {
+      if (!fs.existsSync(entryPath)) {
+        console.error(red(`Error: Entry file not found at ${entry}`));
+        process.exit(1);
+      }
+      await build(entryPath, outPath);
+      process.exit(0);
+    } catch (e) {
+      console.error(red("Build failed:"), e.message);
+      process.exit(1);
+    }
+  }
+
+  // SCAFFOLD COMMAND (Default)
   const cwd = process.cwd();
 
   // 1. Detect Project Type
@@ -49,13 +79,11 @@ async function init() {
 
   // 4. Copy Files
   const srcDir = path.resolve(__dirname, "../src");
-  const binDir = path.resolve(__dirname, "../bin");
+  // NOTE: We no longer copy the 'bin' folder. Automation is handled by the package plugin.
 
   try {
-    // Copy src/
+    // Copy src/ (The Editable Config/Components)
     await fs.copy(srcDir, path.join(targetPath, "src"));
-    // Copy bin/ (mirror.js, vite-plugin.js)
-    await fs.copy(binDir, path.join(targetPath, "bin"));
 
     console.log(
       `\n${green("Success!")} kf-css initialized in ${bold(targetDisplay)}.\n`
@@ -64,15 +92,41 @@ async function init() {
     if (isSvelteKit) {
       console.log("Next steps:");
       console.log(`1. Install Sass: ${cyan("npm i -D sass")}`);
-      console.log(`2. Update ${bold("vite.config.js")}:`);
-      console.log(
-        `     ${cyan(
-          `import { kfCss } from './${targetDisplay}/bin/vite-plugin.js';`
-        )}`
-      );
-      console.log(`     plugins: [..., kfCss()]`);
+
+      // AUTO-INJECT LOGIC
+      const defaultPath = "src/lib/kf-css";
+      const relativeTarget = targetDisplay.split(path.sep).join("/");
+
+      let injected = false;
+      let injectionResult = { success: false, reason: "Skipped" };
+
+      if (relativeTarget === defaultPath) {
+        console.log(`2. Configuring Vite...`);
+        injectionResult = injectViteConfig(cwd); // injectViteConfig must be imported
+        if (injectionResult.success) {
+          injected = true;
+          console.log(
+            `   ${green("✓")} Added kfCss() to ${bold(injectionResult.file)}`
+          );
+        } else if (injectionResult.alreadyExists) {
+          injected = true;
+          console.log(`   ${green("✓")} kfCss() already present in config.`);
+        } else {
+          console.log(
+            `   ${red("!")} Could not auto-configure Vite: ${
+              injectionResult.reason
+            }`
+          );
+        }
+      }
+
+      if (!injected) {
+        console.log(`2. Update ${bold("vite.config.js")}:`);
+        console.log(`     ${cyan(`import { kfCss } from 'kf-css';`)}`);
+      }
+
       console.log(`3. Import CSS in ${bold("+layout.svelte")}:`);
-      console.log(`     ${cyan(`import '$lib/kf-css/kf-responsive.css';`)}\n`);
+      console.log(`     ${cyan(`import 'virtual:kf-css';`)}\n`);
     } else {
       console.log("Next steps:");
       console.log(`  See README for setup instructions.\n`);
