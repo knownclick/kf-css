@@ -5,6 +5,8 @@
 **A modern, efficient CSS framework tailored for SvelteKit.**  
 _Semantic. Customizable. Lightweight (with PurgeCSS)._
 
+[GitHub Repository](https://github.com/knownclick/kf-css)
+
 </div>
 
 ---
