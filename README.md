@@ -66,7 +66,7 @@ The plugin automatically generates the final CSS files.
 To remove unused CSS (highly recommended for production):
 
 1.  **Install**: `npm install -D @fullhuman/postcss-purgecss`
-2.  **Config**: Create `postcss.config.cjs`:
+2.  **Config**: Create `postcss.config.cjs` in your **project root**:
 
     ```javascript
     const purgecss = require("@fullhuman/postcss-purgecss")({

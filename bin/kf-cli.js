@@ -122,7 +122,27 @@ async function init() {
 
       if (!injected) {
         console.log(`2. Update ${bold("vite.config.js")}:`);
-        console.log(`     ${cyan(`import { kfCss } from 'kf-css';`)}`);
+
+        if (relativeTarget !== defaultPath) {
+          console.log(
+            `     // You installed to a custom location, so tell the plugin:`
+          );
+          console.log(`     ${cyan(`import { kfCss } from 'kf-css';`)}`);
+          console.log(`     ${cyan(`plugins: [`)}`);
+          console.log(`     ${cyan(`  kfCss({`)}`);
+          console.log(
+            `     ${cyan(`    entry: '${relativeTarget}/src/main.scss',`)}`
+          );
+          console.log(`     ${cyan(`    outDir: '${relativeTarget}/dist',`)}`);
+          console.log(
+            `     ${cyan(`    watch: '${relativeTarget}/src/**/*.scss'`)}`
+          );
+          console.log(`     ${cyan(`  })`)}`);
+          console.log(`     ${cyan(`]`)}`);
+        } else {
+          console.log(`     ${cyan(`import { kfCss } from 'kf-css';`)}`);
+          console.log(`     ${cyan(`plugins: [..., kfCss()]`)}`);
+        }
       }
 
       console.log(`3. Import CSS in ${bold("+layout.svelte")}:`);
