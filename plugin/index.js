@@ -1,4 +1,5 @@
 import path from "path";
+import fs from "fs";
 import { build } from "./builder.js";
 
 /**
@@ -18,12 +19,9 @@ export function kfCss(options = {}) {
   // The CLI adheres to: SvelteKit -> src/lib/kf-css, Others -> kf-css.
 
   let baseDir = "kf-css";
-  try {
-    const fs = require("fs");
-    if (fs.existsSync(path.resolve(root, "svelte.config.js"))) {
-      baseDir = "src/lib/kf-css";
-    }
-  } catch (e) {}
+  if (fs.existsSync(path.resolve(root, "svelte.config.js"))) {
+    baseDir = "src/lib/kf-css";
+  }
 
   const defaults = {
     entry: `${baseDir}/src/main.scss`,
