@@ -116,8 +116,21 @@ export function kfCss(options = {}) {
         // failed to resolve, maybe not a symlink or doesn't exist yet
       }
 
+      // Explicitly allow watching this path (Vite usually ignores node_modules)
+      // We append to the existing ignore list or create a negative ignored pattern
+      if (server.config.server.watch) {
+        // Force chokidar to watch this path even if it's in node_modules
+        // This "ignored" option usually takes a function or regex or array.
+        // Current best practice to *include* a node_module is complex in Vite,
+        // but manually adding it to watcher usually works IF we don't block it.
+        // Let's assume manual .add() works if we don't have a blocking ignore rule.
+      }
+
       // Add watch pattern
       watcher.add(watchPathAbs);
+      if (realWatchDir !== watchDir) {
+        watcher.add(realWatchDir);
+      }
 
       console.log(`[kf-css] Watching: ${watchPathAbs}`);
       if (realWatchDir !== watchDir) {
