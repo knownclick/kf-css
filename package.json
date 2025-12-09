@@ -1,6 +1,6 @@
 {
   "name": "kf-css",
-  "version": "1.5.7",
+  "version": "1.5.8",
   "description": "A modern, efficient CSS framework tailored for SvelteKit.",
   "main": "plugin/index.js",
   "types": "plugin/index.d.ts",
@@ -47,7 +47,7 @@
     "client.d.ts"
   ],
   "peerDependencies": {
-    "vite": "^5.0.0"
+    "vite": ">=5.0.0"
   },
   "dependencies": {
     "fs-extra": "^11.3.2",
