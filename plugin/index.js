@@ -184,25 +184,54 @@ export function kfCss(options = {}) {
             // Trigger HMR
             // We invalidate the generated CSS file so Vite reloads it
             const cssFile = path.resolve(outPath, "kf-responsive.css");
-            const mod = server.moduleGraph.getModuleById(cssFile);
+
+            // Try to resolve the real path of the CSS file as well (for linked modules)
+            let realCssFile = cssFile;
+            try {
+              realCssFile = fs.realpathSync(cssFile);
+            } catch (e) {}
+
+            console.log(`[kf-css-debug] HMR Target: ${cssFile}`);
+            if (realCssFile !== cssFile) {
+              console.log(`[kf-css-debug] HMR Target (Real): ${realCssFile}`);
+            }
+
+            // Try to find the module in the graph
+            let mod = server.moduleGraph.getModuleById(cssFile);
+            if (!mod && realCssFile !== cssFile) {
+              mod = server.moduleGraph.getModuleById(realCssFile);
+            }
+
+            // Fallback: iterate graph if needed? (Too expensive usually)
 
             if (mod) {
+              console.log("[kf-css] Invalidating module in graph...");
               server.moduleGraph.invalidateModule(mod);
+
+              // Also send a custom update event just in case
               server.ws.send({
-                type: "full-reload",
-                path: "*",
+                type: "update",
+                updates: [
+                  {
+                    type: "js-update",
+                    path: mod.url,
+                    acceptedPath: mod.url,
+                    timestamp: Date.now(),
+                  },
+                ],
               });
+
               console.log("[kf-css] HMR Update triggered.");
             } else {
+              console.log(
+                "[kf-css] Module not found in graph. Forcing full reload."
+              );
               // Try to find module by URL if ID lookup failed (Vite idiosyncrasies)
               // Or just force a reload anyway
               server.ws.send({
                 type: "full-reload",
                 path: "*",
               });
-              console.log(
-                "[kf-css] HMR Update triggered (Module not found in graph)."
-              );
             }
           } catch (e) {
             console.error("[kf-css] Rebuild failed:", e.message);
