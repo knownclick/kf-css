@@ -8,21 +8,22 @@ import { build } from "./builder.js";
  * 2. Compiles Sass -> kf.css
  * 3. Generates Responsive -> kf-responsive.css
  */
+export function kfCss(options = {}) {
   // Detect environment (SvelteKit vs Standard)
   const root = process.cwd();
   // We can loosely detect SvelteKit by looking for svelte.config.js, or just default to the lib folder structure
   // For simplicity and robustness given the CLI changes, we'll try to support both standard defaults.
-  
+
   // Actually, to fully "remove option", we should likely stick to what the CLI enforces.
   // The CLI adheres to: SvelteKit -> src/lib/kf-css, Others -> kf-css.
-  
+
   let baseDir = "kf-css";
   try {
-     const fs = require('fs');
-     if (fs.existsSync(path.resolve(root, 'svelte.config.js'))) {
-         baseDir = "src/lib/kf-css";
-     }
-  } catch(e) {}
+    const fs = require("fs");
+    if (fs.existsSync(path.resolve(root, "svelte.config.js"))) {
+      baseDir = "src/lib/kf-css";
+    }
+  } catch (e) {}
 
   const defaults = {
     entry: `${baseDir}/src/main.scss`,
