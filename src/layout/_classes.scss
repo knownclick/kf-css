@@ -1,11 +1,11 @@
-@use "sass:map";
+@use 'sass:map';
 
 @mixin generate-classes($config) {
-  $utility-values: map.get($config, "utility-values");
-  $compound-utilities: map.get($config, "compound-utilities");
-  $grid-columns: map.get($config, "grid-columns");
-  $grid-auto-sizes: map.get($config, "grid-auto-sizes");
-  $order-count: map.get($config, "order-count");
+  $utility-values: map.get($config, 'utility-values');
+  $compound-utilities: map.get($config, 'compound-utilities');
+  $grid-columns: map.get($config, 'grid-columns');
+  $grid-auto-sizes: map.get($config, 'grid-auto-sizes');
+  $order-count: map.get($config, 'order-count');
 
   // Generates: .block, .flex, .text-center, .z-10, .overflow-hidden...
   @if $utility-values {
@@ -32,7 +32,7 @@
 
   // Generates: .columns-1 to .columns-8
   @for $i from 1 through $grid-columns {
-    $class: "columns-#{$i}";
+    $class: 'columns-#{$i}';
     .#{$class} {
       display: grid;
       --columns: #{$i};
@@ -42,7 +42,7 @@
 
   // Generates: .columns-min-* (e.g., .columns-min-20)
   @each $size in $grid-auto-sizes {
-    $class: "columns-min-#{$size}";
+    $class: 'columns-min-#{$size}';
     .#{$class} {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(#{$size}rem, 1fr));
@@ -53,18 +53,18 @@
   @for $i from 1 through $grid-columns {
     // Defines a map of class suffixes -> properties to Loop over inside the numeric loop
     $span-classes: (
-      "col-span-#{$i}": (
-        grid-column: auto / span $i,
-      ),
-      "col-start-#{$i}": (
-        grid-column-start: $i,
-      ),
-      "row-span-#{$i}": (
-        grid-row: auto / span $i,
-      ),
-      "row-start-#{$i}": (
-        grid-row-start: $i,
-      ),
+      'col-span-#{$i}': (
+          grid-column: auto / span $i,
+        ),
+      'col-start-#{$i}': (
+          grid-column-start: $i,
+        ),
+      'row-span-#{$i}': (
+          grid-row: auto / span $i,
+        ),
+      'row-start-#{$i}': (
+          grid-row-start: $i,
+        ),
     );
 
     @each $cls, $props in $span-classes {
@@ -77,14 +77,14 @@
   }
 
   // col-span-full
-  $full-class: "col-span-full";
+  $full-class: 'col-span-full';
   .#{$full-class} {
     grid-column: 1 / -1;
   }
 
   // Generates: .width-10 to .width-100
   @for $i from 1 through 9 {
-    $class: "width-#{$i}0";
+    $class: 'width-#{$i}0';
     .#{$class} {
       width: $i * 10%;
     }
@@ -92,16 +92,16 @@
 
   // Specific widths and heights
   $size-utils: (
-    "width-33": (
+    'width-33': (
       width: 33.3333%,
     ),
-    "width-66": (
+    'width-66': (
       width: 66.6666%,
     ),
-    "width-100": (
+    'width-100': (
       width: 100%,
     ),
-    "height-100": (
+    'height-100': (
       height: 100%,
     ),
   );
@@ -117,7 +117,7 @@
   // Generates: .order-* (.order-1, .order-first, .order-last)
   @if $order-count > 0 {
     @for $i from 1 through $order-count {
-      $class: "order-#{$i}";
+      $class: 'order-#{$i}';
       .#{$class} {
         order: $i;
       }
@@ -125,13 +125,13 @@
   }
 
   $order-utils: (
-    "order-first": (
+    'order-first': (
       order: -9999,
     ),
-    "order-last": (
+    'order-last': (
       order: 9999,
     ),
-    "order-none": (
+    'order-none': (
       order: 0,
     ),
   );
@@ -144,76 +144,101 @@
     }
   }
 
+  // Generates: .translate-x-*, .translate-y-*
+  $translate-steps: (
+    '0': 0px,
+    'full': 100%,
+    'half': 50%,
+    '-full': -100%,
+    '-half': -50%,
+  );
+
+  // Base transform setting
+  .transform {
+    translate: var(--tw-translate-x, 0) var(--tw-translate-y, 0);
+  }
+
+  @each $name, $value in $translate-steps {
+    .translate-x-#{$name} {
+      --tw-translate-x: #{$value};
+      translate: var(--tw-translate-x, 0) var(--tw-translate-y, 0);
+    }
+    .translate-y-#{$name} {
+      --tw-translate-y: #{$value};
+      translate: var(--tw-translate-x, 0) var(--tw-translate-y, 0);
+    }
+  }
+
   // Generates: .items-*, .content-*, .self-* (Flex/Grid Alignment)
   // Generates: .items-*, .content-*, .self-* (Flex/Grid Alignment)
   $alignment-classes: (
-    "items-start": (
+    'items-start': (
       align-items: start,
       justify-items: start,
     ),
-    "items-center": (
+    'items-center': (
       align-items: center,
       justify-items: center,
     ),
-    "items-end": (
+    'items-end': (
       align-items: end,
       justify-items: end,
     ),
-    "items-stretch": (
+    'items-stretch': (
       align-items: stretch,
       justify-items: stretch,
     ),
-    "content-start": (
+    'content-start': (
       align-content: start,
       justify-content: start,
     ),
-    "content-center": (
+    'content-center': (
       align-content: center,
       justify-content: center,
     ),
-    "content-end": (
+    'content-end': (
       align-content: end,
       justify-content: end,
     ),
-    "content-between": (
+    'content-between': (
       align-content: space-between,
       justify-content: space-between,
     ),
-    "content-around": (
+    'content-around': (
       align-content: space-around,
       justify-content: space-around,
     ),
-    "self-left": (
+    'self-left': (
       align-self: start,
       place-self: start,
       margin-inline-end: auto,
     ),
-    "self-center": (
+    'self-center': (
       align-self: center,
       place-self: center,
       margin-inline: auto,
     ),
-    "self-right": (
+    'self-right': (
       align-self: end,
       place-self: end,
       margin-inline-start: auto,
     ),
-    "self-top": (
+    'self-top': (
       align-self: start,
       place-self: start,
       margin-bottom: auto,
     ),
-    "self-middle": (
+    'self-middle': (
       align-self: center,
       place-self: center,
       margin-block: auto,
     ),
-    "self-bottom": (
+    'self-bottom': (
       align-self: end,
       place-self: end,
       margin-top: auto,
     ),
-    "self-stretch": (
+    'self-stretch': (
       align-self: stretch,
       place-self: stretch,
     ),

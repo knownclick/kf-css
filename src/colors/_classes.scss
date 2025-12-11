@@ -1,19 +1,19 @@
-@use "sass:map";
-@use "sass:math";
+@use 'sass:map';
+@use 'sass:math';
 
 @mixin generate-utils($name, $config) {
-  $step: map.get($config, "transparency-step");
+  $step: map.get($config, 'transparency-step');
   // Only calculate loops if step is greater than 0
   $loops: 0;
   @if $step > 0 {
     $loops: math.floor(math.div(100, $step));
   }
 
-  $tints: map.get($config, "tint-count");
-  $shades: map.get($config, "shade-count");
+  $tints: map.get($config, 'tint-count');
+  $shades: map.get($config, 'shade-count');
 
   // Generates: .text-primary, .text-primary-50, .text-primary-l-1...
-  @if map.get($config, "generate-text") {
+  @if map.get($config, 'generate-text') {
     .text-#{$name} {
       color: var(--#{$name});
     }
@@ -46,7 +46,7 @@
   }
 
   // Generates: .bg-primary, .bg-primary-50...
-  @if map.get($config, "generate-bg") {
+  @if map.get($config, 'generate-bg') {
     .bg-#{$name} {
       background-color: var(--#{$name});
     }
@@ -79,7 +79,7 @@
   }
 
   // Generates: .border-primary, .border-primary-50...
-  @if map.get($config, "generate-border") {
+  @if map.get($config, 'generate-border') {
     .border-#{$name} {
       border-color: var(--#{$name});
     }
@@ -112,7 +112,7 @@
   }
 
   // Generates: .fill-primary, .fill-primary-50... (For SVGs)
-  @if map.get($config, "generate-fill") {
+  @if map.get($config, 'generate-fill') {
     .fill-#{$name} {
       fill: var(--#{$name});
     }
@@ -140,6 +140,56 @@
         .fill-#{$name}-d-#{$i} {
           fill: var(--#{$name}-d-#{$i});
         }
+      }
+    }
+  }
+  // 5. Interactive States (Hover/Focus/Active)
+  @if map.get($config, 'generate-interactive') {
+    // Background Interactivity
+    @if map.get($config, 'generate-bg') {
+      .hover\:bg-#{$name}:hover {
+        background-color: var(--#{$name});
+      }
+      .focus\:bg-#{$name}:focus {
+        background-color: var(--#{$name});
+      }
+      .active\:bg-#{$name}:active {
+        background-color: var(--#{$name});
+      }
+
+      // Generate shades for hover (common pattern: hover:bg-primary-d-1)
+      @if $shades > 0 {
+        @for $i from 1 through $shades {
+          .hover\:bg-#{$name}-d-#{$i}:hover {
+            background-color: var(--#{$name}-d-#{$i});
+          }
+          .active\:bg-#{$name}-d-#{$i}:active {
+            background-color: var(--#{$name}-d-#{$i});
+          }
+        }
+      }
+    }
+
+    // Text Interactivity
+    @if map.get($config, 'generate-text') {
+      .hover\:text-#{$name}:hover {
+        color: var(--#{$name});
+      }
+      .focus\:text-#{$name}:focus {
+        color: var(--#{$name});
+      }
+    }
+
+    // Border Interactivity
+    @if map.get($config, 'generate-border') {
+      .hover\:border-#{$name}:hover {
+        border-color: var(--#{$name});
+      }
+      .focus\:border-#{$name}:focus-within {
+        border-color: var(--#{$name});
+      }
+      .focus\:border-#{$name}:focus {
+        border-color: var(--#{$name});
       }
     }
   }

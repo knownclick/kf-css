@@ -1,5 +1,5 @@
-@use "sass:math";
-@use "sass:string";
+@use 'sass:math';
+@use 'sass:string';
 
 /* _config.scss */
 
@@ -12,6 +12,8 @@ $generate-aspect: true;
 $generate-fit: true;
 $generate-blur: true;
 $generate-filters: true;
+$generate-interactive: true;
+$generate-bg-utils: true;
 
 /* 1. Border Radius */
 $radius-base-min: 4px;
@@ -20,22 +22,22 @@ $radius-scale-min: 1.2;
 $radius-scale-max: 1.5;
 
 $radius-steps: (
-  "xs": -1,
-  "s": 0,
+  'xs': -1,
+  's': 0,
   // Base
-  "m": 1,
-  "l": 2,
-  "xl": 3,
+  'm': 1,
+  'l': 2,
+  'xl': 3,
 );
 
 /* 2. Box Shadows */
 // Note: --shadow-primary must be defined in colors or main.scss
 $shadows: (
-  "xs": "0 1px 2px var(--shadow-primary)",
-  "s": "0 1.5px 3px var(--shadow-primary)",
-  "m": "0 3px 6px var(--shadow-primary)",
-  "l": "0 10px 20px var(--shadow-primary)",
-  "xl": "0 20px 40px var(--shadow-primary)",
+  'xs': '0 1px 2px var(--shadow-primary)',
+  's': '0 1.5px 3px var(--shadow-primary)',
+  'm': '0 3px 6px var(--shadow-primary)',
+  'l': '0 10px 20px var(--shadow-primary)',
+  'xl': '0 20px 40px var(--shadow-primary)',
 );
 
 /* 3. Opacity */
@@ -43,25 +45,25 @@ $opacity-step: 10; // 0, 10, 20... 100
 
 /* 4. Aspect Ratios */
 $aspect-ratios: (
-  "1": string.unquote("1 / 1"),
-  "16-9": string.unquote("16 / 9"),
-  "4-3": string.unquote("4 / 3"),
-  "3-2": string.unquote("3 / 2"),
-  "21-9": string.unquote("21 / 9"),
+  '1': string.unquote('1 / 1'),
+  '16-9': string.unquote('16 / 9'),
+  '4-3': string.unquote('4 / 3'),
+  '3-2': string.unquote('3 / 2'),
+  '21-9': string.unquote('21 / 9'),
 );
 
 /* 5. Backdrop Blur */
 $blurs: (
-  "xs": 2px,
-  "s": 4px,
-  "m": 8px,
-  "l": 16px,
-  "xl": 24px,
+  'xs': 2px,
+  's': 4px,
+  'm': 8px,
+  'l': 16px,
+  'xl': 24px,
 );
 
 /* 6. Filters */
 $filters: (
-  "grayscale": grayscale(100%),
-  "invert": invert(100%),
-  "sepia": sepia(100%),
+  'grayscale': grayscale(100%),
+  'invert': invert(100%),
+  'sepia': sepia(100%),
 );

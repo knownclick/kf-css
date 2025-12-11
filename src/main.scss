@@ -7,41 +7,41 @@
    Please import the PRE-BUILT file instead:
    import '$lib/kf-css/kf-responsive.css';
    ========================================================================== */
-@use "sass:map";
-@use "sass:meta";
+@use 'sass:map';
+@use 'sass:meta';
 
 // Config
-@use "config/colors" as config-colors;
-@use "config/typography" as config-type;
-@use "config/layout" as config-layout;
-@use "config/spacing" as config-spacing;
-@use "config/decoration" as config-decoration;
-@use "config/components" as config-components;
-@use "config/transitions" as config-transitions;
+@use 'config/colors' as config-colors;
+@use 'config/typography' as config-type;
+@use 'config/layout' as config-layout;
+@use 'config/spacing' as config-spacing;
+@use 'config/decoration' as config-decoration;
+@use 'config/components' as config-components;
+@use 'config/transitions' as config-transitions;
 
-@use "config/custom" as config-custom;
+@use 'config/custom' as config-custom;
 
 // Modules
-@use "colors/variables" as color-vars;
-@use "colors/classes" as color-classes;
-@use "typography/variables" as type-vars;
-@use "typography/classes" as type-classes;
-@use "layout/variables" as layout-vars;
-@use "layout/classes" as layout-classes;
-@use "spacing/variables" as spacing-vars;
-@use "spacing/classes" as spacing-classes;
-@use "decoration/variables" as decoration-vars;
-@use "decoration/classes" as decoration-classes;
-@use "transition/variables" as transition-vars;
-@use "transition/classes" as transition-classes;
+@use 'colors/variables' as color-vars;
+@use 'colors/classes' as color-classes;
+@use 'typography/variables' as type-vars;
+@use 'typography/classes' as type-classes;
+@use 'layout/variables' as layout-vars;
+@use 'layout/classes' as layout-classes;
+@use 'spacing/variables' as spacing-vars;
+@use 'spacing/classes' as spacing-classes;
+@use 'decoration/variables' as decoration-vars;
+@use 'decoration/classes' as decoration-classes;
+@use 'transition/variables' as transition-vars;
+@use 'transition/classes' as transition-classes;
 
 // Base Styles (Semantic)
-@use "base/reset";
-@use "base/layout";
-@use "base/typography";
+@use 'base/reset';
+@use 'base/layout';
+@use 'base/typography';
 
 // Components
-@use "components/index";
+@use 'components/index';
 
 /* =========================================
    EXECUTION LOOP
@@ -51,54 +51,54 @@
 :root {
   // Typography Variables
   $type-config: (
-    "type-min-vw": config-type.$type-min-vw,
-    "type-max-vw": config-type.$type-max-vw,
-    "type-base-min": config-type.$type-base-min,
-    "type-base-max": config-type.$type-base-max,
-    "type-steps": config-type.$type-steps,
-    "type-scale-min": config-type.$type-scale-min,
-    "type-scale-max": config-type.$type-scale-max,
-    "line-heights": config-type.$line-heights,
-    "font-sans": config-type.$font-sans,
-    "font-mono": config-type.$font-mono,
+    'type-min-vw': config-type.$type-min-vw,
+    'type-max-vw': config-type.$type-max-vw,
+    'type-base-min': config-type.$type-base-min,
+    'type-base-max': config-type.$type-base-max,
+    'type-steps': config-type.$type-steps,
+    'type-scale-min': config-type.$type-scale-min,
+    'type-scale-max': config-type.$type-scale-max,
+    'line-heights': config-type.$line-heights,
+    'font-sans': config-type.$font-sans,
+    'font-mono': config-type.$font-mono,
   );
   @include type-vars.generate-vars($type-config);
 
   // Layout Variables (Breakpoints)
   $layout-var-config: (
-    "breakpoints": config-layout.$breakpoints,
+    'breakpoints': config-layout.$breakpoints,
   );
   @include layout-vars.generate-vars($layout-var-config);
 
   // Spacing Variables
   $spacing-var-config: (
-    "type-min-vw": config-type.$type-min-vw,
-    "type-max-vw": config-type.$type-max-vw,
-    "space-base-min": config-spacing.$space-base-min,
-    "space-base-max": config-spacing.$space-base-max,
-    "space-steps": config-spacing.$space-steps,
-    "space-scale-min": config-spacing.$space-scale-min,
-    "space-scale-max": config-spacing.$space-scale-max,
+    'type-min-vw': config-type.$type-min-vw,
+    'type-max-vw': config-type.$type-max-vw,
+    'space-base-min': config-spacing.$space-base-min,
+    'space-base-max': config-spacing.$space-base-max,
+    'space-steps': config-spacing.$space-steps,
+    'space-scale-min': config-spacing.$space-scale-min,
+    'space-scale-max': config-spacing.$space-scale-max,
   );
   @include spacing-vars.generate-vars($spacing-var-config);
 
   // Decoration Variables (Radius, Shadows)
   $decoration-var-config: (
-    "type-min-vw": config-type.$type-min-vw,
-    "type-max-vw": config-type.$type-max-vw,
-    "radius-base-min": config-decoration.$radius-base-min,
-    "radius-base-max": config-decoration.$radius-base-max,
-    "radius-steps": config-decoration.$radius-steps,
-    "radius-scale-min": config-decoration.$radius-scale-min,
-    "radius-scale-max": config-decoration.$radius-scale-max,
-    "shadows": config-decoration.$shadows,
+    'type-min-vw': config-type.$type-min-vw,
+    'type-max-vw': config-type.$type-max-vw,
+    'radius-base-min': config-decoration.$radius-base-min,
+    'radius-base-max': config-decoration.$radius-base-max,
+    'radius-steps': config-decoration.$radius-steps,
+    'radius-scale-min': config-decoration.$radius-scale-min,
+    'radius-scale-max': config-decoration.$radius-scale-max,
+    'shadows': config-decoration.$shadows,
   );
   @include decoration-vars.generate-vars($decoration-var-config);
 
   // Transition Variables
   $transition-var-config: (
-    "durations": config-transitions.$durations,
-    "easings": config-transitions.$easings,
+    'durations': config-transitions.$durations,
+    'easings': config-transitions.$easings,
   );
   @include transition-vars.generate-vars($transition-var-config);
 
@@ -122,7 +122,7 @@ html.kf-theme-dark {
   @each $name, $props in config-colors.$theme-colors {
     // Merge specific props with global defaults
     $config: map.merge(config-colors.$defaults, $props);
-    @include color-vars.define-color-vars($name, $config, "light");
+    @include color-vars.define-color-vars($name, $config, 'light');
   }
 }
 
@@ -135,8 +135,8 @@ html.kf-theme-dark {
     $config: map.merge(config-colors.$defaults, $props);
 
     // Only generate if enable-dark-mode is true AND a dark color is provided
-    @if map.get($config, "enable-dark-mode") and map.get($config, "dark") {
-      @include color-vars.define-color-vars($name, $config, "dark");
+    @if map.get($config, 'enable-dark-mode') and map.get($config, 'dark') {
+      @include color-vars.define-color-vars($name, $config, 'dark');
     }
   }
   --text-code: var(--primary-l-2);
@@ -153,58 +153,60 @@ html.kf-theme-dark {
 
 // --- Typography ---
 $type-class-config: (
-  "generate-type-classes": config-type.$generate-type-classes,
-  "type-steps": config-type.$type-steps,
-  "generate-weight-classes": config-type.$generate-weight-classes,
-  "line-heights": config-type.$line-heights,
-  "generate-tracking": config-type.$generate-tracking,
-  "letter-spacing": config-type.$letter-spacing,
-  "generate-alignment": config-type.$generate-alignment,
-  "generate-transform": config-type.$generate-transform,
-  "generate-truncate": config-type.$generate-truncate,
+  'generate-type-classes': config-type.$generate-type-classes,
+  'type-steps': config-type.$type-steps,
+  'generate-weight-classes': config-type.$generate-weight-classes,
+  'line-heights': config-type.$line-heights,
+  'generate-tracking': config-type.$generate-tracking,
+  'letter-spacing': config-type.$letter-spacing,
+  'generate-alignment': config-type.$generate-alignment,
+  'generate-transform': config-type.$generate-transform,
+  'generate-truncate': config-type.$generate-truncate,
 );
 @include type-classes.generate-classes($type-class-config);
 
 // --- Spacing ---
 $spacing-class-config: (
-  "generate-space-utils": config-spacing.$generate-space-utils,
-  "space-steps": config-spacing.$space-steps,
+  'generate-space-utils': config-spacing.$generate-space-utils,
+  'space-steps': config-spacing.$space-steps,
 );
 @include spacing-classes.generate-classes($spacing-class-config);
 
 // --- Decoration ---
 $decoration-class-config: (
-  "generate-radius": config-decoration.$generate-radius,
-  "radius-steps": config-decoration.$radius-steps,
-  "generate-shadows": config-decoration.$generate-shadows,
-  "shadows": config-decoration.$shadows,
-  "generate-borders": config-decoration.$generate-borders,
-  "generate-opacity": config-decoration.$generate-opacity,
-  "opacity-step": config-decoration.$opacity-step,
-  "generate-aspect": config-decoration.$generate-aspect,
-  "aspect-ratios": config-decoration.$aspect-ratios,
-  "generate-fit": config-decoration.$generate-fit,
-  "generate-blur": config-decoration.$generate-blur,
-  "blurs": config-decoration.$blurs,
-  "generate-filters": config-decoration.$generate-filters,
-  "filters": config-decoration.$filters,
+  'generate-radius': config-decoration.$generate-radius,
+  'radius-steps': config-decoration.$radius-steps,
+  'generate-shadows': config-decoration.$generate-shadows,
+  'shadows': config-decoration.$shadows,
+  'generate-borders': config-decoration.$generate-borders,
+  'generate-opacity': config-decoration.$generate-opacity,
+  'opacity-step': config-decoration.$opacity-step,
+  'generate-aspect': config-decoration.$generate-aspect,
+  'aspect-ratios': config-decoration.$aspect-ratios,
+  'generate-fit': config-decoration.$generate-fit,
+  'generate-blur': config-decoration.$generate-blur,
+  'blurs': config-decoration.$blurs,
+  'generate-filters': config-decoration.$generate-filters,
+  'filters': config-decoration.$filters,
+  'generate-interactive': config-decoration.$generate-interactive,
+  'generate-bg-utils': config-decoration.$generate-bg-utils,
 );
 @include decoration-classes.generate-classes($decoration-class-config);
 
 // --- Transitions ---
 $transition-class-config: (
-  "durations": config-transitions.$durations,
-  "easings": config-transitions.$easings,
-  "properties": config-transitions.$properties,
+  'durations': config-transitions.$durations,
+  'easings': config-transitions.$easings,
+  'properties': config-transitions.$properties,
 );
 @include transition-classes.generate-classes($transition-class-config);
 
 // --- Layout ---
 $layout-class-config: (
-  "utility-values": config-layout.$utility-values,
-  "compound-utilities": config-layout.$compound-utilities,
-  "grid-columns": config-layout.$grid-columns,
-  "grid-auto-sizes": config-layout.$grid-auto-sizes,
-  "order-count": config-layout.$order-count,
+  'utility-values': config-layout.$utility-values,
+  'compound-utilities': config-layout.$compound-utilities,
+  'grid-columns': config-layout.$grid-columns,
+  'grid-auto-sizes': config-layout.$grid-auto-sizes,
+  'order-count': config-layout.$order-count,
 );
 @include layout-classes.generate-classes($layout-class-config);

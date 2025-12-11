@@ -2,10 +2,10 @@
 
 /* Breakpoints (Mobile First) */
 $breakpoints: (
-  "s": 480px,
-  "m": 768px,
-  "l": 1024px,
-  "xl": 1280px,
+  's': 480px,
+  'm': 768px,
+  'l': 1024px,
+  'xl': 1280px,
 );
 
 /* Container Max Width (Fluid Cap) */
@@ -20,112 +20,178 @@ $order-count: 6;
 
 /* 1. Single Property Utilities (Compact) */
 $utility-values: (
-  "display": (
-    "block": block,
-    "inline-block": inline-block,
-    "hidden": none,
-    "flex": flex,
-    "grid": grid,
+  'display': (
+    'block': block,
+    'inline-block': inline-block,
+    'hidden': none,
+    'flex': flex,
+    'grid': grid,
   ),
-  "position": (
-    "relative": relative,
-    "absolute": absolute,
-    "fixed": fixed,
-    "sticky": sticky,
+  'position': (
+    'relative': relative,
+    'absolute': absolute,
+    'fixed': fixed,
+    'sticky': sticky,
   ),
-  "flex-wrap": (
-    "flex-wrap": wrap,
-    "flex-nowrap": nowrap,
+  'flex-wrap': (
+    'flex-wrap': wrap,
+    'flex-nowrap': nowrap,
   ),
-  "flex": (
-    "flex-1": 1 1 0%,
-    "flex-auto": 1 1 auto,
-    "flex-initial": 0 1 auto,
-    "flex-none": none,
+  'flex': (
+    'flex-1': 1 1 0%,
+    'flex-auto': 1 1 auto,
+    'flex-initial': 0 1 auto,
+    'flex-none': none,
   ),
-  "flex-grow": (
-    "grow": 1,
-    "grow-0": 0,
+  'flex-grow': (
+    'grow': 1,
+    'grow-0': 0,
   ),
-  "flex-shrink": (
-    "shrink": 1,
-    "shrink-0": 0,
+  'flex-shrink': (
+    'shrink': 1,
+    'shrink-0': 0,
   ),
-  "inset": (
-    "inset-0": 0,
+  'inset': (
+    'inset-0': 0,
   ),
-  "top": (
-    "top-0": 0,
+  'top': (
+    'top-0': 0,
   ),
-  "left": (
-    "left-0": 0,
+  'left': (
+    'left-0': 0,
   ),
-  "bottom": (
-    "bottom-0": 0,
+  'bottom': (
+    'bottom-0': 0,
   ),
-  "right": (
-    "right-0": 0,
+  'right': (
+    'right-0': 0,
   ),
-  "width": (
-    "full-width": 100%,
-    "screen-width": 100vw,
-    "auto-width": auto,
+  'width': (
+    'full-width': 100%,
+    'screen-width': 100vw,
+    'auto-width': auto,
   ),
-  "height": (
-    "full-height": 100%,
-    "screen-height": 100vh,
-    "auto-height": auto,
+  'height': (
+    'full-height': 100%,
+    'screen-height': 100vh,
+    'auto-height': auto,
   ),
-  "justify-content": (
-    "justify-start": flex-start,
-    "justify-center": center,
-    "justify-end": flex-end,
-    "justify-between": space-between,
+  'min-height': (
+    'min-h-screen': 100vh,
+    'min-h-full': 100%,
+    'min-h-0': 0,
   ),
-  "align-items": (
-    "items-start": flex-start,
-    "items-center": center,
-    "items-end": flex-end,
+  'justify-content': (
+    'justify-start': flex-start,
+    'justify-center': center,
+    'justify-end': flex-end,
+    'justify-between': space-between,
   ),
-  "z-index": (
-    "z-0": 0,
-    "z-10": 10,
-    "z-dropdown": var(--z-dropdown),
-    "z-sticky": var(--z-sticky),
-    "z-fixed": var(--z-fixed),
-    "z-modal": var(--z-modal),
-    "z-popover": var(--z-popover),
+  'align-items': (
+    'items-start': flex-start,
+    'items-center': center,
+    'items-end': flex-end,
   ),
-  "overflow": (
-    "overflow-hidden": hidden,
-    "overflow-auto": auto,
+  'z-index': (
+    'z-0': 0,
+    'z-10': 10,
+    'z-dropdown': var(--z-dropdown),
+    'z-sticky': var(--z-sticky),
+    'z-fixed': var(--z-fixed),
+    'z-modal': var(--z-modal),
+    'z-popover': var(--z-popover),
   ),
-  "overflow-y": (
-    "overflow-y-auto": auto,
+  'overflow': (
+    'overflow-hidden': hidden,
+    'overflow-auto': auto,
   ),
-  "overflow-x": (
-    "overflow-x-auto": auto,
+  'overflow-y': (
+    'overflow-y-auto': auto,
   ),
-  "border": (
-    "border": 1px solid var(--muted-30),
-    "border-none": none,
+  'overflow-x': (
+    'overflow-x-auto': auto,
   ),
-  "border-block-start": (
-    "border-top": 1px solid var(--muted-30),
+  'border': (
+    'border': 1px solid var(--muted-30),
+    'border-none': none,
   ),
-  "border-block-end": (
-    "border-bottom": 1px solid var(--muted-30),
+  'border-block-start': (
+    'border-top': 1px solid var(--muted-30),
   ),
-  "border-inline-start": (
-    "border-left": 1px solid var(--muted-30),
+  'border-block-end': (
+    'border-bottom': 1px solid var(--muted-30),
   ),
-  "border-inline-end": (
-    "border-right": 1px solid var(--muted-30),
+  'border-inline-start': (
+    'border-left': 1px solid var(--muted-30),
   ),
-  "list-style": (
-    "list-none": none,
-    "list-disc": disc,
-    "list-decimal": decimal,
+  'border-inline-end': (
+    'border-right': 1px solid var(--muted-30),
+  ),
+  'list-style': (
+    'list-none': none,
+    'list-disc': disc,
+    'list-decimal': decimal,
+  ),
+  // New Utilities
+  'list-style-position': (
+      'list-inside': inside,
+      'list-outside': outside,
+    ),
+  'visibility': (
+    'visible': visible,
+    'invisible': hidden,
+  ),
+  'cursor': (
+    'cursor-auto': auto,
+    'cursor-default': default,
+    'cursor-pointer': pointer,
+    'cursor-wait': wait,
+    'cursor-text': text,
+    'cursor-move': move,
+    'cursor-help': help,
+    'cursor-not-allowed': not-allowed,
+  ),
+  'pointer-events': (
+    'pointer-events-none': none,
+    'pointer-events-auto': auto,
+  ),
+  'user-select': (
+    'select-none': none,
+    'select-text': text,
+    'select-all': all,
+    'select-auto': auto,
+  ),
+  'object-position': (
+    'object-bottom': bottom,
+    'object-center': center,
+    'object-left': left,
+    'object-left-bottom': left bottom,
+    'object-left-top': left top,
+    'object-right': right,
+    'object-right-bottom': right bottom,
+    'object-right-top': right top,
+    'object-top': top,
+  ),
+  // Transforms
+  'scale': (
+      'scale-0': 0,
+      'scale-50': 0.5,
+      'scale-75': 0.75,
+      'scale-90': 0.9,
+      'scale-95': 0.95,
+      'scale-100': 1,
+      'scale-105': 1.05,
+      'scale-110': 1.1,
+      'scale-125': 1.25,
+      'scale-150': 1.5,
+    ),
+  'rotate': (
+    'rotate-0': 0deg,
+    'rotate-45': 45deg,
+    'rotate-90': 90deg,
+    'rotate-180': 180deg,
+    'rotate-minus-45': -45deg,
+    'rotate-minus-90': -90deg,
   ),
 );
 
@@ -139,20 +205,20 @@ $divider-spacing: var(--space-xl);
 
 /* 2. Compound Utilities (Legacy/Complex) */
 $compound-utilities: (
-  "flex-row": (
+  'flex-row': (
     display: flex,
     flex-direction: row,
   ),
-  "flex-col": (
+  'flex-col': (
     display: flex,
     flex-direction: column,
   ),
-  "row": (
+  'row': (
     display: grid,
     grid-auto-flow: column,
     justify-content: start,
   ),
-  "col": (
+  'col': (
     display: grid,
     grid-auto-flow: row,
     align-content: start,

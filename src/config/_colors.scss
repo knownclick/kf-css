@@ -5,27 +5,28 @@
 // inside the specific color map below.
 //----- COLOR DEFAULTS-----//
 $defaults: (
-  "light": #c2c2c2,
+  'light': #c2c2c2,
   // Fallback hex
-  "dark": null,
+  'dark': null,
   // Optional dark mode hex // Feature Toggles
-  "enable-dark-mode": true,
+  'enable-dark-mode': true,
   // Generate dark mode variables? If false: It skips generating dark mode variables for that specific color, even if you provided a "dark" hex code. This is useful for colors that should stay the same in both modes.
-  "generate-text": true,
+  'generate-text': true,
   // Generate .text-{name} classes?
-  "generate-bg": true,
+  'generate-bg': true,
   // Generate .bg-{name} classes?
-  "generate-border": false,
+  'generate-border': false,
   // Generate .border-{name} classes?
-  "generate-fill": false,
+  'generate-fill': false,
   // Generate .fill-{name} classes?
   // Math Settings
-  "tint-count": 4,
+  'tint-count': 4,
   // Number of lighter variations (l-1 to l-4)
-  "shade-count": 4,
+  'shade-count': 4,
   // Number of darker variations (d-1 to d-4)
-  "transparency-step": 10
-    // 10 = 10% steps (10, 20...90). 5 = 5% steps.,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+  'transparency-step': 10,
+  // 10 = 10% steps (10, 20...90). 5 = 5% steps.
+  'generate-interactive': false, // Generate hover/focus/active variants?
 );
 
 /* =========================================
@@ -33,70 +34,67 @@ $defaults: (
    ========================================= */
 $theme-colors: (
   // 1. PRIMARY: The "Loud" Color
-  "primary":
-    (
-      "light": #4f46e5,
-      "dark": #818cf8,
+  'primary': (
+      'light': #4f46e5,
+      'dark': #818cf8,
+      'generate-interactive': true,
     ),
 
   // 2. CANVAS: The Backgrounds
-  "bg-body":
-    (
-      "light": #f8fafc,
-      "dark": #0f172a,
-      "generate-text": false,
-      "generate-bg": false,
+  'bg-body': (
+      'light': #f8fafc,
+      'dark': #0f172a,
+      'generate-text': false,
+      'generate-bg': false,
     ),
 
-  "surface": (
-    "light": #ffffff,
-    "dark": #1e293b,
-    "enable-dark-mode": true,
-    "generate-text": false,
+  'surface': (
+    'light': #ffffff,
+    'dark': #1e293b,
+    'enable-dark-mode': true,
+    'generate-text': false,
   ),
 
   // 3. TEXT: The Content
-  "text-title":
-    (
-      "light": #0f172a,
-      "dark": #f1f5f9,
-      "generate-text": false,
-      "generate-bg": false,
+  'text-title': (
+      'light': #0f172a,
+      'dark': #f1f5f9,
+      'generate-text': false,
+      'generate-bg': false,
     ),
 
-  "text-body": (
-    "light": #334155,
-    "dark": #cbd5e1,
-    "generate-text": false,
-    "generate-bg": false,
+  'text-body': (
+    'light': #334155,
+    'dark': #cbd5e1,
+    'generate-text': false,
+    'generate-bg': false,
   ),
 
   // 4. MUTED: The "Quiet" Color
   // Use for: Borders, Dividers, Icons, Disabled buttons, Helper text
-  "muted":
-    (
-      "light": #64748b,
+  'muted': (
+      'light': #64748b,
       // Slate-500
-      "dark": #94a3b8,
+      'dark': #94a3b8,
       // Slate-400
-      "generate-border": true,
+      'generate-border': true,
       // Generates .border-muted
-      "generate-text": true,
+      'generate-text': true,
       // Generates .text-muted
-      "generate-bg": true,
+      'generate-bg': true,
       // Generates .bg-muted
+      'generate-interactive': true,
     ),
 
   // 5. SIGNALS
-  "success":
-    (
-      "light": #16a34a,
-      "dark": #4ade80,
+  'success': (
+      'light': #16a34a,
+      'dark': #4ade80,
     ),
 
-  "error": (
-    "light": #dc2626,
-    "dark": #f87171,
+  'error': (
+    'light': #dc2626,
+    'dark': #f87171,
   )
 );
 

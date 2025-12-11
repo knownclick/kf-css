@@ -38,8 +38,8 @@ npx kf-css
 > **Note:** If `vite.config.js` is missing, it will be automatically created with the default configuration:
 >
 > ```javascript
-> import { defineConfig } from "vite";
-> import { kfCss } from "kf-css";
+> import { defineConfig } from 'vite';
+> import { kfCss } from 'kf-css';
 >
 > export default defineConfig({
 >   plugins: [kfCss()],
@@ -51,7 +51,7 @@ npx kf-css
 Add this single line to the top of your `src/routes/+layout.svelte` (or specific layout group):
 
 ```javascript
-import "virtual:kf-css";
+import 'virtual:kf-css';
 ```
 
 ### 3. Develop
@@ -83,13 +83,13 @@ To remove unused CSS (highly recommended for production):
 2.  **Config**: Create `postcss.config.cjs` in your **project root**:
 
     ```javascript
-    const purgecss = require("@fullhuman/postcss-purgecss")({
-      content: ["./src/**/*.{html,js,svelte,ts}"],
+    const purgecss = require('@fullhuman/postcss-purgecss')({
+      content: ['./src/**/*.{html,js,svelte,ts}'],
       defaultExtractor: (content) => content.match(/[\w-/:]+(?<!:)/g) || [],
     });
 
     module.exports = {
-      plugins: [...(process.env.NODE_ENV === "production" ? [purgecss] : [])],
+      plugins: [...(process.env.NODE_ENV === 'production' ? [purgecss] : [])],
     };
     ```
 
@@ -116,6 +116,43 @@ The framework is configured via Sass variables in `src/config/`.
 3.  **Breakpoints**: Modify `config/layout.scss`.
 
 The `plugin/builder.js` logic reads your CSS variables (specifically `--breakpoint-*`) to generate responsive classes.
+
+## ✨ New in v1.7.3
+
+### 🖱️ Interactive States
+
+We now support `hover:`, `focus:`, and `active:` prefixes for colors, shadows, and opacity!
+This is **opt-in** to keep file sizes small. Enable it in your config:
+`$defaults: ( "generate-interactive": true );` or specifically for a color map.
+
+```html
+<button class="bg-primary hover:bg-primary-d-1 hover:shadow-m">Hover Me</button>
+```
+
+### 📐 Gap Directionals
+
+Control row and column gaps independently:
+
+- `gap-x-*` (e.g. `gap-x-m` for horizontal gap)
+- `gap-y-*` (e.g. `gap-y-s` for vertical gap)
+
+### 🔲 Corner Radius
+
+Target specific corners:
+
+- `radius-tl-*` (Top Left)
+- `radius-tr-*` (Top Right)
+- `radius-bl-*` (Bottom Left)
+- `radius-br-*` (Bottom Right)
+
+### 🔄 Transforms
+
+We now support individual transform properties:
+
+- **Scale**: `scale-90`, `scale-105`, `scale-150`, etc.
+- **Rotate**: `rotate-45`, `rotate-90`, `rotate-180`.
+- **Translate**: `translate-x-full`, `translate-y-half`.
+- _Note: X and Y translations can be used together._
 
 ---
 

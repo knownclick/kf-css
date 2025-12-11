@@ -1,58 +1,64 @@
-@use "sass:map";
-@use "sass:list";
+@use 'sass:map';
+@use 'sass:list';
 
 @mixin generate-classes($config) {
-  @if map.get($config, "generate-space-utils") {
-    $steps: map.keys(map.get($config, "space-steps"));
-    $all-steps: list.join("0", $steps);
+  @if map.get($config, 'generate-space-utils') {
+    $steps: map.keys(map.get($config, 'space-steps'));
+    $all-steps: list.join('0', $steps);
 
     @each $name in $all-steps {
       // Generates: .gap-#{$name} (e.g., .gap-m)
       .gap-#{$name} {
         gap: var(--space-#{$name});
       }
+      .gap-x-#{$name} {
+        column-gap: var(--space-#{$name});
+      }
+      .gap-y-#{$name} {
+        row-gap: var(--space-#{$name});
+      }
 
       // Generates: .p-*, .ph-*, .pv-*, .pt-*, .pb-*, .pl-*, .pr-*
-      $p-list: "p", "ph", "pv", "pt", "pb", "pl", "pr";
+      $p-list: 'p', 'ph', 'pv', 'pt', 'pb', 'pl', 'pr';
       @each $p-type in $p-list {
-        $p-classname: "#{$p-type}-#{$name}";
+        $p-classname: '#{$p-type}-#{$name}';
         .#{$p-classname} {
-          @if $p-type == "p" {
+          @if $p-type == 'p' {
             padding: var(--space-#{$name});
-          } @else if $p-type == "ph" {
+          } @else if $p-type == 'ph' {
             padding-inline: var(--space-#{$name});
-          } @else if $p-type == "pv" {
+          } @else if $p-type == 'pv' {
             padding-block: var(--space-#{$name});
-          } @else if $p-type == "pt" {
+          } @else if $p-type == 'pt' {
             padding-top: var(--space-#{$name});
-          } @else if $p-type == "pb" {
+          } @else if $p-type == 'pb' {
             padding-bottom: var(--space-#{$name});
-          } @else if $p-type == "pl" {
+          } @else if $p-type == 'pl' {
             padding-left: var(--space-#{$name});
-          } @else if $p-type == "pr" {
+          } @else if $p-type == 'pr' {
             padding-right: var(--space-#{$name});
           }
         }
       }
 
       // Generates: .m-*, .mh-*, .mv-*, .mt-*, .mb-*, .ml-*, .mr-*
-      $m-list: "m", "mh", "mv", "mt", "mb", "ml", "mr";
+      $m-list: 'm', 'mh', 'mv', 'mt', 'mb', 'ml', 'mr';
       @each $m-type in $m-list {
-        $m-classname: "#{$m-type}-#{$name}";
+        $m-classname: '#{$m-type}-#{$name}';
         .#{$m-classname} {
-          @if $m-type == "m" {
+          @if $m-type == 'm' {
             margin: var(--space-#{$name});
-          } @else if $m-type == "mh" {
+          } @else if $m-type == 'mh' {
             margin-inline: var(--space-#{$name});
-          } @else if $m-type == "mv" {
+          } @else if $m-type == 'mv' {
             margin-block: var(--space-#{$name});
-          } @else if $m-type == "mt" {
+          } @else if $m-type == 'mt' {
             margin-top: var(--space-#{$name});
-          } @else if $m-type == "mb" {
+          } @else if $m-type == 'mb' {
             margin-bottom: var(--space-#{$name});
-          } @else if $m-type == "ml" {
+          } @else if $m-type == 'ml' {
             margin-left: var(--space-#{$name});
-          } @else if $m-type == "mr" {
+          } @else if $m-type == 'mr' {
             margin-right: var(--space-#{$name});
           }
         }
