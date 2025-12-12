@@ -61,8 +61,16 @@
     <!-- Backdrop -->
     <div
       class="absolute inset-0 bg-surface-90 bg-blur-s"
+      role="button"
+      tabindex="0"
       transition:fade={{ duration: 200 }}
       on:click={close}
+      on:keydown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          close();
+        }
+      }}
     ></div>
 
     <!-- Panel -->
