@@ -3813,6 +3813,34 @@ html.kf-theme-dark {
   min-height: 0;
 }
 
+.max-h-full {
+  max-height: 100%;
+}
+
+.max-h-screen {
+  max-height: 100vh;
+}
+
+.max-w-s {
+  max-width: 24rem;
+}
+
+.max-w-m {
+  max-width: 32rem;
+}
+
+.max-w-l {
+  max-width: 48rem;
+}
+
+.max-w-xl {
+  max-width: 64rem;
+}
+
+.max-w-full {
+  max-width: 100%;
+}
+
 .justify-start {
   justify-content: flex-start;
 }
@@ -5264,6 +5292,13 @@ html.kf-theme-dark {
   .s\:min-h-screen { min-height: 100vh; }
   .s\:min-h-full { min-height: 100%; }
   .s\:min-h-0 { min-height: 0; }
+  .s\:max-h-full { max-height: 100%; }
+  .s\:max-h-screen { max-height: 100vh; }
+  .s\:max-w-s { max-width: 24rem; }
+  .s\:max-w-m { max-width: 32rem; }
+  .s\:max-w-l { max-width: 48rem; }
+  .s\:max-w-xl { max-width: 64rem; }
+  .s\:max-w-full { max-width: 100%; }
   .s\:justify-start { justify-content: flex-start; }
   .s\:justify-center { justify-content: center; }
   .s\:justify-end { justify-content: flex-end; }
@@ -6199,6 +6234,13 @@ html.kf-theme-dark {
   .m\:min-h-screen { min-height: 100vh; }
   .m\:min-h-full { min-height: 100%; }
   .m\:min-h-0 { min-height: 0; }
+  .m\:max-h-full { max-height: 100%; }
+  .m\:max-h-screen { max-height: 100vh; }
+  .m\:max-w-s { max-width: 24rem; }
+  .m\:max-w-m { max-width: 32rem; }
+  .m\:max-w-l { max-width: 48rem; }
+  .m\:max-w-xl { max-width: 64rem; }
+  .m\:max-w-full { max-width: 100%; }
   .m\:justify-start { justify-content: flex-start; }
   .m\:justify-center { justify-content: center; }
   .m\:justify-end { justify-content: flex-end; }
@@ -7134,6 +7176,13 @@ html.kf-theme-dark {
   .l\:min-h-screen { min-height: 100vh; }
   .l\:min-h-full { min-height: 100%; }
   .l\:min-h-0 { min-height: 0; }
+  .l\:max-h-full { max-height: 100%; }
+  .l\:max-h-screen { max-height: 100vh; }
+  .l\:max-w-s { max-width: 24rem; }
+  .l\:max-w-m { max-width: 32rem; }
+  .l\:max-w-l { max-width: 48rem; }
+  .l\:max-w-xl { max-width: 64rem; }
+  .l\:max-w-full { max-width: 100%; }
   .l\:justify-start { justify-content: flex-start; }
   .l\:justify-center { justify-content: center; }
   .l\:justify-end { justify-content: flex-end; }
@@ -8069,6 +8118,13 @@ html.kf-theme-dark {
   .xl\:min-h-screen { min-height: 100vh; }
   .xl\:min-h-full { min-height: 100%; }
   .xl\:min-h-0 { min-height: 0; }
+  .xl\:max-h-full { max-height: 100%; }
+  .xl\:max-h-screen { max-height: 100vh; }
+  .xl\:max-w-s { max-width: 24rem; }
+  .xl\:max-w-m { max-width: 32rem; }
+  .xl\:max-w-l { max-width: 48rem; }
+  .xl\:max-w-xl { max-width: 64rem; }
+  .xl\:max-w-full { max-width: 100%; }
   .xl\:justify-start { justify-content: flex-start; }
   .xl\:justify-center { justify-content: center; }
   .xl\:justify-end { justify-content: flex-end; }

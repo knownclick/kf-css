@@ -3813,6 +3813,34 @@ html.kf-theme-dark {
   min-height: 0;
 }
 
+.max-h-full {
+  max-height: 100%;
+}
+
+.max-h-screen {
+  max-height: 100vh;
+}
+
+.max-w-s {
+  max-width: 24rem;
+}
+
+.max-w-m {
+  max-width: 32rem;
+}
+
+.max-w-l {
+  max-width: 48rem;
+}
+
+.max-w-xl {
+  max-width: 64rem;
+}
+
+.max-w-full {
+  max-width: 100%;
+}
+
 .justify-start {
   justify-content: flex-start;
 }

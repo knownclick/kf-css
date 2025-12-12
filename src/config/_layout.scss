@@ -81,6 +81,17 @@ $utility-values: (
     'min-h-full': 100%,
     'min-h-0': 0,
   ),
+  'max-height': (
+    'max-h-full': 100%,
+    'max-h-screen': 100vh,
+  ),
+  'max-width': (
+    'max-w-s': 24rem,
+    'max-w-m': 32rem,
+    'max-w-l': 48rem,
+    'max-w-xl': 64rem,
+    'max-w-full': 100%,
+  ),
   'justify-content': (
     'justify-start': flex-start,
     'justify-center': center,

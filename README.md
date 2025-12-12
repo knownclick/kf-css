@@ -117,26 +117,38 @@ The framework is configured via Sass variables in `src/config/`.
 
 The `plugin/builder.js` logic reads your CSS variables (specifically `--breakpoint-*`) to generate responsive classes.
 
-## ✨ New in v1.7.3
+## ✨ New in v1.8.0
+
+### 🧩 Core UI Components
+
+We've added a set of headless, fully responsive Svelte components: `Accordion`, `Modal`, `Tabs`, and `Alert`.
+Built with `kf-css` classes, they are lightweight, accessible, and easily customizable.
+
+### 📐 Core Utilities
+
+Added native `max-width` and `max-height` utilities:
+
+- `max-w-s`, `max-w-m`, `max-w-l`, `max-w-xl`, `max-w-full`.
+- `max-h-full`, `max-h-screen`.
 
 ### 🖱️ Interactive States
 
 We now support `hover:`, `focus:`, and `active:` prefixes for colors, shadows, and opacity!
-This is **opt-in** to keep file sizes small. Enable it in your config:
-`$defaults: ( "generate-interactive": true );` or specifically for a color map.
 
-```html
-<button class="bg-primary hover:bg-primary-d-1 hover:shadow-m">Hover Me</button>
-```
+---
 
-### 📐 Gap Directionals
+---
+
+## 📐 Extended Utilities
+
+### Gap Directionals
 
 Control row and column gaps independently:
 
-- `gap-x-*` (e.g. `gap-x-m` for horizontal gap)
-- `gap-y-*` (e.g. `gap-y-s` for vertical gap)
+- `gap-x-*` (e.g. `gap-x-m`)
+- `gap-y-*` (e.g. `gap-y-s`)
 
-### 🔲 Corner Radius
+### Corner Radius
 
 Target specific corners:
 
@@ -145,14 +157,72 @@ Target specific corners:
 - `radius-bl-*` (Bottom Left)
 - `radius-br-*` (Bottom Right)
 
-### 🔄 Transforms
+### Transforms
 
-We now support individual transform properties:
+Individual transform properties:
 
-- **Scale**: `scale-90`, `scale-105`, `scale-150`, etc.
-- **Rotate**: `rotate-45`, `rotate-90`, `rotate-180`.
-- **Translate**: `translate-x-full`, `translate-y-half`.
-- _Note: X and Y translations can be used together._
+- **Scale**: `scale-90`, `scale-105`, `scale-150`
+- **Rotate**: `rotate-45`, `rotate-90`, `rotate-180`
+- **Translate**: `translate-x-full`, `translate-y-half`
+
+---
+
+## 🧩 UI Components
+
+`kf-css` now exports headless Svelte components from `kf-css/ui`.
+Styles are applied by default but can be overridden.
+
+### Import
+
+```javascript
+import {
+  Accordion,
+  AccordionItem,
+  Modal,
+  Alert,
+  Tabs,
+  TabHeader,
+  TabPanel,
+} from 'kf-css/ui';
+```
+
+### Usage
+
+**Accordion**
+
+```svelte
+<Accordion>
+  <AccordionItem title="Section 1">Content here...</AccordionItem>
+  <AccordionItem title="Section 2">More content...</AccordionItem>
+</Accordion>
+```
+
+**Modal**
+
+```svelte
+<Modal bind:open={isOpen} title="My Modal">
+  <p>Hello World</p>
+</Modal>
+```
+
+**Tabs**
+
+```svelte
+<Tabs active="tab1">
+  <span slot="headers">
+    <TabHeader id="tab1">Home</TabHeader>
+    <TabHeader id="tab2">Profile</TabHeader>
+  </span>
+  <TabPanel id="tab1">Home Content</TabPanel>
+  <TabPanel id="tab2">Profile Content</TabPanel>
+</Tabs>
+```
+
+**Alert**
+
+```svelte
+<Alert type="info" title="Note">This is an alert.</Alert>
+```
 
 ---
 
