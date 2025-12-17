@@ -1,6 +1,6 @@
 {
   "name": "kf-css",
-  "version": "1.9.2",
+  "version": "2.0.0",
   "description": "A modern, efficient CSS framework tailored for SvelteKit.",
   "main": "plugin/index.js",
   "types": "plugin/index.d.ts",
@@ -20,11 +20,7 @@
     "./sass": "./src/main.scss",
     "./css": "./dist/kf.css",
     "./min": "./dist/kf.min.css",
-    "./responsive": "./dist/kf-responsive.css",
-    "./ui": {
-      "types": "./src/ui/index.d.ts",
-      "default": "./src/ui/index.js"
-    }
+    "./responsive": "./dist/kf-responsive.css"
   },
   "scripts": {
     "build": "node bin/kf-cli.js build src/main.scss dist",

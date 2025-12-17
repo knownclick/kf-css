@@ -119,18 +119,7 @@ The `plugin/builder.js` logic reads your CSS variables (specifically `--breakpoi
 
 ## ✨ New in v1.9.0
 
-### 🚀 Phase 2 Components
 
-We've expanded the UI kit with interactive essentials:
-
-- **Drawer**: Responsive offcanvas sidebar.
-- **Dropdown**: Simple context menus.
-- **Switch**: Accessible boolean toggles.
-- **Badge**: Status indicators.
-
-### 🧩 Core UI Components (v1.8.0)
-
-Previously added: `Accordion`, `Modal`, `Tabs`, `Alert`.
 
 ### 📐 Core Utilities
 
@@ -175,93 +164,7 @@ Individual transform properties:
 
 ---
 
-## 🧩 UI Components
 
-`kf-css` now exports headless Svelte components from `kf-css/ui`.
-Styles are applied by default but can be overridden.
-
-### Import
-
-```javascript
-import {
-  Accordion,
-  AccordionItem,
-  Modal,
-  Alert,
-  Tabs,
-  TabHeader,
-  TabPanel,
-} from 'kf-css/ui';
-```
-
-### Usage
-
-**Accordion**
-
-```svelte
-<Accordion>
-  <AccordionItem title="Section 1">Content here...</AccordionItem>
-  <AccordionItem title="Section 2">More content...</AccordionItem>
-</Accordion>
-```
-
-**Modal**
-
-```svelte
-<Modal bind:open={isOpen} title="My Modal">
-  <p>Hello World</p>
-</Modal>
-```
-
-**Tabs**
-
-```svelte
-<Tabs active="tab1">
-  <span slot="headers">
-    <TabHeader id="tab1">Home</TabHeader>
-    <TabHeader id="tab2">Profile</TabHeader>
-  </span>
-  <TabPanel id="tab1">Home Content</TabPanel>
-  <TabPanel id="tab2">Profile Content</TabPanel>
-</Tabs>
-```
-
-**Alert**
-
-```svelte
-<Alert type="info" title="Note">This is an alert.</Alert>
-```
-
-**Drawer**
-
-```svelte
-<Drawer bind:open={isOpen} position="right">
-  <div class="p-m">Drawer Content</div>
-</Drawer>
-```
-
-**Dropdown**
-
-```svelte
-<Dropdown label="Menu">
-  <a href="#" class="block p-s hover:bg-muted-10">Option 1</a>
-  <button class="block p-s hover:bg-muted-10">Option 2</button>
-</Dropdown>
-```
-
-**Switch**
-
-```svelte
-<Switch bind:checked={isEnabled}>Enable Feature</Switch>
-```
-
-**Badge**
-
-```svelte
-<Badge variant="success" pill>Active</Badge>
-```
-
----
 
 ## 📄 License
 
