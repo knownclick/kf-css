@@ -3553,6 +3553,35 @@ html.kf-theme-dark {
   background-size: contain;
 }
 
+.bg-none {
+  background: none;
+}
+
+.bg-transparent {
+  background-color: transparent;
+}
+
+.shadow-none {
+  box-shadow: none;
+}
+
+.radius-none {
+  border-radius: 0;
+}
+
+.outline-none {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.bg-blur-none {
+  backdrop-filter: none;
+}
+
+.blur-none {
+  filter: none;
+}
+
 .transition-none {
   transition-property: none;
 }
@@ -4413,6 +4442,34 @@ html.kf-theme-dark {
 
 .height-100 {
   height: 100%;
+}
+
+.max-w-none {
+  max-width: none;
+}
+
+.max-h-none {
+  max-height: none;
+}
+
+.appearance-none {
+  appearance: none;
+}
+
+.resize-none {
+  resize: none;
+}
+
+.resize {
+  resize: both;
+}
+
+.resize-x {
+  resize: horizontal;
+}
+
+.resize-y {
+  resize: vertical;
 }
 
 .order-1 {

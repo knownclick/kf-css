@@ -2,43 +2,53 @@
 @use 'sass:math';
 
 @mixin generate-classes($config) {
+
   // Generates: .radius-*, .radius-t-*, .radius-full...
   @if map.get($config, 'generate-radius') {
     @each $name, $step in map.get($config, 'radius-steps') {
       .radius-#{$name} {
         border-radius: var(--radius-#{$name});
       }
+
       // Side Specific
       .radius-t-#{$name} {
         border-top-left-radius: var(--radius-#{$name});
         border-top-right-radius: var(--radius-#{$name});
       }
+
       .radius-b-#{$name} {
         border-bottom-left-radius: var(--radius-#{$name});
         border-bottom-right-radius: var(--radius-#{$name});
       }
+
       .radius-l-#{$name} {
         border-top-left-radius: var(--radius-#{$name});
         border-bottom-left-radius: var(--radius-#{$name});
       }
+
       .radius-r-#{$name} {
         border-top-right-radius: var(--radius-#{$name});
         border-bottom-right-radius: var(--radius-#{$name});
       }
+
       // Corner Specific
       .radius-tl-#{$name} {
         border-top-left-radius: var(--radius-#{$name});
       }
+
       .radius-tr-#{$name} {
         border-top-right-radius: var(--radius-#{$name});
       }
+
       .radius-bl-#{$name} {
         border-bottom-left-radius: var(--radius-#{$name});
       }
+
       .radius-br-#{$name} {
         border-bottom-right-radius: var(--radius-#{$name});
       }
     }
+
     .radius-full {
       border-radius: var(--radius-full);
     }
@@ -58,18 +68,23 @@
     .border {
       border: 1px solid;
     }
+
     .border-top {
       border-top: 1px solid;
     }
+
     .border-bottom {
       border-bottom: 1px solid;
     }
+
     .border-left {
       border-left: 1px solid;
     }
+
     .border-right {
       border-right: 1px solid;
     }
+
     .border-none {
       border: none;
     }
@@ -79,31 +94,37 @@
   @if map.get($config, 'generate-opacity') {
     $step: map.get($config, 'opacity-step');
     $loops: 0;
-    @if $step > 0 {
+
+    @if $step >0 {
       $loops: math.floor(math.div(100, $step));
     }
 
     .opacity-0 {
       opacity: 0;
     }
+
     .opacity-100 {
       opacity: 1;
     }
 
-    @if $step > 0 {
+    @if $step >0 {
       @for $i from 1 through ($loops - 1) {
         $pct: $i * $step;
+
         .opacity-#{$pct} {
           opacity: math.div($pct, 100);
         }
       }
+
       // Explicitly add common quarters if not generated
       .opacity-25 {
         opacity: 0.25;
       }
+
       .opacity-50 {
         opacity: 0.5;
       }
+
       .opacity-75 {
         opacity: 0.75;
       }
@@ -124,15 +145,19 @@
     .fit-contain {
       object-fit: contain;
     }
+
     .fit-cover {
       object-fit: cover;
     }
+
     .fit-fill {
       object-fit: fill;
     }
+
     .fit-none {
       object-fit: none;
     }
+
     .fit-scale-down {
       object-fit: scale-down;
     }
@@ -143,6 +168,7 @@
     @each $name, $value in map.get($config, 'blurs') {
       .bg-blur-#{$name} {
         backdrop-filter: blur($value);
+
         // Interactive States
         @if map.get($config, 'generate-interactive') {
           @if map.get($config, 'generate-shadows') {
@@ -152,16 +178,21 @@
               }
             }
           }
+
           @if map.get($config, 'generate-opacity') {
             .hover\:opacity-100:hover {
               opacity: 1;
             }
+
             $step: map.get($config, 'opacity-step');
             $loops: 0;
-            @if $step > 0 {
+
+            @if $step >0 {
               $loops: math.floor(math.div(100, $step));
+
               @for $i from 1 through ($loops - 1) {
                 $pct: $i * $step;
+
                 .hover\:opacity-#{$pct}:hover {
                   opacity: math.div($pct, 100);
                 }
@@ -181,15 +212,19 @@
       }
     }
   }
+
   // Generates: .bg-fixed, .bg-cover, .bg-center...
   @if map.get($config, 'generate-bg-utils') {
+
     // Attachment
     .bg-fixed {
       background-attachment: fixed;
     }
+
     .bg-local {
       background-attachment: local;
     }
+
     .bg-scroll {
       background-attachment: scroll;
     }
@@ -198,27 +233,35 @@
     .bg-bottom {
       background-position: bottom;
     }
+
     .bg-center {
       background-position: center;
     }
+
     .bg-left {
       background-position: left;
     }
+
     .bg-left-bottom {
       background-position: left bottom;
     }
+
     .bg-left-top {
       background-position: left top;
     }
+
     .bg-right {
       background-position: right;
     }
+
     .bg-right-bottom {
       background-position: right bottom;
     }
+
     .bg-right-top {
       background-position: right top;
     }
+
     .bg-top {
       background-position: top;
     }
@@ -227,12 +270,15 @@
     .bg-repeat {
       background-repeat: repeat;
     }
+
     .bg-no-repeat {
       background-repeat: no-repeat;
     }
+
     .bg-repeat-x {
       background-repeat: repeat-x;
     }
+
     .bg-repeat-y {
       background-repeat: repeat-y;
     }
@@ -241,11 +287,51 @@
     .bg-auto {
       background-size: auto;
     }
+
     .bg-cover {
       background-size: cover;
     }
+
     .bg-contain {
       background-size: contain;
+    }
+  }
+
+  // Missing 'none' and 'transparent' utilities
+  .bg-none {
+    background: none;
+  }
+
+  .bg-transparent {
+    background-color: transparent;
+  }
+
+  @if map.get($config, 'generate-shadows') {
+    .shadow-none {
+      box-shadow: none;
+    }
+  }
+
+  @if map.get($config, 'generate-radius') {
+    .radius-none {
+      border-radius: 0;
+    }
+  }
+
+  .outline-none {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+  }
+
+  @if map.get($config, 'generate-blur') {
+    .bg-blur-none {
+      backdrop-filter: none;
+    }
+  }
+
+  @if map.get($config, 'generate-filters') {
+    .blur-none {
+      filter: none;
     }
   }
 }
